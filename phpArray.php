@@ -12,14 +12,29 @@
 
 
 <?php
-$myArray = array( 1 , 2 ," pappu ","anika ");
+// $myArray = array( 1 , 2 ," pappu ","anika ");
 
-$myArrayLength = count($myArray);
+// $myArrayLength = count($myArray);
 
-for($x=0; $x < $myArrayLength; $x++){
-    echo  $myArray[$x];
-    echo "<br>";
+// for($x=0; $x < $myArrayLength; $x++){
+//     echo  $myArray[$x];
+//     echo "<br>";
+// }
+
+
+
+
+$MySum = array(15,20,25,30);
+$mysumLength = count($MySum);
+
+$sum = 0;
+
+for($i=0; $mysumLength; $i++){
+	$sum =$MySum[$i] + $MySum[$i+1];
 }
+echo "sum is".$sum;
+
+
 ?>
 </div>
 

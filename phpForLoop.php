@@ -25,6 +25,13 @@ for($x=1;$x<=10;$x++){
   echo "2 * ",$x," = ",2*$x,"<br>";
 }
 
+$sum = 0;
+for($x=1; $x<=100; $x++){
+	$sum = $sum + $x;
+
+}
+echo "sum is",$sum;
+
 ?>
 </div>
 
