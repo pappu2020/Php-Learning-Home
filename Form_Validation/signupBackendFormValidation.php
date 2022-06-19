@@ -6,22 +6,29 @@ session_start();
 
 $name = $_POST["name"];
 $email = $_POST["email"];
+$flexRadioDefault = $_POST["flexRadioDefault"];
+// $female = $_POST["female"];
 $password = $_POST["password"];
 $confirmPassword = $_POST["confirmPassword"];
 $address = $_POST["address"];
 
 
 
-if ($name) {
+
+
+
+if ($name && preg_match("/^[a-zA-Z-' ]*$/", $name)) {
 
     // echo "Name: " . $name;
     // echo "<br>";
 
     $nameData = $name;
 } else {
-    $_SESSION['name_error'] = "Name  required.Please Enter the Name";
+    $_SESSION['name_error'] = "Name required.Please Enter the valid Name. Do not enter any number";
     header("location: signupformValidation.php");
 }
+
+
 
 
 if (intval($name)) {
@@ -38,6 +45,33 @@ if ($email) {
     $_SESSION['email_error'] = "email required.Please Enter the email";
     header("location: signupformValidation.php");
 }
+
+
+
+if ($flexRadioDefault) {
+
+    $flexRadioDefaultData = $flexRadioDefault;
+} else {
+    $_SESSION["flexRadioDefault_error"] = "Please select your gender";
+    header("location: signupformValidation.php");
+}
+
+
+// if ($female) {
+
+//     $femaleData = $female;
+// } else {
+//     $_SESSION["female_error"] = "Please select your gender";
+//     header("location: signupformValidation.php");
+// }
+
+
+
+
+
+
+
+
 
 
 
@@ -105,6 +139,7 @@ if ($address) {
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Gender</th>
                         <th scope="col">Password</th>
                         <th scope="col">Confirm Password</th>
                         <th scope="col">Address</th>
@@ -115,12 +150,13 @@ if ($address) {
                         <th scope="row">1</th>
                         <td><?php echo $nameData; ?></td>
                         <td><?php echo $emailData; ?></td>
+                        <td><?php echo $flexRadioDefaultData; ?></td>
                         <td><?php echo $passwordData; ?></td>
                         <td><?php echo $confirmPasswordData; ?></td>
                         <td><?php echo $addressData; ?></td>
                     </tr>
-                   
-                  
+
+
                 </tbody>
             </table>
 

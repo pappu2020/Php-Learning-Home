@@ -132,6 +132,41 @@ session_start();
 
 
 
+
+                        <div class="gender mt-2 mb-2">
+
+                            <label for="gender" class="form-label me-3">Gender : </label>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="male">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Male
+                            </label>
+
+
+                            <input class="form-check-input ms-3" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="female">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Female
+                            </label>
+                        </div>
+
+                        <?php
+
+                        if (isset($_SESSION["flexRadioDefault_error"])) {
+
+                        ?>
+
+                            <div class="genderError alert alert-danger">
+                                <?php echo  $_SESSION["flexRadioDefault_error"]   ?>
+                            </div>
+
+
+
+                        <?php
+                        }
+
+                        ?>
+
+
+
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" name="password" placeholder="Enter the Password: " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" id="password">
@@ -320,7 +355,6 @@ session_start();
 
 </html>
 
-<?php
 
 session_destroy();
 
