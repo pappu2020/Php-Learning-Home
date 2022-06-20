@@ -10,7 +10,9 @@ $flexRadioDefault = $_POST["flexRadioDefault"];
 // $female = $_POST["female"];
 $password = $_POST["password"];
 $confirmPassword = $_POST["confirmPassword"];
+$city_Select = $_POST["city_Select"];
 $address = $_POST["address"];
+$cv = $_POST["cv"];
 
 
 
@@ -96,12 +98,41 @@ if ($confirmPassword && $password == $confirmPassword) {
     header("location: signupformValidation.php");
 }
 
+
+
+
+if ($city_Select == "Dhaka" || $city_Select == "Chattogram" || $city_Select == "Khulna" || $city_Select == "Rajshahi" || $city_Select == "Barisal"  || $city_Select == "Sylhet") {
+    $city_SelectData = $city_Select;
+} else {
+    $_SESSION["city_Select_error"] = "Please Select your City";
+    header("location: signupformValidation.php");
+}
+
+
+
+
+
+
+
+
 if ($address) {
     // echo "Address: " . $address;
     // echo "<br>";
     $addressData = $address;
 } else {
     $_SESSION['address_error'] = "address is Required.Please Enter the address";
+    header("location: signupformValidation.php");
+}
+
+
+
+
+if ($cv) {
+    // echo "Address: " . $address;
+    // echo "<br>";
+    $cvData = $cv;
+} else {
+    $_SESSION['cv_error'] = "cv is Required.Please Upload the cv";
     header("location: signupformValidation.php");
 }
 
@@ -142,7 +173,9 @@ if ($address) {
                         <th scope="col">Gender</th>
                         <th scope="col">Password</th>
                         <th scope="col">Confirm Password</th>
+                        <th scope="col">City</th>
                         <th scope="col">Address</th>
+                        <th scope="col">CV</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,7 +186,10 @@ if ($address) {
                         <td><?php echo $flexRadioDefaultData; ?></td>
                         <td><?php echo $passwordData; ?></td>
                         <td><?php echo $confirmPasswordData; ?></td>
+                        <td><?php echo $city_SelectData; ?></td>
+
                         <td><?php echo $addressData; ?></td>
+                        <td><?php echo $cvData; ?></td>
                     </tr>
 
 

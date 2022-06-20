@@ -10,7 +10,7 @@ session_start();
     <title>Php Form Validation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="./styleFormValidation.css">
+    <link rel="stylesheet" href="./styleFormValidationPhpHome.css">
 </head>
 
 <body>
@@ -18,19 +18,32 @@ session_start();
 
 
 
-        <div class="myForm">
 
 
-            <div class="row">
-                <div class="col-lg-8 m-auto">
+        <div class="row regisDiv">
+            <div class="col-lg-5 backPicDiv">
 
-                    <form action="./signupBackendFormValidation.php" method="POST" class="w-50 border border-dark mt-5 p-3">
+                <img src="img/back1.jpg" alt="" width="850" height="750" class="backPic">
 
-                        <legend>Registration Form</legend>
+            </div>
+
+
+
+
+            <div class="col-lg-7">
+
+                <div class="">
+
+
+
+
+                    <form action="./signupBackendFormValidation.php" method="POST" class=" myFormDiv">
+
+                        <legend class="title">SIGN UP</legend>
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Enter the Name: " id="nameValidation" pattern="*([a-z])(*[A-Z])">
+                            <label for="name" class="form-label myLabel">Name</label>
+                            <input type="text" class="form-control myInput" name="name" placeholder="Enter the Name: " id="nameValidation" pattern="*([a-z])(*[A-Z])">
 
                         </div>
 
@@ -98,8 +111,8 @@ session_start();
 
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="Enter the Email: ">
+                            <label for="email" class="form-label myLabel">Email</label>
+                            <input type="email" class="form-control myInput" name="email" placeholder="Enter the Email: ">
 
                         </div>
 
@@ -135,15 +148,15 @@ session_start();
 
                         <div class="gender mt-2 mb-2">
 
-                            <label for="gender" class="form-label me-3">Gender : </label>
+                            <label for="gender" class="form-label me-3 myLabel">Gender : </label>
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="male">
-                            <label class="form-check-label" for="flexRadioDefault1">
+                            <label class="form-check-label myLabel" for="flexRadioDefault1">
                                 Male
                             </label>
 
 
                             <input class="form-check-input ms-3" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="female">
-                            <label class="form-check-label" for="flexRadioDefault2">
+                            <label class="form-check-label myLabel" for="flexRadioDefault2">
                                 Female
                             </label>
                         </div>
@@ -168,8 +181,8 @@ session_start();
 
 
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Enter the Password: " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" id="password">
+                            <label for="password" class="form-label myLabel">Password</label>
+                            <input type="password" class="form-control myInput" name="password" placeholder="Enter the Password: " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" id="password">
 
                         </div>
 
@@ -235,8 +248,8 @@ session_start();
 
 
                         <div class="mb-3 mt-3">
-                            <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" name="confirmPassword" placeholder="Enter the Password again: " id="confirmPass">
+                            <label for="confirmPassword" class="form-label myLabel">Confirm Password</label>
+                            <input type="password" class="form-control myInput" name="confirmPassword" placeholder="Enter the Password again: " id="confirmPass">
 
                         </div>
 
@@ -286,13 +299,55 @@ session_start();
 
 
 
+                        <div class="input-group mb-3 mySelect mt-2 mb-2">
+                            <label class="input-group-text myLabel" for="inputGroupSelect01">City</label>
+                            <select class="form-select myInput" id="inputGroupSelect01" name="city_Select">
+                                <option selected>Choose...</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Chattogram">Chattogram</option>
+                                <option value="Khulna">Khulna</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Barisal">Barisal</option>
+                                <option value="Sylhet">Sylhet</option>
+                            </select>
+                        </div>
+
+
+                        <?php
+
+                        if (isset($_SESSION['city_Select_error'])) {
+
+                        ?>
+
+                            <div class="city_Select_error alert alert-danger p-3">
+
+                                <?php
+
+                                echo $_SESSION['city_Select_error'];
+
+                                ?>
+
+                            </div>
+
+
+
+                        <?php
+
+
+                        }
+
+
+                        ?>
+
+
+
 
 
 
 
                         <div class="address">
-                            <label for="address">Enter the Address</label>
-                            <textarea name="address" id="" cols="40" rows="5"></textarea>
+                            <label for="address" class="form-label myLabel">Enter the Full Address</label>
+                            <textarea name="address" id="" cols="40" rows="1" class="myInput"></textarea>
                         </div>
 
 
@@ -327,6 +382,44 @@ session_start();
 
 
 
+                        <div class="input-group mb-3 Cv mt-3 mb-3">
+                            <label class="input-group-text fw-bolder" for="inputGroupFile01">Upload Your CV</label>
+                            <input type="file" class="form-control" id="inputGroupFile01" name="cv">
+                        </div>
+
+
+
+                        <?php
+
+                        if (isset($_SESSION['cv_error'])) {
+
+                        ?>
+
+                            <div class="cvError alert alert-danger p-3">
+
+                                <?php
+
+                                echo $_SESSION['cv_error'];
+
+                                ?>
+
+                            </div>
+
+
+
+                        <?php
+
+
+                        }
+
+
+                        ?>
+
+
+
+
+
+
 
 
 
@@ -336,9 +429,16 @@ session_start();
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
 
-                </div>
-            </div>
 
+
+
+
+                </div>
+
+
+
+
+            </div>
 
 
 
@@ -355,7 +455,7 @@ session_start();
 
 </html>
 
-
+<?php
 session_destroy();
 
 ?>
