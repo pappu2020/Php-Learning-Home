@@ -7,11 +7,12 @@
     margin-left: 200px;
     margin-top: 50px;
 
-    width: 430px;
+    width: 500px;
     box-shadow: #f2f2f2 0px 10px 36px 0px, #f2f2f2 0px 0px 0px 1px;
     padding: 20px;
     border-radius: 2%;
     background-color: white;
+    border: 2px solid #968CED;
 
 
 }
@@ -78,13 +79,13 @@
 
 .checkPassword {
     position: absolute;
-    margin-left: 340px;
+    margin-left: 397px;
     margin-top: -54px;
 }
 
 .hidePassword {
     position: absolute;
-    margin-left: 340px;
+    margin-left: 397px;
     margin-top: -54px;
     display: none;
 }
