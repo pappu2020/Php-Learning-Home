@@ -43,7 +43,14 @@ session_start();
 
                         <div class="mb-3">
                             <label for="name" class="form-label myLabel">Name</label>
-                            <input type="text" class="form-control myInput" name="name" placeholder="Enter the Name: " id="nameValidation" pattern="*([a-z])(*[A-Z])">
+                            <input type="text" class="form-control myInput" name="name" placeholder="Enter the Name: " id="nameValidation" pattern="*([a-z])(*[A-Z])" value="<?php 
+                            
+                            if(isset($_SESSION["name_old"])){
+                                echo $_SESSION["name_old"];
+                            }
+                            
+                            
+                            ?>">
 
                         </div>
 
@@ -112,7 +119,17 @@ session_start();
 
                         <div class="mb-3">
                             <label for="email" class="form-label myLabel">Email</label>
-                            <input type="email" class="form-control myInput" name="email" placeholder="Enter the Email: ">
+                            <input type="email" class="form-control myInput" name="email" placeholder="Enter the Email: "value="<?php 
+                            
+                            
+                            if(isset($_SESSION["email_old"])){
+                                echo $_SESSION["email_old"];
+                            }
+                            
+                            
+                            
+                            
+                            ?>">
 
                         </div>
 
@@ -182,7 +199,17 @@ session_start();
 
                         <div class="mb-3">
                             <label for="password" class="form-label myLabel">Password</label>
-                            <input type="password" class="form-control myInput" name="password" placeholder="Enter the Password: " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" id="password">
+                            <input type="password" class="form-control myInput" name="password" placeholder="Enter the Password: " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" id="password"value="<?php 
+                            
+                            
+                            if(isset($_SESSION["password_old"])){
+                                echo $_SESSION["password_old"];
+                            }
+                            
+                            
+                            
+                            
+                            ?>">
 
                         </div>
 
@@ -249,7 +276,17 @@ session_start();
 
                         <div class="mb-3 mt-3">
                             <label for="confirmPassword" class="form-label myLabel">Confirm Password</label>
-                            <input type="password" class="form-control myInput" name="confirmPassword" placeholder="Enter the Password again: " id="confirmPass">
+                            <input type="password" class="form-control myInput" name="confirmPassword" placeholder="Enter the Password again: " id="confirmPass"value="<?php 
+                            
+                            
+                            if(isset($_SESSION["confirmPassword_old"])){
+                                echo $_SESSION["confirmPassword_old"];
+                            }
+                            
+                            
+                            
+                            
+                            ?>">
 
                         </div>
 
@@ -301,7 +338,17 @@ session_start();
 
                         <div class="input-group mb-3 mySelect mt-2 mb-2">
                             <label class="input-group-text myLabel" for="inputGroupSelect01">City</label>
-                            <select class="form-select myInput" id="inputGroupSelect01" name="city_Select">
+                            <select class="form-select myInput" id="inputGroupSelect01" name="city_Select"value="<?php 
+                            
+                            
+                            if(isset($_SESSION["city_Select_old"])){
+                                echo $_SESSION["city_Select_old"];
+                            }
+                            
+                            
+                            
+                            
+                            ?>">
                                 <option selected>Choose...</option>
                                 <option value="Dhaka">Dhaka</option>
                                 <option value="Chattogram">Chattogram</option>
@@ -347,7 +394,17 @@ session_start();
 
                         <div class="address">
                             <label for="address" class="form-label myLabel">Enter the Full Address</label>
-                            <textarea name="address" id="" cols="40" rows="1" class="myInput"></textarea>
+                            <textarea name="address" id="" cols="40" rows="1" class="myInput" value="<?php 
+                            
+                            
+                            if(isset($_SESSION["addressData_old"])){
+                                echo $_SESSION["addressData_old"];
+                            }
+                            
+                            
+                            
+                            
+                            ?>"></textarea>
                         </div>
 
 

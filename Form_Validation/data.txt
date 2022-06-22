@@ -1,0 +1,11 @@
+
+
+NAME: Sybil Briggs
+Email: diso@mailinator.com
+Gender: female
+Password: Pa$$w0rd!
+Confirm Password: Pa$$w0rd!
+Address: Nisi et autem unde c
+City: Chattogram
+CV: Screenshot (5).png
+
