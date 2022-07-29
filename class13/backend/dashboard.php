@@ -1,9 +1,16 @@
 <?php
 session_start();
 
-if(!$_SESSION["nameDbSession"]){
+if (!$_SESSION["nameDbSession"]) {
     header("location:loginError.php");
 }
+
+$localhost = "localhost";
+$username = "root";
+$password = "";
+$db = "nat_boltu";
+
+$con = mysqli_connect($localhost, $username, $password, $db);
 ?>
 
 <!DOCTYPE html>
@@ -575,74 +582,59 @@ if(!$_SESSION["nameDbSession"]){
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xl-4">
+                            <div class="col-xl-6">
                                 <div class="card widget widget-list">
                                     <div class="card-header">
-                                        <h5 class="card-title">Active Tasks<span class="badge badge-success badge-style-light">14 completed</span></h5>
+                                        <?php 
+                                        $countAllData="SELECT COUNT(*) AS 'count' FROM users";
+                                        $countAllDataResult = mysqli_query($con,$countAllData);
+                                        
+                                        ?>
+                                        <h5 class="card-title">New Users<span class="badge badge-success badge-style-light"><?php 
+                                        
+                                        print_r(mysqli_fetch_assoc($countAllDataResult)['count']);
+                                        
+                                        ?></span></h5>
                                     </div>
                                     <div class="card-body">
-                                        <span class="text-muted m-b-xs d-block">showing 5 out of 23 active tasks.</span>
+
                                         <ul class="widget-list-content list-unstyled">
-                                            <li class="widget-list-item widget-list-item-green">
-                                                <span class="widget-list-item-icon"><i class="material-icons-outlined">article</i></span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Dashboard UI optimisations
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Oskar Hudson
+                                            <?php
+                                            $allDataViewSql = "SELECT id, name, email FROM users";
+                                            $allDataViewResult = mysqli_query($con, $allDataViewSql);
+
+                                            ?>
+
+
+                                            <?php
+                                            foreach ($allDataViewResult as $users) {
+
+
+                                            ?>
+
+                                                <li class="widget-list-item widget-list-item-red">
+                                                    <span class="widget-list-item-avatar">
+                                                        <div class="avatar avatar-rounded">
+                                                            <div class="avatar-title"><?php print_r($users['id']); ?></div>
+                                                        </div>
                                                     </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-blue">
-                                                <span class="widget-list-item-icon"><i class="material-icons-outlined">verified_user</i></span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Mailbox cleanup
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Woodrow Hawkins
+                                                    <span class="widget-list-item-description">
+                                                        <a href="#" class="widget-list-item-description-title">
+                                                            <?php print_r($users['name']); ?>
+                                                        </a>
+                                                        <span class="widget-list-item-description-subtitle">
+                                                            <?php print_r($users['email']); ?>
+                                                        </span>
                                                     </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-purple">
-                                                <span class="widget-list-item-icon"><i class="material-icons-outlined">watch_later</i></span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Header scroll bugfix
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Sky Meyers
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-yellow">
-                                                <span class="widget-list-item-icon"><i class="material-icons-outlined">extension</i></span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Localization for file manager
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Oskar Hudson
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-red">
-                                                <span class="widget-list-item-icon"><i class="material-icons-outlined">invert_colors</i></span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        New E-commerce UX/UI design
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Oskar Hudson
-                                                    </span>
-                                                </span>
-                                            </li>
+                                                </li>
+
+                                            <?php } ?>
+
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4">
+                            <div class="col-xl-6">
                                 <div class="card widget widget-list">
                                     <div class="card-header">
                                         <h5 class="card-title">Todo<span class="badge badge-success badge-style-light">14 completed</span></h5>
@@ -729,56 +721,7 @@ if(!$_SESSION["nameDbSession"]){
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4">
-                                <div class="card widget widget-payment-request">
-                                    <div class="card-header">
-                                        <h5 class="card-title">Payment Request<span class="badge badge-warning badge-style-light">8 June</span></h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="widget-payment-request-container">
-                                            <div class="widget-payment-request-author">
-                                                <div class="avatar m-r-sm">
-                                                    <img src="../assets/images/avatars/avatar.png" alt="">
-                                                </div>
-                                                <div class="widget-payment-request-author-info">
-                                                    <span class="widget-payment-request-author-name">Caio Yousuke</span>
-                                                    <span class="widget-payment-request-author-about">Customer Journey Expert</span>
-                                                </div>
-                                            </div>
-                                            <div class="widget-payment-request-product">
-                                                <div class="widget-payment-request-product-image m-r-sm">
-                                                    <img src="../assets/images/other/facebook_logo.png" class="mt-auto" alt="">
-                                                </div>
-                                                <div class="widget-payment-request-product-info d-flex">
-                                                    <div class="widget-payment-request-product-info-content">
-                                                        <span class="widget-payment-request-product-name">Google</span>
-                                                        <span class="widget-payment-request-product-about">Youtube Advertisments</span>
-                                                    </div>
-                                                    <span class="widget-payment-request-product-price">$2,399.99</span>
-                                                </div>
-                                            </div>
-                                            <div class="widget-payment-request-info m-t-md">
-                                                <div class="widget-payment-request-info-item">
-                                                    <span class="widget-payment-request-info-title d-block">
-                                                        Description
-                                                    </span>
-                                                    <span class="text-muted d-block">Advertisement for envato items</span>
-                                                </div>
-                                                <div class="widget-payment-request-info-item">
-                                                    <span class="widget-payment-request-info-title d-block">
-                                                        Due Date
-                                                    </span>
-                                                    <span class="text-muted d-block">14 June, 2021</span>
-                                                </div>
-                                            </div>
-                                            <div class="widget-payment-request-actions m-t-lg d-flex">
-                                                <a href="#" class="btn btn-light flex-grow-1 m-r-xxs">Reject</a>
-                                                <a href="#" class="btn btn-primary flex-grow-1 m-l-xxs">Approve</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="row">
                             <div class="col-xl-4">
