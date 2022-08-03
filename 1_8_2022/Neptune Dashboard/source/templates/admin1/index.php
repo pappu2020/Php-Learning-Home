@@ -1,17 +1,12 @@
 <?php
-session_start();
-
-if (!$_SESSION["nameDbSession"]) {
-    header("location:loginError.php");
-}
-
 $localhost = "localhost";
 $username = "root";
-$password = "";
-$db = "nat_boltu";
+$passwordDb = "";
+$db = "home";
+$con = mysqli_connect($localhost, $username, $passwordDb, $db);
 
-$con = mysqli_connect($localhost, $username, $password, $db);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,17 +28,17 @@ $con = mysqli_connect($localhost, $username, $password, $db);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-    <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/plugins/perfectscroll/perfect-scrollbar.css" rel="stylesheet">
-    <link href="../assets/plugins/pace/pace.css" rel="stylesheet">
+    <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/plugins/perfectscroll/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../../assets/plugins/pace/pace.css" rel="stylesheet">
 
 
     <!-- Theme Styles -->
-    <link href="../assets/css/main.min.css" rel="stylesheet">
-    <link href="../assets/css/custom.css" rel="stylesheet">
+    <link href="../../assets/css/main.min.css" rel="stylesheet">
+    <link href="../../assets/css/custom.css" rel="stylesheet">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/neptune.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/neptune.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/neptune.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/neptune.png" />
 
 
 </head>
@@ -55,7 +50,7 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                 <a href="index.html" class="logo-icon"><span class="logo-text">Neptune</span></a>
                 <div class="sidebar-user-switcher user-activity-online">
                     <a href="#">
-                        <img src="../assets/images/avatars/avatar.png">
+                        <img src="../../assets/images/avatars/avatar.png">
                         <span class="activity-indicator"></span>
                         <span class="user-info-text">Chloe<br><span class="user-state-info">On a call</span></span>
                     </a>
@@ -423,11 +418,11 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                                     <a class="nav-link toggle-search" href="#"><i class="material-icons">search</i></a>
                                 </li>
                                 <li class="nav-item hidden-on-mobile">
-                                    <a class="nav-link language-dropdown-toggle" href="#" id="languageDropDown" data-bs-toggle="dropdown"><img src="../assets/images/flags/us.png" alt=""></a>
+                                    <a class="nav-link language-dropdown-toggle" href="#" id="languageDropDown" data-bs-toggle="dropdown"><img src="../../assets/images/flags/us.png" alt=""></a>
                                     <ul class="dropdown-menu dropdown-menu-end language-dropdown" aria-labelledby="languageDropDown">
-                                        <li><a class="dropdown-item" href="#"><img src="../assets/images/flags/germany.png" alt="">German</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../assets/images/flags/italy.png" alt="">Italian</a></li>
-                                        <li><a class="dropdown-item" href="#"><img src="../assets/images/flags/china.png" alt="">Chinese</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="../../assets/images/flags/germany.png" alt="">German</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="../../assets/images/flags/italy.png" alt="">Italian</a></li>
+                                        <li><a class="dropdown-item" href="#"><img src="../../assets/images/flags/china.png" alt="">Chinese</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item hidden-on-mobile">
@@ -478,7 +473,7 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                                                 <div class="notifications-dropdown-item">
                                                     <div class="notifications-dropdown-item-image">
                                                         <span class="notifications-badge">
-                                                            <img src="../assets/images/avatars/avatar.png" alt="">
+                                                            <img src="../../assets/images/avatars/avatar.png" alt="">
                                                         </span>
                                                     </div>
                                                     <div class="notifications-dropdown-item-text">
@@ -491,7 +486,7 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                                                 <div class="notifications-dropdown-item">
                                                     <div class="notifications-dropdown-item-image">
                                                         <span class="notifications-badge">
-                                                            <img src="../assets/images/avatars/avatar.png" alt="">
+                                                            <img src="../../assets/images/avatars/avatar.png" alt="">
                                                         </span>
                                                     </div>
                                                     <div class="notifications-dropdown-item-text">
@@ -502,9 +497,6 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                                             </a>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="nav-item hidden-on-mobile">
-                                    <a class="nav-link btn btn-danger text-light" href="./logout.php">Log Out</a>
                                 </li>
                             </ul>
                         </div>
@@ -518,7 +510,6 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                             <div class="col">
                                 <div class="page-description">
                                     <h1>Dashboard</h1>
-                                    <h3>Welcome,<?= $_SESSION["nameDbSession"] ?> , Your Email Is (<?= $_SESSION['db_email'] ?>)</h3>
                                 </div>
                             </div>
                         </div>
@@ -582,146 +573,117 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xl-6">
+                            <div class="col-xl-4">
                                 <div class="card widget widget-list">
                                     <div class="card-header">
+                                        <h5 class="card-title">New Users<span class="badge badge-success badge-style-light">
+                                          
                                         <?php 
-                                        $countAllData="SELECT COUNT(*) AS 'count' FROM users";
-                                        $countAllDataResult = mysqli_query($con,$countAllData);
+                                        $countData = "SELECT COUNT(*) AS 'count' FROM users";
+                                        $countDataRes = mysqli_query($con,$countData);
+
+                                        print_r(mysqli_fetch_assoc($countDataRes)['count']);
+                                        
+                                        
                                         
                                         ?>
-                                        <h5 class="card-title">New Users<span class="badge badge-success badge-style-light fs-5">Total Users <?php 
-                                        
-                                        print_r(mysqli_fetch_assoc($countAllDataResult)['count']);
-                                        
-                                        ?></span></h5>
+
+
+
+
+
+
+
+                                        </span></h5>
                                     </div>
                                     <div class="card-body">
-
+                                        <span class="text-muted m-b-xs d-block">showing 5 out of 14 new users.</span>
                                         <ul class="widget-list-content list-unstyled">
-                                            <?php
-                                            $allDataViewSql = "SELECT id, name, email FROM users";
-                                            $allDataViewResult = mysqli_query($con, $allDataViewSql);
-
-                                            ?>
-
 
                                             <?php
-                                            foreach ($allDataViewResult as $users) {
+                                            $sqlAllData = "SELECT Id,Name,Email FROM users";
+                                            $sqlAllDataResult = mysqli_query($con, $sqlAllData);
+
+                                            ?>
+                                            <?php
+                                            foreach ($sqlAllDataResult as $users) {
 
 
                                             ?>
-
                                                 <li class="widget-list-item widget-list-item-red">
                                                     <span class="widget-list-item-avatar">
                                                         <div class="avatar avatar-rounded">
-                                                            <div class="avatar-title"><?php print_r($users['id']); ?></div>
+                                                            <div class="avatar-title"><?php print_r($users["Id"]); ?></div>
                                                         </div>
                                                     </span>
                                                     <span class="widget-list-item-description">
                                                         <a href="#" class="widget-list-item-description-title">
-                                                            <?php print_r($users['name']); ?>
+                                                            <?php print_r($users["Name"]); ?>
                                                         </a>
                                                         <span class="widget-list-item-description-subtitle">
-                                                            <?php print_r($users['email']); ?>
+                                                            <?php print_r($users["Email"]); ?>
                                                         </span>
                                                     </span>
                                                 </li>
 
                                             <?php } ?>
 
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card widget widget-list">
-                                    <div class="card-header">
-                                        <h5 class="card-title">Todo<span class="badge badge-success badge-style-light">14 completed</span></h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <span class="text-muted m-b-xs d-block">showing 5 out of 23 active tasks.</span>
-                                        <ul class="widget-list-content list-unstyled">
-                                            <li class="widget-list-item widget-list-item-green">
-                                                <span class="widget-list-item-check">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                    </div>
-                                                </span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Dashboard UI optimisations
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Oskar Hudson
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-blue">
-                                                <span class="widget-list-item-check">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                    </div>
-                                                </span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Mailbox cleanup
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Woodrow Hawkins
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-purple">
-                                                <span class="widget-list-item-check">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                    </div>
-                                                </span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Header scroll bugfix
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Sky Meyers
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-yellow">
-                                                <span class="widget-list-item-check">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                    </div>
-                                                </span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Localization for file manager
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Oskar Hudson
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-red">
-                                                <span class="widget-list-item-check">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                    </div>
-                                                </span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        New E-commerce UX/UI design
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Oskar Hudson
-                                                    </span>
-                                                </span>
-                                            </li>
+
                                         </ul>
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="col-xl-6">
+                                <div class="card widget widget-payment-request">
+                                    <div class="card-header">
+                                        <h5 class="card-title">Payment Request<span class="badge badge-warning badge-style-light">8 June</span></h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="widget-payment-request-container">
+                                            <div class="widget-payment-request-author">
+                                                <div class="avatar m-r-sm">
+                                                    <img src="../../assets/images/avatars/avatar.png" alt="">
+                                                </div>
+                                                <div class="widget-payment-request-author-info">
+                                                    <span class="widget-payment-request-author-name">Caio Yousuke</span>
+                                                    <span class="widget-payment-request-author-about">Customer Journey Expert</span>
+                                                </div>
+                                            </div>
+                                            <div class="widget-payment-request-product">
+                                                <div class="widget-payment-request-product-image m-r-sm">
+                                                    <img src="../../assets/images/other/facebook_logo.png" class="mt-auto" alt="">
+                                                </div>
+                                                <div class="widget-payment-request-product-info d-flex">
+                                                    <div class="widget-payment-request-product-info-content">
+                                                        <span class="widget-payment-request-product-name">Google</span>
+                                                        <span class="widget-payment-request-product-about">Youtube Advertisments</span>
+                                                    </div>
+                                                    <span class="widget-payment-request-product-price">$2,399.99</span>
+                                                </div>
+                                            </div>
+                                            <div class="widget-payment-request-info m-t-md">
+                                                <div class="widget-payment-request-info-item">
+                                                    <span class="widget-payment-request-info-title d-block">
+                                                        Description
+                                                    </span>
+                                                    <span class="text-muted d-block">Advertisement for envato items</span>
+                                                </div>
+                                                <div class="widget-payment-request-info-item">
+                                                    <span class="widget-payment-request-info-title d-block">
+                                                        Due Date
+                                                    </span>
+                                                    <span class="text-muted d-block">14 June, 2021</span>
+                                                </div>
+                                            </div>
+                                            <div class="widget-payment-request-actions m-t-lg d-flex">
+                                                <a href="#" class="btn btn-light flex-grow-1 m-r-xxs">Reject</a>
+                                                <a href="#" class="btn btn-primary flex-grow-1 m-l-xxs">Approve</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-xl-4">
@@ -806,7 +768,7 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                                     <div class="card-body">
                                         <div class="widget-popular-product-container">
                                             <div class="widget-popular-product-image">
-                                                <img src="../assets/images/widgets/popular-product.jpeg" alt="">
+                                                <img src="../../assets/images/widgets/popular-product.jpeg" alt="">
                                             </div>
                                             <div class="widget-popular-product-tags">
                                                 <span class="badge rounded-pill badge-secondary badge-style-light">Science</span>
@@ -902,7 +864,7 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                         <div class="row">
                             <div class="col-xl-4">
                                 <div class="card">
-                                    <img src="../assets/images/widgets/blog5.jpeg" class="card-img-top" alt="...">
+                                    <img src="../../assets/images/widgets/blog5.jpeg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">The M1 Macbook Pro is Blazing Fast</h5>
                                         <p class="card-text">Pellentesque habitant morbi tristique senectus et. Curabitur molestie in tellus sed porttitor. Etiam eget erat erat. Nullam auctor a justo lacinia varius.</p>
@@ -989,7 +951,7 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                                 <div class="card widget widget-info">
                                     <div class="card-body">
                                         <div class="widget-info-container">
-                                            <div class="widget-info-image" style="background: url('../assets/images/widgets/security.svg')"></div>
+                                            <div class="widget-info-image" style="background: url('../../assets/images/widgets/security.svg')"></div>
                                             <h5 class="widget-info-title">Advanced Security</h5>
                                             <p class="widget-info-text m-t-n-xs">Nunc cursus tempor sapien, et mattis libero dapibus ut. Ut a ante sit amet arcu imperdiet accumsan.</p>
                                             <a href="#" class="btn btn-primary widget-info-action">Upgrade Now</a>
@@ -1004,7 +966,7 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                                     <div class="card-body">
                                         <div class="widget-popular-blog-container">
                                             <div class="widget-popular-blog-image">
-                                                <img src="../assets/images/widgets/product2.jpeg" alt="">
+                                                <img src="../../assets/images/widgets/product2.jpeg" alt="">
                                             </div>
                                             <div class="widget-popular-blog-content ps-4">
                                                 <span class="widget-popular-blog-title">
@@ -1033,7 +995,7 @@ $con = mysqli_connect($localhost, $username, $password, $db);
                                         <div class="widget-connection-request-container d-flex">
                                             <div class="widget-connection-request-avatar">
                                                 <div class="avatar avatar-xl m-r-xs">
-                                                    <img src="../assets/images/avatars/avatar.png" alt="">
+                                                    <img src="../../assets/images/avatars/avatar.png" alt="">
                                                 </div>
                                             </div>
                                             <div class="widget-connection-request-info flex-grow-1">
@@ -1063,14 +1025,14 @@ $con = mysqli_connect($localhost, $username, $password, $db);
     </div>
 
     <!-- Javascripts -->
-    <script src="../assets/plugins/jquery/jquery-3.5.1.min.js"></script>
-    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/plugins/perfectscroll/perfect-scrollbar.min.js"></script>
-    <script src="../assets/plugins/pace/pace.min.js"></script>
-    <script src="../assets/plugins/apexcharts/apexcharts.min.js"></script>
-    <script src="../assets/js/main.min.js"></script>
-    <script src="../assets/js/custom.js"></script>
-    <script src="../assets/js/pages/dashboard.js"></script>
+    <script src="../../assets/plugins/jquery/jquery-3.5.1.min.js"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../assets/plugins/perfectscroll/perfect-scrollbar.min.js"></script>
+    <script src="../../assets/plugins/pace/pace.min.js"></script>
+    <script src="../../assets/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="../../assets/js/main.min.js"></script>
+    <script src="../../assets/js/custom.js"></script>
+    <script src="../../assets/js/pages/dashboard.js"></script>
 </body>
 
 </html>
