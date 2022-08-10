@@ -112,9 +112,6 @@ else{
             header("location:sign-in.php"); 
         }
 
-        else{
-            $_SESSION["insert_data_error"] = "Database Connection Error!!";
-            header("location:sign-up.php"); 
-        }
+       
     }
 }

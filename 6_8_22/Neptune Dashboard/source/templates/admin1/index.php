@@ -1,10 +1,16 @@
-<?php session_start(); 
+<?php session_start();
 
-if(!isset($_SESSION["nameDataFromDbSession"])){
-    header("location:error.php");
+if (!isset($_SESSION['idDataFromDbSession'])) {
+    header('location: error.php');
 }
 
+$localhost = "localhost";
+$username = "root";
+$passwordDb = "";
+$db = "home";
 
+
+$con = mysqli_connect($localhost, $username, $passwordDb, $db);
 
 
 
@@ -46,6 +52,14 @@ if(!isset($_SESSION["nameDataFromDbSession"])){
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/neptune.png" />
 
 
+    <style>
+        .usersShowCard {
+            height: 350px;
+            overflow: scroll;
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -55,10 +69,36 @@ if(!isset($_SESSION["nameDataFromDbSession"])){
                 <a href="index.html" class="logo-icon"><span class="logo-text">Neptune</span></a>
                 <div class="sidebar-user-switcher user-activity-online">
                     <a href="#">
-                        <img src="../../assets/images/avatars/avatar.png">
-                        <span class="activity-indicator"></span>
-                        <span class="user-info-text">Chloe<br><span class="user-state-info">On a call</span></span>
+                        <div class="d-flex flex-row bd-highlight ">
+                            <div class="bd-highlight">
+                                <span class="user-info-text fw-bold"><?php
+
+                                                                        echo $_SESSION["nameDataFromDbSession"];
+
+
+
+                                                                        ?></span>
+                                <span class="user-state-info text-info"><?php
+
+
+                                                                        echo $_SESSION["signInEmailUser"];
+
+
+                                                                        ?></span>
+
+                            </div>
+                            <div class=" bd-highlight">
+                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+                                <span class="activity-indicator"></span>
+
+                            </div>
+
+                        </div>
                     </a>
+
+
+
+
                 </div>
             </div>
             <div class="app-menu">
@@ -68,282 +108,13 @@ if(!isset($_SESSION["nameDataFromDbSession"])){
                     </li>
                     <li class="active-page">
                         <a href="index.html" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="mailbox.html"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>
-                    </li>
-                    <li>
-                        <a href="file-manager.html"><i class="material-icons-two-tone">cloud_queue</i>File Manager</a>
-                    </li>
-                    <li>
-                        <a href="calendar.html"><i class="material-icons-two-tone">calendar_today</i>Calendar<span class="badge rounded-pill badge-success float-end">14</span></a>
-                    </li>
-                    <li>
-                        <a href="todo.html"><i class="material-icons-two-tone">done</i>Todo</a>
-                    </li>
-                    <li>
-                        <a href=""><i class="material-icons-two-tone">star</i>Pages<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="pricing.html">Pricing</a>
-                            </li>
-                            <li>
-                                <a href="invoice.html">Invoice</a>
-                            </li>
-                            <li>
-                                <a href="settings.html">Settings</a>
-                            </li>
-                            <li>
-                                <a href="#">Authentication<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="sign-in.html">Sign In</a>
-                                    </li>
-                                    <li>
-                                        <a href="sign-up.html">Sign Up</a>
-                                    </li>
-                                    <li>
-                                        <a href="lock-screen.html">Lock Screen</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="error.html">Error</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-title">
-                        UI Elements
-                    </li>
-                    <li>
-                        <a href="#"><i class="material-icons-two-tone">color_lens</i>Styles<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="styles-typography.html">Typography</a>
-                            </li>
-                            <li>
-                                <a href="styles-code.html">Code</a>
-                            </li>
-                            <li>
 
-                                <a href="styles-icons.html">Icons</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li>
-                        <a href="#"><i class="material-icons-two-tone">grid_on</i>Tables<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="tables-basic.html">Basic</a>
-                            </li>
-                            <li>
-                                <a href="tables-datatable.html">DataTable</a>
-                            </li>
-                        </ul>
+                        <a href="profile.php"><i class="material-icons-two-tone">person_4</i>Profile</a>
                     </li>
-                    <li>
-                        <a href=""><i class="material-icons-two-tone">sentiment_satisfied_alt</i>Elements<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="ui-alerts.html">Alerts</a>
-                            </li>
-                            <li>
-                                <a href="ui-avatars.html">Avatars</a>
-                            </li>
-                            <li>
-                                <a href="ui-badge.html">Badge</a>
-                            </li>
-                            <li>
-                                <a href="ui-breadcrumbs.html">Breadcrumbs</a>
-                            </li>
-                            <li>
-                                <a href="ui-buttons.html">Buttons</a>
-                            </li>
-                            <li>
-                                <a href="ui-button-groups.html">Button Groups</a>
-                            </li>
-                            <li>
-                                <a href="ui-collapse.html">Collapse</a>
-                            </li>
-                            <li>
-                                <a href="ui-dropdown.html">Dropdown</a>
-                            </li>
-                            <li>
-                                <a href="ui-images.html">Images</a>
-                            </li>
-                            <li>
-                                <a href="ui-pagination.html">Pagination</a>
-                            </li>
-                            <li>
-                                <a href="ui-popovers.html">Popovers</a>
-                            </li>
-                            <li>
-                                <a href="ui-progress.html">Progress</a>
-                            </li>
-                            <li>
-                                <a href="ui-spinners.html">Spinners</a>
-                            </li>
-                            <li>
-                                <a href="ui-toast.html">Toast</a>
-                            </li>
-                            <li>
-                                <a href="ui-tooltips.html">Tooltips</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="material-icons-two-tone">card_giftcard</i>Components<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="components-accordions.html">Accordions</a>
-                            </li>
-                            <li>
-                                <a href="components-block-ui.html">Block UI</a>
-                            </li>
-                            <li>
-                                <a href="components-cards.html">Cards</a>
-                            </li>
-                            <li>
-                                <a href="components-carousel.html">Carousel</a>
-                            </li>
-                            <li>
-                                <a href="components-countdown.html">Countdown</a>
-                            </li>
-                            <li>
-                                <a href="components-lightbox.html">Lightbox</a>
-                            </li>
-                            <li>
-                                <a href="components-lists.html">Lists</a>
-                            </li>
-                            <li>
-                                <a href="components-modals.html">Modals</a>
-                            </li>
-                            <li>
-                                <a href="components-tabs.html">Tabs</a>
-                            </li>
-                            <li>
-                                <a href="components-session-timeout.html">Session Timeout</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="widgets.html"><i class="material-icons-two-tone">widgets</i>Widgets</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="material-icons-two-tone">edit</i>Forms<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="forms-basic.html">Basic</a>
-                            </li>
-                            <li>
-                                <a href="forms-input-groups.html">Input Groups</a>
-                            </li>
-                            <li>
-                                <a href="forms-input-masks.html">Input Masks</a>
-                            </li>
-                            <li>
-                                <a href="forms-layouts.html">Form Layouts</a>
-                            </li>
-                            <li>
-                                <a href="forms-validation.html">Form Validation</a>
-                            </li>
-                            <li>
-                                <a href="forms-file-upload.html">File Upload</a>
-                            </li>
-                            <li>
-                                <a href="forms-text-editor.html">Text Editor</a>
-                            </li>
-                            <li>
-                                <a href="forms-datepickers.html">Datepickers</a>
-                            </li>
-                            <li>
-                                <a href="forms-select2.html">Select2</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="material-icons-two-tone">analytics</i>Charts<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="charts-apex.html">Apex</a>
-                            </li>
-                            <li>
-                                <a href="charts-chartjs.html">ChartJS</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-title">
-                        Layout
-                    </li>
-                    <li>
-                        <a href="#"><i class="material-icons-two-tone">view_agenda</i>Content<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="content-page-headings.html">Page Headings</a>
-                            </li>
-                            <li>
-                                <a href="content-section-headings.html">Section Headings</a>
-                            </li>
-                            <li>
-                                <a href="content-left-menu.html">Left Menu</a>
-                            </li>
-                            <li>
-                                <a href="content-right-menu.html">Right Menu</a>
-                            </li>
-                            <li>
-                                <a href="content-boxed-content.html">Boxed Content</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="material-icons-two-tone">menu</i>Menu<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="menu-off-canvas.html">Off-Canvas</a>
-                            </li>
-                            <li>
-                                <a href="menu-standard.html">Standard</a>
-                            </li>
-                            <li>
-                                <a href="menu-dark-sidebar.html">Dark Sidebar</a>
-                            </li>
-                            <li>
-                                <a href="menu-hover-menu.html">Hover Menu</a>
-                            </li>
-                            <li>
-                                <a href="menu-colored-sidebar.html">Colored Sidebar</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="material-icons-two-tone">view_day</i>Header<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="header-basic.html">Basic</a>
-                            </li>
-                            <li>
-                                <a href="header-full-width.html">Full-width</a>
-                            </li>
-                            <li>
-                                <a href="header-transparent.html">Transparent</a>
-                            </li>
-                            <li>
-                                <a href="header-large.html">Large</a>
-                            </li>
-                            <li>
-                                <a href="header-colorful.html">Colorful</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-title">
-                        Other
-                    </li>
-                    <li>
-                        <a href="#"><i class="material-icons-two-tone">bookmark</i>Documentation</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="material-icons-two-tone">access_time</i>Change Log</a>
-                    </li>
+
+
+
                 </ul>
             </div>
         </div>
@@ -518,28 +289,29 @@ if(!isset($_SESSION["nameDataFromDbSession"])){
                             <div class="col">
                                 <div class="page-description">
 
-                                   <h1>Dashboard</h1>
-                                    
-                                    <h1 class="fst-italic">Welcome, <?php 
-                                    if(isset($_SESSION["nameDataFromDbSession"])){
-                                        echo $_SESSION["nameDataFromDbSession"];
-                                    }
-                                    
-                                    ?></h1>
+                                    <h1 class="fs-5 mb-2 fw-bold">Dashboard</h1>
 
-                                    <h1>[ <?php 
-                                    if(isset($_SESSION["signInEmailUser"])){
-                                        echo $_SESSION["signInEmailUser"];
-                                    }
-                                    
-                                    ?> ]</h1>
-                                    
-                                    <h1>Your ID is: <?php 
-                                    if(isset($_SESSION["idDataFromDbSession"])){
-                                        echo $_SESSION["idDataFromDbSession"];
-                                    }
-                                    
-                                    ?></h1>
+                                    <h1 class="fst-italic text-info mb-3">Welcome, <?php
+
+                                                                                    echo $_SESSION["nameDataFromDbSession"];
+                                                                                    
+
+
+                                                                                    ?></h1>
+
+                                    <h1 class="fs-4 mb-3">[ <?php
+
+                                                            echo $_SESSION["signInEmailUser"];
+
+
+                                                            ?> ]</h1>
+
+                                    <h1 class="fs-5">ID : <?php
+
+                                                            echo $_SESSION["idDataFromDbSession"];
+
+
+                                                            ?></h1>
 
 
 
@@ -606,74 +378,62 @@ if(!isset($_SESSION["nameDataFromDbSession"])){
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xl-4">
+                            <div class="col-xl-6">
                                 <div class="card widget widget-list">
                                     <div class="card-header">
-                                        <h5 class="card-title">Active Tasks<span class="badge badge-success badge-style-light">14 completed</span></h5>
+                                        <h5 class="card-title">New Users<span class="badge badge-success badge-style-light fs-5"><?php
+
+                                                                                                                                    $CountData = "SELECT COUNT(*) AS 'countRes' FROM users";
+                                                                                                                                    $CountDataRes = mysqli_query($con, $CountData);
+
+                                                                                                                                    print_r(mysqli_fetch_assoc($CountDataRes)['countRes']);
+
+
+
+
+                                                                                                                                    ?> total</span></h5>
                                     </div>
                                     <div class="card-body">
-                                        <span class="text-muted m-b-xs d-block">showing 5 out of 23 active tasks.</span>
-                                        <ul class="widget-list-content list-unstyled">
-                                            <li class="widget-list-item widget-list-item-green">
-                                                <span class="widget-list-item-icon"><i class="material-icons-outlined">article</i></span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Dashboard UI optimisations
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Oskar Hudson
+
+                                        <ul class="widget-list-content list-unstyled usersShowCard">
+
+                                            <?php
+                                            $getAllData = "SELECT id,name,email FROM users";
+                                            $getAllDataRes = mysqli_query($con, $getAllData);
+
+                                            ?>
+
+                                            <?php
+                                            foreach ($getAllDataRes as $users) {
+
+
+                                            ?>
+
+                                                <li class="widget-list-item widget-list-item-red">
+                                                    <span class="widget-list-item-avatar">
+                                                        <div class="avatar avatar-rounded">
+                                                            <div class="avatar-title"><?php print_r($users["id"]); ?></div>
+                                                        </div>
                                                     </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-blue">
-                                                <span class="widget-list-item-icon"><i class="material-icons-outlined">verified_user</i></span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Mailbox cleanup
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Woodrow Hawkins
+                                                    <span class="widget-list-item-description">
+                                                        <a href="#" class="widget-list-item-description-title">
+                                                            <?php print_r($users["name"]); ?>
+                                                        </a>
+                                                        <span class="widget-list-item-description-subtitle">
+                                                            <?php print_r($users["email"]); ?>
+                                                        </span>
                                                     </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-purple">
-                                                <span class="widget-list-item-icon"><i class="material-icons-outlined">watch_later</i></span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Header scroll bugfix
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Sky Meyers
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-yellow">
-                                                <span class="widget-list-item-icon"><i class="material-icons-outlined">extension</i></span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        Localization for file manager
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Oskar Hudson
-                                                    </span>
-                                                </span>
-                                            </li>
-                                            <li class="widget-list-item widget-list-item-red">
-                                                <span class="widget-list-item-icon"><i class="material-icons-outlined">invert_colors</i></span>
-                                                <span class="widget-list-item-description">
-                                                    <a href="#" class="widget-list-item-description-title">
-                                                        New E-commerce UX/UI design
-                                                    </a>
-                                                    <span class="widget-list-item-description-subtitle">
-                                                        Oskar Hudson
-                                                    </span>
-                                                </span>
-                                            </li>
+                                                </li>
+
+
+
+
+                                            <?php } ?>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4">
+                            <div class="col-xl-6">
                                 <div class="card widget widget-list">
                                     <div class="card-header">
                                         <h5 class="card-title">Todo<span class="badge badge-success badge-style-light">14 completed</span></h5>
@@ -760,56 +520,7 @@ if(!isset($_SESSION["nameDataFromDbSession"])){
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4">
-                                <div class="card widget widget-payment-request">
-                                    <div class="card-header">
-                                        <h5 class="card-title">Payment Request<span class="badge badge-warning badge-style-light">8 June</span></h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="widget-payment-request-container">
-                                            <div class="widget-payment-request-author">
-                                                <div class="avatar m-r-sm">
-                                                    <img src="../../assets/images/avatars/avatar.png" alt="">
-                                                </div>
-                                                <div class="widget-payment-request-author-info">
-                                                    <span class="widget-payment-request-author-name">Caio Yousuke</span>
-                                                    <span class="widget-payment-request-author-about">Customer Journey Expert</span>
-                                                </div>
-                                            </div>
-                                            <div class="widget-payment-request-product">
-                                                <div class="widget-payment-request-product-image m-r-sm">
-                                                    <img src="../../assets/images/other/facebook_logo.png" class="mt-auto" alt="">
-                                                </div>
-                                                <div class="widget-payment-request-product-info d-flex">
-                                                    <div class="widget-payment-request-product-info-content">
-                                                        <span class="widget-payment-request-product-name">Google</span>
-                                                        <span class="widget-payment-request-product-about">Youtube Advertisments</span>
-                                                    </div>
-                                                    <span class="widget-payment-request-product-price">$2,399.99</span>
-                                                </div>
-                                            </div>
-                                            <div class="widget-payment-request-info m-t-md">
-                                                <div class="widget-payment-request-info-item">
-                                                    <span class="widget-payment-request-info-title d-block">
-                                                        Description
-                                                    </span>
-                                                    <span class="text-muted d-block">Advertisement for envato items</span>
-                                                </div>
-                                                <div class="widget-payment-request-info-item">
-                                                    <span class="widget-payment-request-info-title d-block">
-                                                        Due Date
-                                                    </span>
-                                                    <span class="text-muted d-block">14 June, 2021</span>
-                                                </div>
-                                            </div>
-                                            <div class="widget-payment-request-actions m-t-lg d-flex">
-                                                <a href="#" class="btn btn-light flex-grow-1 m-r-xxs">Reject</a>
-                                                <a href="#" class="btn btn-primary flex-grow-1 m-l-xxs">Approve</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="row">
                             <div class="col-xl-4">
@@ -1163,4 +874,3 @@ if(!isset($_SESSION["nameDataFromDbSession"])){
 
 </html>
 
-<?php session_destroy(); ?>

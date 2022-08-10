@@ -147,25 +147,16 @@
                     ?>
                 </div>
 
-                <button type="submit" class="btn btn-info">Submit</button>
+                <div class="auth-submit">
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                </div>
 
 
 
 
             </form>
 
-            <?php
-            if (isset($_SESSION["insert_data_error"])) {
-            ?>
 
-                <div class="alert alert-danger">
-                    <?php echo $_SESSION["insert_data_error"]; ?>
-                </div>
-
-            <?php
-            }
-
-            ?>
         </div>
     </div>
 

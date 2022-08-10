@@ -99,7 +99,9 @@
 
                     ?>
 
-                    <button type="submit" class="btn btn-info mt-2">Submit</button>
+                    <div class="auth-submit">
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </div>
                 </div>
             </form>
 

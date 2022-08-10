@@ -41,23 +41,20 @@ else{
     $signInCheckRes = mysqli_query($con, $signInCheck);
 
     if (mysqli_fetch_assoc($signInCheckRes)['signInResult'] == 1) {
-        header("location:index.php");
-        $_SESSION["signInEmailUser"]=$signInEmail;
-        $idDataSql = "SELECT id FROM users WHERE email='$signInEmail'";
-        $idDataResult = mysqli_query($con, $idDataSql);
+        $_SESSION["signInEmailUser"] = $signInEmail;
 
-        $idData = mysqli_fetch_assoc($idDataResult)['id'];
 
-        $nameDataSql = "SELECT name FROM users WHERE email='$signInEmail'";
-        $nameDataResult = mysqli_query($con, $nameDataSql);
 
-        $nameData = mysqli_fetch_assoc($nameDataResult)['name'];
+        $select_q_name = "SELECT id, name FROM users WHERE email= '$signInEmail'";
+        $data_name_db = mysqli_query($con, $select_q_name);
+        $after_assoc = mysqli_fetch_assoc($data_name_db);
+
+        $_SESSION['idDataFromDbSession'] = $after_assoc['id'];
+        $_SESSION['nameDataFromDbSession'] = $after_assoc['name'];
        
-
         
-
-        $_SESSION["idDataFromDbSession"] = $idData;
-        $_SESSION["nameDataFromDbSession"] = $nameData;
+       
+        header("location:index.php");
       
     }
 
@@ -65,34 +62,10 @@ else{
         $_SESSION["signIn_error"] ="Email or Password is Wrong!!";
         header("location:sign-in.php");
     }
+
+
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
