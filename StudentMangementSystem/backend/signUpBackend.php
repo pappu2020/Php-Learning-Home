@@ -121,11 +121,11 @@ if ($fatheName) {
     if (preg_match("/^[a-zA-Z-' ]*$/", $fatheName)) {
         $_SESSION["old_fatheName"] = $fatheName;
     } else {
-        $_SESSION["fatheName_error"] = "Fathe Name is invalid";
+        $_SESSION["fatheName_error"] = "Father Name is invalid";
         $flag = true;
     }
 } else {
-    $_SESSION["fatheName_error"] = "Fathe Name is Required";
+    $_SESSION["fatheName_error"] = "Father Name is Required";
     $flag = true;
 }
 

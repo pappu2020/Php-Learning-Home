@@ -30,7 +30,16 @@
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Enter the Name">
+                            <input type="text" class="form-control" name="name" placeholder="Enter the Name" <?php 
+                            
+                            if(isset($_SESSION["name_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?> value="<?php if(isset($_SESSION["old_name"])){?><?php echo $_SESSION["old_name"];?><?php }?>">
                         </div>
 
                         <?php
@@ -49,7 +58,16 @@
 
                         <div class="mb-3">
                             <label for="phoneNum" class="form-label">Phone Number</label>
-                            <input type="number" class="form-control" name="phoneNum" placeholder="Enter the phone number">
+                            <input type="number" class="form-control" name="phoneNum" placeholder="Enter the phone number" <?php 
+                            
+                            if(isset($_SESSION["number_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>  value="<?php if(isset($_SESSION["old_number"])){?><?php echo $_SESSION["old_number"];?><?php }?>">
                         </div>
 
 
@@ -67,7 +85,16 @@
 
                         <div class="mb-3">
                             <label for="Email" class="form-label">Email</label>
-                            <input type="text" class="form-control" name="email" placeholder="Enter the Email">
+                            <input type="text" class="form-control" name="email" placeholder="Enter the Email" <?php 
+                            
+                            if(isset($_SESSION["email_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?> value="<?php if(isset($_SESSION["old_email"])){?><?php echo $_SESSION["old_email"];?><?php }?>">
                         </div>
 
 
@@ -104,7 +131,16 @@
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Enter the Password">
+                            <input type="password" class="form-control" name="password" placeholder="Enter the Password" <?php 
+                            
+                            if(isset($_SESSION["password_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>>
                         </div>
 
 
@@ -122,7 +158,16 @@
 
                         <div class="mb-3">
                             <label for="confirm_pass" class="form-label">Confirm password</label>
-                            <input type="password" class="form-control" name="confirm_pass" placeholder="Enter the Password again">
+                            <input type="password" class="form-control" name="confirm_pass" placeholder="Enter the Password again"  <?php 
+                            
+                            if(isset($_SESSION["confirmPass_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>>
                         </div>
 
 
@@ -152,7 +197,16 @@
                 <div class="rightPartRegStart">
 
                     <div class="col-lg-3 mb-3">
-                        <select class="form-select" name="courses">
+                        <select class="form-select" name="courses" <?php 
+                            
+                            if(isset($_SESSION["courses_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?> value="<?php if(isset($_SESSION["old_courses"])){?><?php echo $_SESSION["old_courses"];?><?php }?>">
                             <option>Select Course</option>
                             <option value="Professional web design">Professional web design</option>
                             <option value="Professional Web Development">Professional Web Development</option>
@@ -179,7 +233,16 @@
 
                     <div class="row g-3">
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="Father's name" name="fatheName">
+                            <input type="text" class="form-control" placeholder="Father's name" name="fatheName" <?php 
+                            
+                            if(isset($_SESSION["fatheName_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>value="<?php if(isset($_SESSION["old_fatheName"])){?><?php echo $_SESSION["old_fatheName"];?><?php }?>">
                             <?php
                             if (isset($_SESSION["fatheName_error"])) {
                             ?>
@@ -199,7 +262,16 @@
 
 
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="Mother's name" name="motherName">
+                            <input type="text" class="form-control" placeholder="Mother's name" name="motherName" <?php 
+                            
+                            if(isset($_SESSION["motherName_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>value="<?php if(isset($_SESSION["old_motherName"])){?><?php echo $_SESSION["old_motherName"];?><?php }?>">
                             <?php
                             if (isset($_SESSION["motherName_error"])) {
                             ?>
@@ -218,7 +290,16 @@
 
 
                         <div class="col-lg-4">
-                            <input type="number" class="form-control" placeholder="Gurdian Phone Number" name="gurdianPhone">
+                            <input type="number" class="form-control" placeholder="Gurdian Phone Number" name="gurdianPhone" <?php 
+                            
+                            if(isset($_SESSION["number_error_gur"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>value="<?php if(isset($_SESSION["old_number_gur"])){?><?php echo $_SESSION["old_number_gur"];?><?php }?>">
                             <?php
                             if (isset($_SESSION["number_error_gur"])) {
                             ?>
@@ -264,7 +345,16 @@
 
 
                         <div class="col-lg-3 mt-4">
-                            <input type="date" class="form-control" placeholder="DOB" name="dob">
+                            <input type="date" class="form-control" placeholder="DOB" name="dob" <?php 
+                            
+                            if(isset($_SESSION["dob_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>value="<?php if(isset($_SESSION["old_number_dob"])){?><?php echo $_SESSION["old_number_dob"];?><?php }?>">
 
                             <?php
                             if (isset($_SESSION["dob_error"])) {
@@ -287,7 +377,16 @@
 
                     <div class="row g-3">
                         <div class="col-lg-2 mt-5">
-                            <input type="text" class="form-control" placeholder="Ocupation" name="ocupation">
+                            <input type="text" class="form-control" placeholder="Ocupation" name="ocupation" <?php 
+                            
+                            if(isset($_SESSION["ocupation_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>value="<?php if(isset($_SESSION["old_number_ocupation"])){?><?php echo $_SESSION["old_number_ocupation"];?><?php }?>">
 
                             <?php
                             if (isset($_SESSION["ocupation_error"])) {
@@ -306,7 +405,16 @@
 
 
                         <div class="col-lg-2 mt-5">
-                            <select class="form-select" name="bloodGrp">
+                            <select class="form-select" name="bloodGrp"  <?php 
+                            
+                            if(isset($_SESSION["bloodGrp_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>value="<?php if(isset($_SESSION["old_number_bloodGrp"])){?><?php echo $_SESSION["old_number_bloodGrp"];?><?php }?>">
                                 <option selected>Blood Group</option>
                                 <option value="A+">A+</option>
                                 <option value="A-">A-</option>
@@ -332,7 +440,16 @@
 
 
                         <div class="col-lg-2 mt-5">
-                            <select class="form-select" name="religion">
+                            <select class="form-select" name="religion" <?php 
+                            
+                            if(isset($_SESSION["religion_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>value="<?php if(isset($_SESSION["old_number_religion"])){?><?php echo $_SESSION["old_number_religion"];?><?php }?>">
                                 <option selected>Religion</option>
                                 <option value="Hindu">Hindu</option>
                                 <option value="Muslim">Muslim</option>
@@ -358,7 +475,16 @@
 
 
                         <div class="col-lg-3 mt-5 mt-4">
-                            <select class="form-select" name="Gender">
+                            <select class="form-select" name="Gender" <?php 
+                            
+                            if(isset($_SESSION["Gender_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>value="<?php if(isset($_SESSION["old_number_Gender"])){?><?php echo $_SESSION["old_number_Gender"];?><?php }?>">
                                 <option selected>Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -382,7 +508,16 @@
 
 
                         <div class="col-lg-3 mt-5 mt-4">
-                            <select class="form-select" name="Howtoknowaboutus">
+                            <select class="form-select" name="Howtoknowaboutus" <?php 
+                            
+                            if(isset($_SESSION["Howtoknowaboutus_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>value="<?php if(isset($_SESSION["old_number_Howtoknowaboutus"])){?><?php echo $_SESSION["old_number_Howtoknowaboutus"];?><?php }?>">
                                 <option selected>How to know about us</option>
                                 <option value="Social media">Social media</option>
                                 <option value="Friends">Friends</option>
@@ -416,7 +551,16 @@
                         <div class="col-lg-6 mt-5">
                             <div class="input-group">
                                 <span class="input-group-text">present Address</span>
-                                <textarea class="form-control" name="presentAddress"></textarea>
+                                <textarea class="form-control" name="presentAddress" <?php 
+                            
+                            if(isset($_SESSION["presentAddress_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>value="<?php if(isset($_SESSION["old_number_presentAddress"])){?><?php echo $_SESSION["old_number_presentAddress"];?><?php }?>"></textarea>
 
                             </div>
                             <?php
@@ -436,7 +580,16 @@
                         <div class="col-lg-6 mt-5">
                             <div class="input-group">
                                 <span class="input-group-text">parmanent Address</span>
-                                <textarea class="form-control" name="parmanentAddress"></textarea>
+                                <textarea class="form-control" name="parmanentAddress" <?php 
+                            
+                            if(isset($_SESSION["parmanentAddress_error"])){
+                                
+                            
+                            ?>
+                              style="border:1px solid red;"
+                            <?php
+                            }
+                            ?>value="<?php if(isset($_SESSION["old_number_parmanentAddress"])){?><?php echo $_SESSION["old_number_parmanentAddress"];?><?php }?>"></textarea>
 
                             </div>
                             <?php
