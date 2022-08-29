@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+body {
+    /* background: #8360c3;
+    
+    background: -webkit-linear-gradient(to right, #2ebf91, #8360c3);
+    
+    background: linear-gradient(to right, #2ebf91, #8360c3); */
+
+background-image: url("img/back2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+   
+
+
+
+}
+
+.logoImg {
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    margin-left: 96px;
+    margin-bottom: 30px;
+}
+
+.signInleftForm {
+    padding: 50px;
+    background-color: white;
+    margin-left: 190px;
+    margin-top: 145px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.signInRightPart {
+    margin-left: -20px;
+    margin-top: 145px;
+}
+
+.bgImgRight {
+    background-image: url("img/back2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 500px;
+    height: 500px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.signInRightText {
+    width: 500px;
+    height: 500px;
+    background-color: #7FA2D3;
+    opacity: 0.5;
+}
+.text{
+    position: absolute;
+    margin-top: -380px;
+    font-family: 'Aboreto', cursive;
+    color: white;
+}
+.para1 {
+    font-weight: 800;
+    margin-left: 90px;
+    font-size: 30px;
+
+}
+
+.para2 {
+    font-weight: 800;
+    margin-left: 90px;
+    font-size: 30px;
+
+}
+
+.para3 {
+    font-weight: 800;
+    margin-left: 60px;
+    font-size: 15px;
+
+}
+
+.para4{
+    font-weight: 800;
+    margin-left: 18px;
+    font-size: 15px;
+
+}

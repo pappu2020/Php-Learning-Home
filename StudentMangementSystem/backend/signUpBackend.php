@@ -316,8 +316,8 @@ else{
         $insertDataRes = mysqli_query($con,$insertData);
 
         if($insertDataRes){
-            $_SESSION["insertSuccess"] = "Congratualations!! Your Registration is successfully done";
-            header("location:../sign-in.php");
+            $_SESSION["insertSuccess"] = "Congratualations!! Your Registration is successfully done.You can Sign In now.";
+            header("location:../sign-up.php");
         }
     }
 }

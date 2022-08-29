@@ -32,6 +32,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/neptune.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/neptune.png" />
 
+    <link rel="stylesheet" href="./signUpStyle.css">
+
 
 </head>
 
@@ -66,14 +68,34 @@
             <form action="./signUpBackend.php" method="POST">
                 <div class="auth-credentials m-b-xxl">
                     <label for="signUpUsername" class="form-label">Name</label>
-                    <input type="text" class="form-control m-b-md" name="name" placeholder="Enter Name" value="<?php
+                    <input type="text" class="form-control mb-2" name="name" placeholder="Enter Name" value="<?php
 
                                                                                                                 if (isset($_SESSION["name_old"])) {
                                                                                                                     echo $_SESSION["name_old"];
                                                                                                                 }
 
 
-                                                                                                                ?>">
+                                                                                                                ?>" <?php
+
+                                                                                                                    if (isset($_SESSION["name_error"])) {
+
+
+                                                                                                                    ?> style="border:1px solid red;" <?php
+                                                                                                                                                    }
+                                                                                                                                                        ?>>
+
+                    <?php
+                    if (isset($_SESSION["name_error"])) {
+                    ?>
+
+                        <span class="errorIcon text-danger"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                            </svg></span>
+
+                    <?php
+                    }
+
+                    ?>
 
 
                     <?php
@@ -89,14 +111,42 @@
 
                     ?>
 
+
+
+
+
+
+
+
+
                     <label for="signUpEmail" class="form-label">Email address</label>
-                    <input type="text" class="form-control m-b-md" name="email" placeholder="example@neptune.com" value="<?php
+                    <input type="text" class="form-control mb-2" name="email" placeholder="example@neptune.com" value="<?php
 
-                                                                                                                            if (isset($_SESSION["email_old"])) {
-                                                                                                                                echo $_SESSION["email_old"];
-                                                                                                                            }
+                                                                                                                        if (isset($_SESSION["email_old"])) {
+                                                                                                                            echo $_SESSION["email_old"];
+                                                                                                                        }
 
-                                                                                                                            ?>">
+                                                                                                                        ?>" <?php
+
+                                                                                                                            if (isset($_SESSION["email_error"])) {
+
+
+                                                                                                                            ?> style="border:1px solid red;" <?php
+                                                                                                                                                            }
+                                                                                                                                                                ?>>
+
+                    <?php
+                    if (isset($_SESSION["email_error"])) {
+                    ?>
+
+                        <span class="errorIcon text-danger"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                            </svg></span>
+
+                    <?php
+                    }
+
+                    ?>
 
                     <?php
                     if (isset($_SESSION["email_error"])) {
@@ -112,14 +162,34 @@
                     ?>
 
                     <label for="signUpPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                    <input type="password" class="form-control" name="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" <?php
+
+                                                                                                                                                        if (isset($_SESSION["password_error"])) {
+
+
+                                                                                                                                                        ?> style="border:1px solid red;" <?php
+                                                                                                                                                                                        }
+                                                                                                                                                                                            ?>>
+
+                    <?php
+                    if (isset($_SESSION["password_error"])) {
+                    ?>
+
+                        <span class="errorIconPass text-danger"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                            </svg></span>
+
+                    <?php
+                    }
+
+                    ?>
 
 
                     <?php
                     if (isset($_SESSION["password_error"])) {
                     ?>
 
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger mt-2">
                             <?php echo $_SESSION["password_error"]; ?>
                         </div>
 
@@ -130,14 +200,34 @@
 
 
                     <label for="signUpPassword" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" name="confirmPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                    <input type="password" class="form-control" name="confirmPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" <?php
+
+                                                                                                                                                                if (isset($_SESSION["confirmPass_error"])) {
+
+
+                                                                                                                                                                ?> style="border:1px solid red;" <?php
+                                                                                                                                                                                                }
+                                                                                                                                                                                                    ?>>
+
+                    <?php
+                    if (isset($_SESSION["confirmPass_error"])) {
+                    ?>
+
+                        <span class="errorIconPass text-danger"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                            </svg></span>
+
+                    <?php
+                    }
+
+                    ?>
 
 
                     <?php
                     if (isset($_SESSION["confirmPass_error"])) {
                     ?>
 
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger mt-2">
                             <?php echo $_SESSION["confirmPass_error"]; ?>
                         </div>
 
