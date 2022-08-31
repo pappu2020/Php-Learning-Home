@@ -1,0 +1,268 @@
+<?php require_once('header.php'); ?>
+<div class="app-content">
+  <div class="content-wrapper">
+    <div class="container">
+
+      <div class="row">
+        <div class="col">
+          <div class="page-description">
+            <h1>Profile</h1>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4">
+          <div class="card widget widget-stats">
+            <div class="card-body">
+              <div class="card-header">
+                Name
+              </div>
+              <form action="profile_Update_post.php" method="POST">
+                <input type="text" class="form-control m-b-md" value="<?php
+
+                                                                      // $oldNameValue = $_SESSION['nameDataFromDbSession'];
+
+                                                                      // if (isset($_SESSION["updatedName"])) {
+                                                                      //   $oldNameValue = $_SESSION["updatedName"];
+                                                                      // }
+
+                                                                      // echo $oldNameValue;
+
+                                                                      if (isset($_SESSION["nameDataFromDbSession"])) {
+                                                                        echo $_SESSION["nameDataFromDbSession"];
+                                                                      }
+
+                                                                      ?>" name="nameChange">
+                <button type="submit" class="btn btn-success" name="nameChangeButton">Chenge Name</button>
+
+                <?php
+                if (isset($_SESSION["duplicate_name"])) {
+                ?>
+
+                  <div class="alert alert-danger mt-3 p-3">
+                    <?php echo $_SESSION["duplicate_name"]; ?>
+                  </div>
+
+                <?php
+                }
+
+                ?>
+
+
+                <?php
+                if (isset($_SESSION["updateErrorName"])) {
+                ?>
+
+                  <div class="alert alert-danger mt-3 p-3">
+                    <?php echo $_SESSION["updateErrorName"]; ?>
+                  </div>
+
+                <?php
+                }
+
+                ?>
+
+
+
+
+
+
+                <?php
+                if (isset($_SESSION["updateSuccess"])) {
+                ?>
+
+                  <div class="alert alert-success mt-3 p-3">
+                    <?php echo $_SESSION["updateSuccess"]; ?>
+                  </div>
+
+                <?php
+                }
+
+                ?>
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col-xl-4">
+          <div class="card widget widget-stats">
+            <div class="card-body">
+              <div class="card-header">
+                Email
+              </div>
+              <form action="profile_Update_post.php" method="POST">
+                <input type="text" class="form-control m-b-md" value="<?php
+
+                                                                      // $oldEmailValue = $_SESSION['signInEmailUser'];
+
+                                                                      // if (isset($_SESSION["updatedEmail"])) {
+                                                                      //   $oldEmailValue = $_SESSION["updatedEmail"];
+                                                                      // }
+
+                                                                      // echo $oldEmailValue;
+
+                                                                      if (isset($_SESSION["signInEmailUser"])) {
+                                                                        echo $_SESSION["signInEmailUser"];
+                                                                      }
+
+
+
+                                                                      ?>" name="emailChange">
+                <button type="submit" class="btn btn-success" name="emailChangeButton">Chenge Email</button>
+
+                <?php
+                if (isset($_SESSION["duplicate_email"])) {
+                ?>
+
+                  <div class="alert alert-danger mt-3 p-3">
+                    <?php echo $_SESSION["duplicate_email"]; ?>
+                  </div>
+
+                <?php
+                }
+
+                ?>
+
+                <?php
+                if (isset($_SESSION["updateErrorEmail"])) {
+                ?>
+
+                  <div class="alert alert-danger mt-3 p-3">
+                    <?php echo $_SESSION["updateErrorEmail"]; ?>
+                  </div>
+
+                <?php
+                }
+
+                ?>
+
+
+
+
+
+                <?php
+                if (isset($_SESSION["updateSuccessEmail"])) {
+
+                ?>
+                  <div class="alert alert-success mt-3 p-3">
+                    <?php echo $_SESSION["updateSuccessEmail"]; ?>
+                  </div>
+
+                <?php
+
+                }
+
+                ?>
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="col-xl-4">
+          <div class="card widget widget-stats">
+            <div class="card-body">
+              <div class="card-header">
+                Profile Pic
+              </div>
+
+              <div class="profileImg mt-3 mb-3">
+                <img src="uploads/profile/<?php echo $defaultPicDbValue ?>" alt="" width="100px" height="100px">
+              </div>
+              <form action="profile_Update_post.php" method="POST" enctype="multipart/form-data">
+                <input type="file" class="form-control m-b-md" name="photoUpload">
+                <button type="submit" class="btn btn-success" name="photoUploadBtn">Upload File</button>
+              </form>
+            </div>
+
+            <?php
+            if (isset($_SESSION["UpdateProfileSuccess"])) {
+
+            ?>
+              <div class="alert alert-success mt-3 p-3">
+                <?php echo $_SESSION["UpdateProfileSuccess"]; ?>
+              </div>
+
+            <?php
+
+            }
+
+            ?>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="col-xl-4">
+          <div class="card widget widget-stats">
+            <div class="card-body">
+              <div class="card-header">
+                Delete User
+              </div>
+              <form action="profile_Update_post.php" method="POST">
+
+                <input type="number" class="form-control m-b-md" name="delete" placeholder="Enter the ID: ">
+                <button type="submit" class="btn btn-success" name="deleteBtn">Delete</button>
+              </form>
+
+              <?php
+              if (isset($_SESSION["DeleteData"])) {
+              ?>
+
+                <div class="alert alert-success mt-3 p-3">
+                  <?php echo $_SESSION["DeleteData"]; ?>
+                </div>
+
+              <?php
+              }
+
+              ?>
+
+
+              <?php
+              if (isset($_SESSION["DeleteFieldNull"])) {
+              ?>
+
+                <div class="alert alert-danger mt-3 p-3">
+                  <?php echo $_SESSION["DeleteFieldNull"]; ?>
+                </div>
+
+              <?php
+              }
+
+              ?>
+
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<?php require_once('footer.php'); ?>
