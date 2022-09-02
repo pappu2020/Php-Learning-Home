@@ -167,6 +167,10 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
 
                                 <a href="recentWorkEdit.php">Recent Works</a>
                             </li>
+                            <li>
+
+                                <a href="customerQuotes.php">Customer Quotes Section</a>
+                            </li>
                         </ul>
                     </li>
 

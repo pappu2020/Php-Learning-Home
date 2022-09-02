@@ -8,16 +8,68 @@ $localhost = "localhost";
 $username = "root";
 $passwordDb = "";
 $db = "home";
-
+$con = mysqli_connect($localhost, $username, $passwordDb, $db);
 $userId = $_SESSION['idDataFromDbSession'];
 
 
-$con = mysqli_connect($localhost, $username, $passwordDb, $db);
+// if (isset($_SESSION["afterName"])) {
+
+//     $userIdentification = $_SESSION["afterName"];
+
+//     $defaultPicQuearyHome = "SELECT defaultPhoto FROM homesection WHERE title='$userIdentification'";
+//     $defaultPicQuearyHomeRes = mysqli_query($con, $defaultPicQuearyHome);
+
+//     $defaultPicDbValueHome = mysqli_fetch_assoc($defaultPicQuearyHomeRes)["defaultPhoto"];
+//     $_SESSION["client_Photo"] = $defaultPicDbValueHome;
+// }
+
+//get ClientName
+
+
+if (isset($_SESSION["fullNameSession"])) {
+
+    $getFullNameSession = $_SESSION["fullNameSession"];
+
+    $getClientName = "SELECT title FROM homesection WHERE defaultPhoto='$getFullNameSession'";
+    $getClientdescription = "SELECT description FROM homesection WHERE defaultPhoto='$getFullNameSession'";
+
+    $getClientNameRes = mysqli_query($con, $getClientName);
+    $getClientdescriptionRes = mysqli_query($con, $getClientdescription);
+
+    // $getName = mysqli_fetch_assoc($getClientNameRes)["title"];
+    // $getDescription = mysqli_fetch_assoc($getClientNameRes)["description"];
+
+    $_SESSION["getNameSession"] = mysqli_fetch_assoc($getClientNameRes)["title"];
+    $_SESSION["getDescriptionSession"] = mysqli_fetch_assoc($getClientdescriptionRes)["description"];
+}
+
+
+
+
+
+
+
+
+
+
+
 
 $defaultPicQueary = "SELECT default_profile_pic FROM users WHERE id='$userId'";
 $defaultPicQuearyRes = mysqli_query($con, $defaultPicQueary);
 
 $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_pic"];
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -140,33 +192,32 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                     </li>
 
                     <li class="">
-                        <a href="index.php" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
+                        <a href="../../templates/admin1/index.php" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
 
                     </li>
 
 
 
                     <li class="">
-                        <a href="profile.php"><i class="material-icons-two-tone">person_4</i>Profile</a>
+                        <a href="../../templates/admin1/profile.php"><i class="material-icons-two-tone">person_4</i>Profile</a>
+                    </li>
+
+                    <li class="">
+                        <a href="indexUsers.php" target="_blank"><i class="material-icons-two-tone">visibility</i>Visit Client Site</a>
                     </li>
 
                     <li>
                         <a href="#"><i class="material-icons-two-tone">color_lens</i>Services<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="../../assets/frontend/services.php">Services and Solution</a>
+                                <a href="services.php">Services and Solution</a>
                             </li>
                             <li>
-                                <a href="../../assets/frontend/homeSectionEdit.php">Home Section</a>
+                                <a href="homeSectionEdit.php">Home Section</a>
                             </li>
                             <li>
 
-                                <a href="../../assets/frontend/recentWorkEdit.php">Recent Works</a>
-                            </li>
-
-                            <li>
-
-                                <a href="../../assets/frontend/customerQuotes.php">Customer Quotes Edit</a>
+                                <a href="recentWorkEdit.php">Recent Works</a>
                             </li>
                         </ul>
                     </li>
@@ -337,10 +388,199 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link  btn btn-danger text-light" href="logOutBackend.php">Log Out</a>
+                                    <a class="nav-link  btn btn-danger text-light" href="../../templates/admin1/logOutBackend.php">Log Out</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
             </div>
+            <div class="app-content">
+                <div class="content-wrapper">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="page-description">
+                                    <h1>Customer Quotes Section Edit</h1>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+
+                            <div class="col-xl-4">
+                                <div class="card widget widget-stats">
+                                    <div class="card-body">
+
+                                        <div class="card-header">
+                                            Customer Quotes Content
+                                        </div>
+
+                                        <form action="customerQuotesBackend.php" method="POST" enctype="multipart/form-data">
+
+                                            <input type="text" class="form-control m-b-md" name="CustomerTitle" placeholder="Enter the Customer Name">
+
+                                            <?php
+                                            if (isset($_SESSION["CustomerTitleError"])) {
+
+                                            ?>
+                                                <div class="alert alert-danger mt-3 p-3">
+                                                    <?php echo $_SESSION["CustomerTitleError"]; ?>
+                                                </div>
+
+                                            <?php
+
+                                            }
+
+                                            ?>
+
+                                            <input type="text" class="form-control m-b-md" name="CustomerSubTitle" placeholder="Enter the position of Customer">
+
+
+                                            <?php
+                                            if (isset($_SESSION["CustomerSubTitleError"])) {
+
+                                            ?>
+                                                <div class="alert alert-danger mt-3 p-3">
+                                                    <?php echo $_SESSION["CustomerSubTitleError"]; ?>
+                                                </div>
+
+                                            <?php
+
+                                            }
+
+                                            ?>
+
+
+
+
+                                            <textarea class="form-control" rows="3" placeholder="UserDescription" name="CustomerDescription"></textarea>
+
+                                            <?php
+                                            if (isset($_SESSION["CustomerDescriptionError"])) {
+
+                                            ?>
+                                                <div class="alert alert-danger mt-3 p-3">
+                                                    <?php echo $_SESSION["CustomerDescriptionError"]; ?>
+                                                </div>
+
+                                            <?php
+
+                                            }
+
+                                            ?>
+
+
+
+
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-xl-4">
+                                <div class="card widget widget-stats">
+                                    <div class="card-body">
+
+
+
+                                        <div class="card-header">
+                                            Customer Picture
+                                        </div>
+
+
+
+                                        <div class="profileImg mt-3 mb-3">
+                                            <img src="" alt="" width="100px" height="100px">
+                                        </div>
+
+                                        <input type="file" class="form-control m-b-md" name="CustomerphotoUpload">
+                                        <button type="submit" class="btn btn-success" name="CustomerUploadBtn">Submit</button>
+                                        </form>
+                                    </div>
+
+                                    <?php
+                                    if (isset($_SESSION["Photo_update_success_Customer"])) {
+
+                                    ?>
+                                        <div class="alert alert-success mt-3 p-3">
+                                            <?php echo $_SESSION["Photo_update_success_Customer"]; ?>
+                                        </div>
+
+                                    <?php
+
+                                    }
+
+                                    ?>
+                                    <?php
+                                    if (isset($_SESSION["insert_CustomerSec_success"])) {
+
+                                    ?>
+                                        <div class="alert alert-success mt-3 p-3">
+                                            <?php echo $_SESSION["insert_CustomerSec_success"]; ?>
+                                        </div>
+
+                                    <?php
+
+                                    }
+
+                                    ?>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <?php require_once('../../templates/admin1/footer.php');
+
+
+
+            ?>

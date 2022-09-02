@@ -23,6 +23,35 @@ $defaultPicDbValueHome = mysqli_fetch_assoc($defaultPicQuearyHomeRes)["defaultPh
 $_SESSION["client_Photo"]= $defaultPicDbValueHome;
 }
 
+//get ClientName
+
+
+if(isset($_SESSION["fullNameSession"])){
+
+$getFullNameSession=$_SESSION["fullNameSession"];
+
+$getClientName = "SELECT title FROM homesection WHERE defaultPhoto='$getFullNameSession'";
+$getClientdescription = "SELECT description FROM homesection WHERE defaultPhoto='$getFullNameSession'";
+
+$getClientNameRes = mysqli_query($con,$getClientName);
+$getClientdescriptionRes = mysqli_query($con, $getClientdescription);
+
+// $getName = mysqli_fetch_assoc($getClientNameRes)["title"];
+// $getDescription = mysqli_fetch_assoc($getClientNameRes)["description"];
+
+$_SESSION["getNameSession"] = mysqli_fetch_assoc($getClientNameRes)["title"]; 
+$_SESSION["getDescriptionSession"] = mysqli_fetch_assoc($getClientdescriptionRes)["description"]; 
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -30,6 +59,12 @@ $defaultPicQueary = "SELECT default_profile_pic FROM users WHERE id='$userId'";
 $defaultPicQuearyRes = mysqli_query($con, $defaultPicQueary);
 
 $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_pic"];
+
+
+
+
+
+
 
 
 

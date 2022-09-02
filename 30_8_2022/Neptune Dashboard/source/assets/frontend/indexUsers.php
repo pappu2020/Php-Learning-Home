@@ -9,6 +9,20 @@ $dataCollectRes = mysqli_query($con, $dataCollect);
 
 
 
+$getRecentWorkData = "SELECT * FROM recentworks";
+$getRecentWorkDataRes = mysqli_query($con, $getRecentWorkData);
+
+
+
+//Customer quotes Data
+
+
+$customerQuotesData = "SELECT * FROM customerquotes";
+$customerQuotesDataRes = mysqli_query($con, $customerQuotesData);
+
+
+
+
 
 
 
@@ -141,8 +155,26 @@ $dataCollectRes = mysqli_query($con, $dataCollect);
                     <div class="col-xl-7 col-lg-6">
                         <div class="banner-content">
                             <h6 class="wow fadeInUp" data-wow-delay="0.2s">HELLO!</h6>
-                            <h2 class="wow fadeInUp" data-wow-delay="0.4s">I am Will Smith</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.6s">I'm Will Smith, professional web developer with long time experience in this field​.</p>
+                            <h2 class="wow fadeInUp" data-wow-delay="0.4s">I am <?php
+
+                                                                                if (isset($_SESSION["getNameSession"])) {
+                                                                                    echo $_SESSION["getNameSession"];
+                                                                                }
+
+                                                                                ?></h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.6s">I'm <?php
+
+                                                                                if (isset($_SESSION["getNameSession"])) {
+                                                                                    echo $_SESSION["getNameSession"];
+                                                                                }
+
+                                                                                ?>, <?php
+
+                                                                                    if (isset($_SESSION["getDescriptionSession"])) {
+                                                                                        echo $_SESSION["getDescriptionSession"];
+                                                                                    }
+
+                                                                                    ?></p>
                             <div class="banner-social wow fadeInUp" data-wow-delay="0.8s">
                                 <ul>
                                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -156,9 +188,9 @@ $dataCollectRes = mysqli_query($con, $dataCollect);
                     </div>
                     <div class="col-xl-5 col-lg-6 d-none d-lg-block">
                         <div class="banner-img text-right">
-                            <img src="imgHome/<?php if(isset($_SESSION["client_Photo"])){
-                                echo $_SESSION["client_Photo"];
-                            } ?>" alt="" width="550px" height="750px">
+                            <img src="imgHome/<?php if (isset($_SESSION["client_Photo"])) {
+                                                    echo $_SESSION["client_Photo"];
+                                                } ?>" alt="" width="550px" height="750px">
                         </div>
                     </div>
                 </div>
@@ -172,7 +204,7 @@ $dataCollectRes = mysqli_query($con, $dataCollect);
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                         
+
                         <div class="about-img">
                             <img src="img/banner/banner_img2.png" title="me-01" alt="me-01">
                         </div>
@@ -384,50 +416,32 @@ $dataCollectRes = mysqli_query($con, $dataCollect);
             <div class="container">
                 <div class="fact-wrap">
                     <div class="row justify-content-between">
-                        <div class="col-xl-2 col-lg-3 col-sm-6">
-                            <div class="fact-box text-center mb-50">
-                                <div class="fact-icon">
-                                    <i class="flaticon-award"></i>
-                                </div>
-                                <div class="fact-content">
-                                    <h2><span class="count">245</span></h2>
-                                    <span>Feature Item</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-sm-6">
-                            <div class="fact-box text-center mb-50">
-                                <div class="fact-icon">
-                                    <i class="flaticon-like"></i>
-                                </div>
-                                <div class="fact-content">
-                                    <h2><span class="count">345</span></h2>
-                                    <span>Active Products</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-sm-6">
-                            <div class="fact-box text-center mb-50">
-                                <div class="fact-icon">
-                                    <i class="flaticon-event"></i>
-                                </div>
-                                <div class="fact-content">
-                                    <h2><span class="count">39</span></h2>
-                                    <span>Year Experience</span>
+
+
+                        <?php
+                        foreach ($getRecentWorkDataRes as $recentWork) {
+
+
+
+                        ?>
+
+                            <div class="col-xl-2 col-lg-3 col-sm-6">
+                                <div class="fact-box text-center mb-50">
+                                    <div class="fact-icon">
+                                        <i class="<?php print_r($recentWork["recentIcon"]) ?>"></i>
+                                    </div>
+                                    <div class="fact-content">
+                                        <h2><span class="count"><?php print_r($recentWork["recentNumber"]) ?></span></h2>
+                                        <span><?php print_r($recentWork["recentDescription"]) ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-sm-6">
-                            <div class="fact-box text-center mb-50">
-                                <div class="fact-icon">
-                                    <i class="flaticon-woman"></i>
-                                </div>
-                                <div class="fact-content">
-                                    <h2><span class="count">3</span>k</h2>
-                                    <span>Our Clients</span>
-                                </div>
-                            </div>
-                        </div>
+
+
+                        <?php } ?>
+
+
+
                     </div>
                 </div>
             </div>
@@ -446,34 +460,65 @@ $dataCollectRes = mysqli_query($con, $dataCollect);
                     </div>
                 </div>
                 <div class="row justify-content-center">
+
+
+
                     <div class="col-xl-9 col-lg-10">
+
                         <div class="testimonial-active">
-                            <div class="single-testimonial text-center">
-                                <div class="testi-avatar">
-                                    <img src="img/images/testi_avatar.png" alt="img">
-                                </div>
-                                <div class="testi-content">
-                                    <h4><span>“</span> An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result <span>”</span></h4>
-                                    <div class="testi-avatar-info">
-                                        <h5>tonoy jakson</h5>
-                                        <span>head of idea</span>
+
+
+                            <?php
+
+                            foreach ($customerQuotesDataRes as $customer) {
+                            ?>
+
+                                <div class="single-testimonial text-center">
+                                    <div class="testi-avatar">
+                                        <img src="imgCustomer/<?php print_r($customer["defaultPhoto"]) ?>" width="175px" height="175px" class="rounded-circle">
+                                    </div>
+                                    <div class="testi-content">
+                                        <h4><span>“</span><?php print_r($customer["CustomerDescription"]) ?> <span>”</span></h4>
+                                        <div class="testi-avatar-info">
+                                            <h5><?php print_r($customer["CustomerTitle"]) ?></h5>
+                                            <span><?php print_r($customer["CustomerSubTitle"]) ?></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="single-testimonial text-center">
+                            <?php } ?>
+
+                            <!-- <div class="single-testimonial text-center">
                                 <div class="testi-avatar">
-                                    <img src="img/images/testi_avatar.png" alt="img">
+                                    <img src="imgCustomer/<?php print_r($customer["defaultPhoto"]) ?>" width="175px" height="175px" class="rounded-circle">
                                 </div>
                                 <div class="testi-content">
-                                    <h4><span>“</span> An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result <span>”</span></h4>
+                                    <h4><span>“</span><?php print_r($customer["CustomerDescription"]) ?> <span>”</span></h4>
                                     <div class="testi-avatar-info">
-                                        <h5>tonoy jakson</h5>
-                                        <span>head of idea</span>
+                                        <h5><?php print_r($customer["CustomerTitle"]) ?></h5>
+                                        <span><?php print_r($customer["CustomerSubTitle"]) ?></span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
+
+
+
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
         </section>

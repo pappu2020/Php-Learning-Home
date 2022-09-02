@@ -59,6 +59,8 @@ if(isset($homeUploadBtn)){
 
  $fullName = $homeUserTitle.".".$extensionPart;
 
+ $_SESSION["fullNameSession"] = $fullName;
+
  $tempPath = $_FILES["photoUpload"]["tmp_name"];
  $newPath = "imgHome/".$fullName;
 
