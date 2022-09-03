@@ -2,6 +2,34 @@
 
 session_start();
 
+//home Section
+
+$defaultPicQuearyHome = "SELECT defaultPhoto FROM homesection";
+$defaultPicQuearyHomeRes = mysqli_query($con, $defaultPicQuearyHome);
+
+$defaultPicDbValueHome = mysqli_fetch_assoc($defaultPicQuearyHomeRes)["defaultPhoto"];
+$_SESSION["client_Photo"] = $defaultPicDbValueHome;
+$client_Photo = $defaultPicDbValueHome;
+// }
+
+
+$getClientName = "SELECT title FROM homesection";
+$getClientdescription = "SELECT description FROM homesection";
+
+$getClientNameRes = mysqli_query($con, $getClientName);
+$getClientdescriptionRes = mysqli_query($con, $getClientdescription);
+
+
+
+$getName = mysqli_fetch_assoc($getClientNameRes)["title"];
+$getDescription = mysqli_fetch_assoc($getClientdescriptionRes)["description"];
+
+
+
+
+
+
+
 $dataCollect = "SELECT * FROM services WHERE ServiceStatus='Active'";
 
 $dataCollectRes = mysqli_query($con, $dataCollect);
@@ -20,6 +48,26 @@ $getRecentWorkDataRes = mysqli_query($con, $getRecentWorkData);
 $customerQuotesData = "SELECT * FROM customerquotes";
 $customerQuotesDataRes = mysqli_query($con, $customerQuotesData);
 
+
+//About Me Section
+
+
+$aboutMeData = "SELECT * FROM aboutme";
+$aboutMeDataRes = mysqli_query($con, $aboutMeData);
+
+$aboutMeDescription = "SELECT aboutMeDescription FROM aboutme WHERE id='1'";
+$aboutMeDescriptionRes = mysqli_query($con, $aboutMeDescription);
+$desAboutRes = mysqli_fetch_assoc($aboutMeDescriptionRes)["aboutMeDescription"];
+
+
+//Contact Me address
+
+$contactAddressData = "SELECT * FROM contactmeaddress";
+$contactAddressDataRes = mysqli_query($con, $contactAddressData);
+
+$ContsctAddressDescription = "SELECT Contact_Description FROM contactmeaddress WHERE id='1'";
+$ContsctAddressDescriptionRes = mysqli_query($con, $ContsctAddressDescription);
+$desContsctAddressRes = mysqli_fetch_assoc($ContsctAddressDescriptionRes)["Contact_Description"];
 
 
 
@@ -81,7 +129,9 @@ $customerQuotesDataRes = mysqli_query($con, $customerQuotesData);
                     <div class="col-xl-12">
                         <div class="main-menu">
                             <nav class="navbar navbar-expand-lg">
-                                <a href="index.html" class="navbar-brand logo-sticky-none"><img src="img/logo/logo.png" alt="Logo"></a>
+                                <a href="index.html" class="navbar-brand logo-sticky-none">
+                                    <h1>Pappu Saha</h1>
+                                </a>
                                 <a href="index.html" class="navbar-brand s-logo-none"><img src="img/logo/s_logo.png" alt="Logo"></a>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                                     <span class="navbar-icon"></span>
@@ -157,22 +207,22 @@ $customerQuotesDataRes = mysqli_query($con, $customerQuotesData);
                             <h6 class="wow fadeInUp" data-wow-delay="0.2s">HELLO!</h6>
                             <h2 class="wow fadeInUp" data-wow-delay="0.4s">I am <?php
 
-                                                                                if (isset($_SESSION["getNameSession"])) {
-                                                                                    echo $_SESSION["getNameSession"];
-                                                                                }
+
+                                                                                echo $getName;
+
 
                                                                                 ?></h2>
                             <p class="wow fadeInUp" data-wow-delay="0.6s">I'm <?php
 
-                                                                                if (isset($_SESSION["getNameSession"])) {
-                                                                                    echo $_SESSION["getNameSession"];
-                                                                                }
+
+                                                                                echo $getName;
+
 
                                                                                 ?>, <?php
 
-                                                                                    if (isset($_SESSION["getDescriptionSession"])) {
-                                                                                        echo $_SESSION["getDescriptionSession"];
-                                                                                    }
+
+                                                                                    echo $getDescription;
+
 
                                                                                     ?></p>
                             <div class="banner-social wow fadeInUp" data-wow-delay="0.8s">
@@ -188,9 +238,9 @@ $customerQuotesDataRes = mysqli_query($con, $customerQuotesData);
                     </div>
                     <div class="col-xl-5 col-lg-6 d-none d-lg-block">
                         <div class="banner-img text-right">
-                            <img src="imgHome/<?php if (isset($_SESSION["client_Photo"])) {
-                                                    echo $_SESSION["client_Photo"];
-                                                } ?>" alt="" width="550px" height="750px">
+                            <img src="imgHome/<?php
+                                                echo $client_Photo;
+                                                ?>" alt="" width="550px" height="750px">
                         </div>
                     </div>
                 </div>
@@ -214,68 +264,37 @@ $customerQuotesDataRes = mysqli_query($con, $customerQuotesData);
                             <span>Introduction</span>
                             <h2>About Me</h2>
                         </div>
+
+
+
                         <div class="about-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, sed repudiandae odit deserunt, quas
-                                quibusdam necessitatibus nesciunt eligendi esse sit non reprehenderit quisquam asperiores maxime
-                                blanditiis culpa vitae velit. Numquam!</p>
-                            <h3>Education:</h3>
+                            <p><?php print_r($desAboutRes) ?></p>
+                            <h3>Education</h3>
+
                         </div>
-                        <!-- Education Item -->
-                        <div class="education">
-                            <div class="year">2020</div>
-                            <div class="line"></div>
-                            <div class="location">
-                                <span>PHD of Interaction Design &amp; Animation</span>
-                                <div class="progressWrapper">
-                                    <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+
+
+                        <?php
+                        foreach ($aboutMeDataRes as $aboutMe) {
+
+
+                        ?>
+                            <div class="education">
+
+                                <div class="year"><?php print_r($aboutMe["aboutMerYear"]) ?></div>
+                                <div class="line"></div>
+                                <div class="location">
+                                    <span><?php print_r($aboutMe["aboutMeDegreeTitle"]) ?></span>
+                                    <div class="progressWrapper">
+                                        <div class="progress">
+                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width:<?php print_r($aboutMe["aboutMePercentage"]) ?>%;" aria-valuenow="<?php print_r($aboutMe["aboutMePercentage"]) ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End Education Item -->
-                        <!-- Education Item -->
-                        <div class="education">
-                            <div class="year">2016</div>
-                            <div class="line"></div>
-                            <div class="location">
-                                <span>Master of Database Administration</span>
-                                <div class="progressWrapper">
-                                    <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Education Item -->
-                        <!-- Education Item -->
-                        <div class="education">
-                            <div class="year">2010</div>
-                            <div class="line"></div>
-                            <div class="location">
-                                <span>Bachelor of Computer Engineering</span>
-                                <div class="progressWrapper">
-                                    <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Education Item -->
-                        <!-- Education Item -->
-                        <div class="education">
-                            <div class="year">2005</div>
-                            <div class="line"></div>
-                            <div class="location">
-                                <span>Diploma of Computer</span>
-                                <div class="progressWrapper">
-                                    <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Education Item -->
+
+                        <?php } ?>
+
                     </div>
                 </div>
             </div>
@@ -573,24 +592,79 @@ $customerQuotesDataRes = mysqli_query($con, $customerQuotesData);
                             <h2>Contact Information</h2>
                         </div>
                         <div class="contact-content">
-                            <p>Event definition is - somthing that happens occurre How evesnt sentence. Synonym when an unknown printer took a galley.</p>
-                            <h5>OFFICE IN <span>NEW YORK</span></h5>
-                            <div class="contact-list">
-                                <ul>
-                                    <li><i class="fas fa-map-marker"></i><span>Address :</span>Event Center park WT 22 New York</li>
-                                    <li><i class="fas fa-headphones"></i><span>Phone :</span>+9 125 645 8654</li>
-                                    <li><i class="fas fa-globe-asia"></i><span>e-mail :</span>info@exemple.com</li>
-                                </ul>
-                            </div>
+                            <p><?php echo $desContsctAddressRes ?></p>
+                            <h5>OFFICE IN <span>Bangladesh</span></h5>
+
+                            <?php
+                            foreach ($contactAddressDataRes as $contactaddress) {
+
+
+
+                            ?>
+
+                                <div class="contact-list">
+                                    <ul>
+                                        <li><i class="fas fa-map-marker"></i><span>Address :</span><?php print_r($contactaddress["contactAddress"]) ?></li>
+                                        <li><i class="fas fa-headphones"></i><span>Phone :</span><?php print_r($contactaddress["ContactPhone"]) ?></li>
+                                        <li><i class="fas fa-globe-asia"></i><span>e-mail :</span><?php print_r($contactaddress["contactEmail"]) ?></li>
+                                    </ul>
+                                </div>
+
+                            <?php } ?>
+
+
+
+
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="contact-form">
-                            <form action="#">
-                                <input type="text" placeholder="your name *">
-                                <input type="email" placeholder="your email *">
-                                <textarea name="message" id="message" placeholder="your message *"></textarea>
-                                <button class="btn">SEND</button>
+                        <div class="contact-form" id="myForm">
+                            <form action="contactMeBackend.php" method="POST">
+                                <input type="text" placeholder="your name *" name="name">
+                                <?php
+                                if (isset($_SESSION["name_error"])) {
+                                ?>
+
+                                    <div class="alert alert-danger">
+                                        <?php echo $_SESSION["name_error"]; ?>
+                                    </div>
+
+                                <?php
+                                }
+
+                                ?>
+
+                                <input type="text" placeholder="your email *" name="email">
+                                <?php
+                                if (isset($_SESSION["email_error"])) {
+                                ?>
+
+                                    <div class="alert alert-danger">
+                                        <?php echo $_SESSION["email_error"]; ?>
+                                    </div>
+
+                                <?php
+                                }
+
+                                ?>
+
+                                <textarea name="message" id="message" placeholder="your message *" name="message"></textarea>
+
+
+                                <button class="btn" type="submit">SEND</button>
+                                <?php
+                                if (isset($_SESSION["insert_ContactMeForm_success"])) {
+                                ?>
+
+                                    <div class="alert alert-success mt-3">
+                                        <?php echo $_SESSION["insert_ContactMeForm_success"]; ?>
+                                    </div>
+
+                                <?php
+                                }
+
+                                ?>
+
                             </form>
                         </div>
                     </div>
@@ -609,7 +683,7 @@ $customerQuotesDataRes = mysqli_query($con, $customerQuotesData);
                 <div class="row align-items-center">
                     <div class="col-12">
                         <div class="copyright-text text-center">
-                            <p>Copyright© <span>Kufa</span> | All Rights Reserved</p>
+                            <p>Copyright© <span>Pappu saha </span> | All Rights Reserved</p>
                         </div>
                     </div>
                 </div>
@@ -644,3 +718,5 @@ $customerQuotesDataRes = mysqli_query($con, $customerQuotesData);
 <!-- Mirrored from themebeyond.com/html/kufa/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Feb 2020 06:28:17 GMT -->
 
 </html>
+
+<?php session_destroy(); ?>

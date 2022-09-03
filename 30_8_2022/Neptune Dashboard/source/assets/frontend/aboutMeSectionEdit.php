@@ -12,6 +12,36 @@ $con = mysqli_connect($localhost, $username, $passwordDb, $db);
 $userId = $_SESSION['idDataFromDbSession'];
 
 
+// if (isset($_SESSION["afterName"])) {
+
+//     $userIdentification = $_SESSION["afterName"];
+
+//     $defaultPicQuearyHome = "SELECT defaultPhoto FROM homesection WHERE title='$userIdentification'";
+//     $defaultPicQuearyHomeRes = mysqli_query($con, $defaultPicQuearyHome);
+
+//     $defaultPicDbValueHome = mysqli_fetch_assoc($defaultPicQuearyHomeRes)["defaultPhoto"];
+//     $_SESSION["client_Photo"] = $defaultPicDbValueHome;
+// }
+
+//get ClientName
+
+
+if (isset($_SESSION["fullNameSession"])) {
+
+    $getFullNameSession = $_SESSION["fullNameSession"];
+
+    $getClientName = "SELECT title FROM homesection WHERE defaultPhoto='$getFullNameSession'";
+    $getClientdescription = "SELECT description FROM homesection WHERE defaultPhoto='$getFullNameSession'";
+
+    $getClientNameRes = mysqli_query($con, $getClientName);
+    $getClientdescriptionRes = mysqli_query($con, $getClientdescription);
+
+    // $getName = mysqli_fetch_assoc($getClientNameRes)["title"];
+    // $getDescription = mysqli_fetch_assoc($getClientNameRes)["description"];
+
+    $_SESSION["getNameSession"] = mysqli_fetch_assoc($getClientNameRes)["title"];
+    $_SESSION["getDescriptionSession"] = mysqli_fetch_assoc($getClientdescriptionRes)["description"];
+}
 
 
 
@@ -384,7 +414,7 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                         <div class="row">
                             <div class="col">
                                 <div class="page-description">
-                                    <h1>Customer Quotes Section Edit</h1>
+                                    <h1>About Me Section Edit</h1>
 
                                 </div>
                             </div>
@@ -397,19 +427,19 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                                     <div class="card-body">
 
                                         <div class="card-header">
-                                            Customer Quotes Content
+                                            About Me Content
                                         </div>
 
-                                        <form action="customerQuotesBackend.php" method="POST" enctype="multipart/form-data">
+                                        <form action="aboutMeSectionEditBackend.php" method="POST">
 
-                                            <input type="text" class="form-control m-b-md" name="CustomerTitle" placeholder="Enter the Customer Name">
+                                            <textarea class="form-control" rows="3" placeholder="Enter the Description" name="aboutMeDescription"></textarea>
 
                                             <?php
-                                            if (isset($_SESSION["CustomerTitleError"])) {
+                                            if (isset($_SESSION["aboutMeDescriptionError"])) {
 
                                             ?>
                                                 <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["CustomerTitleError"]; ?>
+                                                    <?php echo $_SESSION["aboutMeDescriptionError"]; ?>
                                                 </div>
 
                                             <?php
@@ -418,15 +448,15 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
 
                                             ?>
 
-                                            <input type="text" class="form-control m-b-md" name="CustomerSubTitle" placeholder="Enter the position of Customer">
+                                            <input type="number" class="form-control m-b-md" name="aboutMerYear" placeholder="Enter the Year">
 
 
                                             <?php
-                                            if (isset($_SESSION["CustomerSubTitleError"])) {
+                                            if (isset($_SESSION["aboutMerYearError"])) {
 
                                             ?>
                                                 <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["CustomerSubTitleError"]; ?>
+                                                    <?php echo $_SESSION["aboutMerYearError"]; ?>
                                                 </div>
 
                                             <?php
@@ -435,17 +465,15 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
 
                                             ?>
 
+                                            <input type="text" class="form-control m-b-md" name="aboutMeDegreeTitle" placeholder="Enter the Degree title">
 
-
-
-                                            <textarea class="form-control" rows="3" placeholder="UserDescription" name="CustomerDescription"></textarea>
 
                                             <?php
-                                            if (isset($_SESSION["CustomerDescriptionError"])) {
+                                            if (isset($_SESSION["aboutMeDegreeTitleError"])) {
 
                                             ?>
                                                 <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["CustomerDescriptionError"]; ?>
+                                                    <?php echo $_SESSION["aboutMeDegreeTitleError"]; ?>
                                                 </div>
 
                                             <?php
@@ -454,6 +482,38 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
 
                                             ?>
 
+                                            <input type="number" class="form-control m-b-md" name="aboutMePercentage" placeholder="Enter the Percentage">
+
+
+                                            <?php
+                                            if (isset($_SESSION["aboutMePercentageError"])) {
+
+                                            ?>
+                                                <div class="alert alert-danger mt-3 p-3">
+                                                    <?php echo $_SESSION["aboutMePercentageError"]; ?>
+                                                </div>
+
+                                            <?php
+
+                                            }
+
+                                            ?>
+
+                                            <button type="submit" class="btn btn-info mt-3">Add</button>
+
+                                            <?php
+                                            if (isset($_SESSION["insert_AboutMe_success"])) {
+
+                                            ?>
+                                                <div class="alert alert-success mt-3 p-3">
+                                                    <?php echo $_SESSION["insert_AboutMe_success"]; ?>
+                                                </div>
+
+                                            <?php
+
+                                            }
+
+                                            ?>
 
 
 
@@ -465,87 +525,6 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            <div class="col-xl-4">
-                                <div class="card widget widget-stats">
-                                    <div class="card-body">
-
-
-
-                                        <div class="card-header">
-                                            Customer Picture
-                                        </div>
-
-
-
-                                        <div class="profileImg mt-3 mb-3">
-                                            <img src="" alt="" width="100px" height="100px">
-                                        </div>
-
-                                        <input type="file" class="form-control m-b-md" name="CustomerphotoUpload">
-                                        <button type="submit" class="btn btn-success" name="CustomerUploadBtn">Submit</button>
-                                        </form>
-                                    </div>
-
-                                    <?php
-                                    if (isset($_SESSION["Photo_update_success_Customer"])) {
-
-                                    ?>
-                                        <div class="alert alert-success mt-3 p-3">
-                                            <?php echo $_SESSION["Photo_update_success_Customer"]; ?>
-                                        </div>
-
-                                    <?php
-
-                                    }
-
-                                    ?>
-                                    <?php
-                                    if (isset($_SESSION["insert_CustomerSec_success"])) {
-
-                                    ?>
-                                        <div class="alert alert-success mt-3 p-3">
-                                            <?php echo $_SESSION["insert_CustomerSec_success"]; ?>
-                                        </div>
-
-                                    <?php
-
-                                    }
-
-                                    ?>
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

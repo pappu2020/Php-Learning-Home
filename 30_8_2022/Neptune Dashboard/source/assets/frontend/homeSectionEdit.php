@@ -12,37 +12,10 @@ $con = mysqli_connect($localhost, $username, $passwordDb, $db);
 $userId = $_SESSION['idDataFromDbSession'];
 
 
-if(isset($_SESSION["afterName"])){
-
-$userIdentification = $_SESSION["afterName"];
-
-$defaultPicQuearyHome = "SELECT defaultPhoto FROM homesection WHERE title='$userIdentification'";
-$defaultPicQuearyHomeRes = mysqli_query($con, $defaultPicQuearyHome);
-
-$defaultPicDbValueHome = mysqli_fetch_assoc($defaultPicQuearyHomeRes)["defaultPhoto"];
-$_SESSION["client_Photo"]= $defaultPicDbValueHome;
-}
-
-//get ClientName
 
 
-if(isset($_SESSION["fullNameSession"])){
 
-$getFullNameSession=$_SESSION["fullNameSession"];
-
-$getClientName = "SELECT title FROM homesection WHERE defaultPhoto='$getFullNameSession'";
-$getClientdescription = "SELECT description FROM homesection WHERE defaultPhoto='$getFullNameSession'";
-
-$getClientNameRes = mysqli_query($con,$getClientName);
-$getClientdescriptionRes = mysqli_query($con, $getClientdescription);
-
-// $getName = mysqli_fetch_assoc($getClientNameRes)["title"];
-// $getDescription = mysqli_fetch_assoc($getClientNameRes)["description"];
-
-$_SESSION["getNameSession"] = mysqli_fetch_assoc($getClientNameRes)["title"]; 
-$_SESSION["getDescriptionSession"] = mysqli_fetch_assoc($getClientdescriptionRes)["description"]; 
-
-}
+// }
 
 
 
@@ -211,14 +184,25 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                         <a href="#"><i class="material-icons-two-tone">color_lens</i>Services<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="services.php">Services and Solution</a>
+                                <a href="homeSectionEdit.php">Home Section</a>
                             </li>
                             <li>
-                                <a href="homeSectionEdit.php">Home Section</a>
+                                <a href="aboutMESectionEdit.php">About Me Section</a>
+                            </li>
+                            <li>
+                                <a href="services.php">Services and Solution</a>
                             </li>
                             <li>
 
                                 <a href="recentWorkEdit.php">Recent Works</a>
+                            </li>
+                            <li>
+
+                                <a href="customerQuotes.php">Customer Quotes Section</a>
+                            </li>
+                            <li>
+
+                                <a href="contactMe.php">Contact Me Section</a>
                             </li>
                         </ul>
                     </li>
@@ -490,10 +474,12 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                                             Home Picture
                                         </div>
 
-                                        
+
 
                                         <div class="profileImg mt-3 mb-3">
-                                            <img src="imgHome/<?php echo $defaultPicDbValueHome?>" alt="" width="100px" height="100px">
+                                            <img src="imgHome/<?php if (isset($_SESSION["client_Photo"])) {
+                                                                    echo $_SESSION["client_Photo"];
+                                                                } ?>" alt="" width="100px" height="100px">
                                         </div>
 
                                         <input type="file" class="form-control m-b-md" name="photoUpload">

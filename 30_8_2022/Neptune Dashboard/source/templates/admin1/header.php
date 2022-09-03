@@ -153,12 +153,18 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                     <li>
                         <a href="#"><i class="material-icons-two-tone">color_lens</i>Services<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
-                            <li>
-                                <a href="../../assets/frontend/services.php">Services and Solution</a>
-                            </li>
+
                             <li>
                                 <a href="../../assets/frontend/homeSectionEdit.php">Home Section</a>
                             </li>
+
+                            <li>
+                                <a href="../../assets/frontend/aboutMeSectionEdit.php">About Me Section</a>
+                            </li>
+                            <li>
+                                <a href="../../assets/frontend/services.php">Services and Solution</a>
+                            </li>
+
                             <li>
 
                                 <a href="../../assets/frontend/recentWorkEdit.php">Recent Works</a>
@@ -167,6 +173,11 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                             <li>
 
                                 <a href="../../assets/frontend/customerQuotes.php">Customer Quotes Edit</a>
+                            </li>
+
+                            <li>
+
+                                <a href="../../assets/frontend/contactMe.php">Contact Me Edit</a>
                             </li>
                         </ul>
                     </li>

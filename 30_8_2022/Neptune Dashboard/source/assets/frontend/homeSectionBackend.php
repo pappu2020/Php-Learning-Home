@@ -66,7 +66,7 @@ if(isset($homeUploadBtn)){
 
  move_uploaded_file($tempPath, $newPath);
 
- $updateHomePhoto = "UPDATE homesection SET defaultPhoto='$fullName' WHERE title='$afterName'";
+ $updateHomePhoto = "UPDATE homesection SET defaultPhoto='$fullName'";
  $updateHomePhotoRes = mysqli_query($con, $updateHomePhoto);
 
  if( $updateHomePhotoRes){
