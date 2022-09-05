@@ -384,7 +384,7 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                         <div class="row">
                             <div class="col">
                                 <div class="page-description">
-                                    <h1>Customer Quotes Section Edit</h1>
+                                    <h1>Customer Quotes </h1>
 
                                 </div>
                             </div>
@@ -396,9 +396,6 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                                 <div class="card widget widget-stats">
                                     <div class="card-body">
 
-                                        <div class="card-header">
-                                            Customer Quotes Content
-                                        </div>
 
                                         <form action="customerQuotesBackend.php" method="POST" enctype="multipart/form-data">
 

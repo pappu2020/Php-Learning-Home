@@ -361,7 +361,7 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                         <div class="row">
                             <div class="col">
                                 <div class="page-description">
-                                    <h1>Profile</h1>
+                                    <h1> Recent Work</h1>
 
                                 </div>
                             </div>
@@ -371,9 +371,6 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                             <div class="col-xl-4">
                                 <div class="card widget widget-stats">
                                     <div class="card-body">
-                                        <div class="card-header">
-                                            Recent Work Edit
-                                        </div>
 
                                         <form action="recentWorkbackend.php" method="POST">
                                             <input type="text" class="form-control m-b-md" name="recentIcon" placeholder="Enter the Icon">

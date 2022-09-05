@@ -387,7 +387,7 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                         <div class="row">
                             <div class="col">
                                 <div class="page-description">
-                                    <h1>Home Section Edit</h1>
+                                    <h1>Home Section</h1>
 
                                 </div>
                             </div>
@@ -399,9 +399,7 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                                 <div class="card widget widget-stats">
                                     <div class="card-body">
 
-                                        <div class="card-header">
-                                            Home Section Content
-                                        </div>
+                                    
 
                                         <form action="homeSectionBackend.php" method="POST" enctype="multipart/form-data">
 
@@ -471,7 +469,7 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
 
 
                                         <div class="card-header">
-                                            Home Picture
+                                            Picture
                                         </div>
 
 

@@ -70,3 +70,17 @@ if(isset($statusUpdateBtn)){
     header("location:services.php");
 
 }
+
+
+
+//View Services
+
+
+$viewBtn = $_POST["viewBtn"];
+
+if(isset($viewBtn)){
+    header("location:viewServices.php");
+}
+
+
+

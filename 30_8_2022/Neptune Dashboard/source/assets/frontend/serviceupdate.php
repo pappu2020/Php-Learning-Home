@@ -8,16 +8,30 @@ $localhost = "localhost";
 $username = "root";
 $passwordDb = "";
 $db = "home";
-$con = mysqli_connect($localhost, $username, $passwordDb, $db);
+
 $userId = $_SESSION['idDataFromDbSession'];
 
 
-
+$con = mysqli_connect($localhost, $username, $passwordDb, $db);
 
 $defaultPicQueary = "SELECT default_profile_pic FROM users WHERE id='$userId'";
 $defaultPicQuearyRes = mysqli_query($con, $defaultPicQueary);
 
 $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_pic"];
+
+
+
+
+//serviceUpdate Data Collect
+
+$idFromClick = $_SESSION["update_id_hidden"];
+
+$singleServiceData = "SELECT * FROM services WHERE Id='$idFromClick'";
+$singleServiceDataRes = mysqli_query($con, $singleServiceData);
+
+
+
+
 
 
 
@@ -60,6 +74,16 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
         .usersShowCard {
             height: 350px;
             overflow: scroll;
+        }
+
+        .buttonDiv {
+            padding: 75px;
+        }
+
+        .myServicesBtn {
+            width: 150px;
+            height: 100px;
+            font-size: 20px;
         }
     </style>
 
@@ -153,7 +177,6 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                     <li>
                         <a href="#"><i class="material-icons-two-tone">color_lens</i>Services<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
-
                             <li>
                                 <a href="homeSectionEdit.php">Home Section</a>
                             </li>
@@ -358,116 +381,182 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                         <div class="row">
                             <div class="col">
                                 <div class="page-description">
-                                    <h1>Contact Me Section</h1>
+                                    <h1>Services Update</h1>
 
                                 </div>
                             </div>
                         </div>
                         <div class="row">
 
-
                             <div class="col-xl-4">
                                 <div class="card widget widget-stats">
                                     <div class="card-body">
+                                        <div class="card-header">
+                                            Services Update
+                                        </div>
 
-                                       
-                                        <form action="contactMeAddressBackend.php" method="POST">
 
-                                            <input type="text" class="form-control m-b-md" name="contactAddress" placeholder="Enter the Address">
+                                        <?php
 
-                                            <?php
-                                            if (isset($_SESSION["contactAddressError"])) {
-
-                                            ?>
-                                                <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["contactAddressError"]; ?>
-                                                </div>
-
-                                            <?php
-
-                                            }
-
-                                            ?>
-
-                                            <input type="email" class="form-control m-b-md" name="contactEmail" placeholder="Enter the Email">
-
-                                            <?php
-                                            if (isset($_SESSION["contactEmailError"])) {
-
-                                            ?>
-                                                <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["contactEmailError"]; ?>
-                                                </div>
-
-                                            <?php
-
-                                            }
-
-                                            ?>
+                                        foreach ($singleServiceDataRes as $serviceData) {
 
 
 
+                                        ?>
+
+                                            <form action="serviceUpdateBackend.php" method="POST">
+                                                <input type="text" class="form-control m-b-md" name="serviceTitleUpdate" value="<?php print_r($serviceData["serviceTitle"])?>">
+
+                                                <?php
+                                                if (isset($_SESSION["serviceTitleError"])) {
+                                                ?>
+
+                                                    <div class="alert alert-danger mt-3 p-3">
+                                                        <?php echo $_SESSION["serviceTitleError"]; ?>
+                                                    </div>
+
+                                                <?php
+                                                }
+
+                                                ?>
+
+
+                                                <textarea class="form-control" rows="3" placeholder="<?php print_r($serviceData["serviceDescription"]);
+                                                $_SESSION["descriptionUpdateSession"] = $serviceData["serviceDescription"];
+                                                
+                                                
+                                                
+                                                
+                                                ?>" name="serviceDescriptionUpdate"></textarea>
+
+                                                <?php
+                                                if (isset($_SESSION["serviceDescriptionError"])) {
+                                                ?>
+
+                                                    <div class="alert alert-danger mt-3 p-3">
+                                                        <?php echo $_SESSION["serviceDescriptionError"]; ?>
+                                                    </div>
+
+                                                <?php
+                                                }
+
+                                                ?>
 
 
 
-                                            <input type="number" class="form-control m-b-md" name="ContactPhone" placeholder="Enter the Mobile Number">
+                                                <input type="text" class="form-control m-b-md mt-4" name="serviceIconUpdate" value="<?php 
+                                                print_r($serviceData["serviceIcon"]);
+                                                 $_SESSION["serviceIconUpdateSession"] = $serviceData["serviceIcon"];
+                                                
+                                                
+                                                ?>">
+
+                                                <?php
+                                                if (isset($_SESSION["serviceIconError"])) {
+                                                ?>
+
+                                                    <div class="alert alert-danger mt-3 p-3">
+                                                        <?php echo $_SESSION["serviceIconError"]; ?>
+                                                    </div>
+
+                                                <?php
+                                                }
+
+                                                ?>
 
 
-                                            <?php
-                                            if (isset($_SESSION["ContactPhoneError"])) {
 
-                                            ?>
-                                                <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["ContactPhoneError"]; ?>
-                                                </div>
+                                                <select class="form-control" name="ServiceStatusUpdate">
+                                                    <option value="selectOption" selected>Select The Status</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Deactive">Deactive</option>
+                                                </select>
 
-                                            <?php
-
-                                            }
-
-                                            ?>
+                                                <?php $_SESSION["serviceStatusUpdateSession"] = $serviceData["ServiceStatus"]; ?> 
 
 
+                                                <?php
+                                                if (isset($_SESSION["ServiceStatusError"])) {
+                                                ?>
+
+                                                    <div class="alert alert-danger mt-3 p-3">
+                                                        <?php echo $_SESSION["ServiceStatusError"]; ?>
+                                                    </div>
+
+                                                <?php
+                                                }
+
+                                                ?>
 
 
-                                            <textarea class="form-control" rows="3" placeholder="Contact Description" name="Contact_Description"></textarea>
-
-                                            <?php
-                                            if (isset($_SESSION["Contact_DescriptionError"])) {
-
-                                            ?>
-                                                <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["Contact_DescriptionError"]; ?>
-                                                </div>
-
-                                            <?php
-
-                                            }
-
-                                            ?>
 
 
-                                            <button class="btn btn-info" type="submit">Add</button>
 
-                                            <?php
-                                            if (isset($_SESSION["insert_ContactMeAddress_success"])) {
+                                                <button type="submit" class="btn btn-success mt-4" name="ServiceUpdateBtn">Update</button>
 
-                                            ?>
-                                                <div class="alert alert-success mt-3 p-3">
-                                                    <?php echo $_SESSION["insert_ContactMeAddress_success"]; ?>
-                                                </div>
+                                                <?php
+                                                if (isset($_SESSION["updateSuccessServices"])) {
+                                                ?>
 
-                                            <?php
+                                                    <div class=" alert alert-success mt-3 p-3">
+                                                        <?php echo $_SESSION["updateSuccessServices"]; ?>
+                                                    </div>
 
-                                            }
+                                                <?php
+                                                }
 
-                                            ?>
+                                                ?>
+                                            </form>
+
+                                        <?php } ?>
 
 
 
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="col-xl-4">
+                                <div class="card widget widget-stats">
+                                    <div class="card-body">
+                                        <div class="card-header">
+                                            View Services
+                                        </div>
+                                        <form action="servicesBackend.php" method="POST">
+                                            <div class="buttonDiv">
+                                                <button class="myServicesBtn btn btn-info" name="viewBtn" type="submit">View <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                                        </svg></span></button>
+                                            </div>
+                                        </form>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

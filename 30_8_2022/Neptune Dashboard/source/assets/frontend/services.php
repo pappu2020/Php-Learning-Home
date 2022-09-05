@@ -65,6 +65,16 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
             height: 350px;
             overflow: scroll;
         }
+
+        .buttonDiv {
+            padding: 75px;
+        }
+
+        .myServicesBtn {
+            width: 150px;
+            height: 100px;
+            font-size: 20px;
+        }
     </style>
 
 
@@ -361,7 +371,7 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                         <div class="row">
                             <div class="col">
                                 <div class="page-description">
-                                    <h1>Profile</h1>
+                                    <h1> Services and Solution</h1>
 
                                 </div>
                             </div>
@@ -371,9 +381,7 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                             <div class="col-xl-4">
                                 <div class="card widget widget-stats">
                                     <div class="card-body">
-                                        <div class="card-header">
-                                            Services and Solution Edit
-                                        </div>
+
 
                                         <form action="servicesBackend.php" method="POST">
                                             <input type="text" class="form-control m-b-md" name="serviceTitle" placeholder="Service Title">
@@ -473,52 +481,23 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                             </div>
 
 
-                            <div class="col-xl-4">
 
+                            <div class="col-xl-4">
                                 <div class="card widget widget-stats">
                                     <div class="card-body">
                                         <div class="card-header">
-                                            Status Change
+                                            View Services
                                         </div>
-
-
                                         <form action="servicesBackend.php" method="POST">
-
-
-                                            <input type="text" class="form-control m-b-md" name="serviceTitleUpdate" placeholder="Service Title">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="Active" id="flexCheckDefault" name="statusChange">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    Active
-                                                </label>
+                                            <div class="buttonDiv">
+                                                <button class="myServicesBtn btn btn-info" name="viewBtn" type="submit">View <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                                        </svg></span></button>
                                             </div>
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="Deactive" id="flexCheckChecked" name="statusChange">
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Deactive
-                                                </label>
-                                            </div>
-
-
-                                            <button class="btn btn-info" type="submit" name="statusUpdateBtn">Update</button>
-
-                                            <?php
-                                            if (isset($_SESSION["Update_Status_success"])) {
-                                            ?>
-
-                                                <div class=" alert alert-success mt-3 p-3">
-                                                    <?php echo $_SESSION["Update_Status_success"]; ?>
-                                                </div>
-
-                                            <?php
-                                            }
-
-                                            ?>
-
-
-
                                         </form>
+
+
 
                                     </div>
                                 </div>

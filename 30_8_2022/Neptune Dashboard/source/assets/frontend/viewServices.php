@@ -8,16 +8,33 @@ $localhost = "localhost";
 $username = "root";
 $passwordDb = "";
 $db = "home";
-$con = mysqli_connect($localhost, $username, $passwordDb, $db);
+
 $userId = $_SESSION['idDataFromDbSession'];
 
 
-
+$con = mysqli_connect($localhost, $username, $passwordDb, $db);
 
 $defaultPicQueary = "SELECT default_profile_pic FROM users WHERE id='$userId'";
 $defaultPicQuearyRes = mysqli_query($con, $defaultPicQueary);
 
 $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_pic"];
+
+
+
+
+
+
+
+
+
+//View Services Data
+
+$viewServiceData = "SELECT * FROM services";
+$viewServiceDataRes = mysqli_query($con, $viewServiceData);
+
+
+
+
 
 
 
@@ -60,6 +77,20 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
         .usersShowCard {
             height: 350px;
             overflow: scroll;
+        }
+
+        .buttonDiv {
+            padding: 75px;
+        }
+
+        .myServicesBtn {
+            width: 150px;
+            height: 100px;
+            font-size: 20px;
+        }
+
+        .hiddenUpdate {
+            width: 20px;
         }
     </style>
 
@@ -153,7 +184,6 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                     <li>
                         <a href="#"><i class="material-icons-two-tone">color_lens</i>Services<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
-
                             <li>
                                 <a href="homeSectionEdit.php">Home Section</a>
                             </li>
@@ -358,116 +388,97 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                         <div class="row">
                             <div class="col">
                                 <div class="page-description">
-                                    <h1>Contact Me Section</h1>
+                                    <h1>Services List</h1>
 
                                 </div>
                             </div>
                         </div>
                         <div class="row">
 
-
-                            <div class="col-xl-4">
+                            <div class="col-xl-12">
                                 <div class="card widget widget-stats">
                                     <div class="card-body">
+                                        
 
-                                       
-                                        <form action="contactMeAddressBackend.php" method="POST">
+                                        <table class="table table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Service Title</th>
+                                                    <th scope="col">Description</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Icon</th>
+                                                    <th scope="col">Action</th>
 
-                                            <input type="text" class="form-control m-b-md" name="contactAddress" placeholder="Enter the Address">
 
-                                            <?php
-                                            if (isset($_SESSION["contactAddressError"])) {
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                                            ?>
-                                                <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["contactAddressError"]; ?>
-                                                </div>
-
-                                            <?php
-
-                                            }
-
-                                            ?>
-
-                                            <input type="email" class="form-control m-b-md" name="contactEmail" placeholder="Enter the Email">
-
-                                            <?php
-                                            if (isset($_SESSION["contactEmailError"])) {
-
-                                            ?>
-                                                <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["contactEmailError"]; ?>
-                                                </div>
-
-                                            <?php
-
-                                            }
-
-                                            ?>
+                                                <?php
+                                                foreach ($viewServiceDataRes as $viewService) {
 
 
 
+                                                ?>
+                                                    <form action="viewServicesBackend.php" method="POST">
+                                                        <tr>
+                                                            <th scope="row"><?php print_r($viewService["Id"]);
+                                                          
+                                                            
+                                                            
+                                                            ?></th>
+                                                            <td><?php print_r($viewService["serviceTitle"]) ?></td>
+
+                                                            <td><?php print_r($viewService["serviceDescription"]) ?></td>
+                                                            <td><?php print_r($viewService["ServiceStatus"]) ?></td>
+                                                            <td><?php print_r($viewService["serviceIcon"]) ?></td>
+                                                            <td><button class="btn btn-danger" name="viewServiceDelete">Delete</button></td>
+                                                            <td><input type="hidden" class="hiddenUpdate" name="delete_btn_input" value="<?php print_r($viewService["Id"]); ?>"></td>
+                                                    </form>
+                                                    <td>
+                                                        <form action="serviceUpdateBackend.php" method="POST">
+                                                            <button type="submit" class="btn btn-primary" name="updateFormBtn">
+                                                                Update
+                                                            </button>
+
+
+                                                    </td>
+                                                    <td><input type="hidden" class="hiddenUpdate" name="update_btn_input" value="<?php print_r($viewService["Id"]); ?>"></td>
+                                                    </form>
+
+
+                                                    </tr>
+
+
+                                                <?php } ?>
 
 
 
-                                            <input type="number" class="form-control m-b-md" name="ContactPhone" placeholder="Enter the Mobile Number">
-
-
-                                            <?php
-                                            if (isset($_SESSION["ContactPhoneError"])) {
-
-                                            ?>
-                                                <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["ContactPhoneError"]; ?>
-                                                </div>
-
-                                            <?php
-
-                                            }
-
-                                            ?>
-
-
-
-
-                                            <textarea class="form-control" rows="3" placeholder="Contact Description" name="Contact_Description"></textarea>
-
-                                            <?php
-                                            if (isset($_SESSION["Contact_DescriptionError"])) {
-
-                                            ?>
-                                                <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["Contact_DescriptionError"]; ?>
-                                                </div>
-
-                                            <?php
-
-                                            }
-
-                                            ?>
-
-
-                                            <button class="btn btn-info" type="submit">Add</button>
-
-                                            <?php
-                                            if (isset($_SESSION["insert_ContactMeAddress_success"])) {
-
-                                            ?>
-                                                <div class="alert alert-success mt-3 p-3">
-                                                    <?php echo $_SESSION["insert_ContactMeAddress_success"]; ?>
-                                                </div>
-
-                                            <?php
-
-                                            }
-
-                                            ?>
+                                            </tbody>
+                                        </table>
 
 
 
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

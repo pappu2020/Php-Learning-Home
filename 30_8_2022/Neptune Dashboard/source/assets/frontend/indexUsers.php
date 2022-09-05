@@ -28,7 +28,7 @@ $getDescription = mysqli_fetch_assoc($getClientdescriptionRes)["description"];
 
 
 
-
+//Service section
 
 $dataCollect = "SELECT * FROM services WHERE ServiceStatus='Active'";
 
@@ -719,4 +719,3 @@ $desContsctAddressRes = mysqli_fetch_assoc($ContsctAddressDescriptionRes)["Conta
 
 </html>
 
-<?php session_destroy(); ?>
