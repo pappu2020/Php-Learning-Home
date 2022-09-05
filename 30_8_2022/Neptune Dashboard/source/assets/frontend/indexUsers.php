@@ -55,7 +55,7 @@ $customerQuotesDataRes = mysqli_query($con, $customerQuotesData);
 $aboutMeData = "SELECT * FROM aboutme";
 $aboutMeDataRes = mysqli_query($con, $aboutMeData);
 
-$aboutMeDescription = "SELECT aboutMeDescription FROM aboutme WHERE id='1'";
+$aboutMeDescription = "SELECT aboutMeDescription FROM aboutme WHERE id='10'";
 $aboutMeDescriptionRes = mysqli_query($con, $aboutMeDescription);
 $desAboutRes = mysqli_fetch_assoc($aboutMeDescriptionRes)["aboutMeDescription"];
 
@@ -65,7 +65,7 @@ $desAboutRes = mysqli_fetch_assoc($aboutMeDescriptionRes)["aboutMeDescription"];
 $contactAddressData = "SELECT * FROM contactmeaddress";
 $contactAddressDataRes = mysqli_query($con, $contactAddressData);
 
-$ContsctAddressDescription = "SELECT Contact_Description FROM contactmeaddress WHERE id='1'";
+$ContsctAddressDescription = "SELECT Contact_Description FROM contactmeaddress WHERE id='3'";
 $ContsctAddressDescriptionRes = mysqli_query($con, $ContsctAddressDescription);
 $desContsctAddressRes = mysqli_fetch_assoc($ContsctAddressDescriptionRes)["Contact_Description"];
 
