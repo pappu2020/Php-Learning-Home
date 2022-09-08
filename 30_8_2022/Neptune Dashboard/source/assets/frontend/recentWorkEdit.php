@@ -65,6 +65,20 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
             height: 350px;
             overflow: scroll;
         }
+
+        .buttonDiv {
+            padding: 40px;
+        }
+
+        .myServicesBtn {
+            width: 150px;
+            height: 60px;
+            font-size: 30px;
+        }
+
+        .iconView{
+           margin-top: 90px;
+        }
     </style>
 
 
@@ -385,7 +399,7 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
 
                                             <?php
                                             }
-
+                                            unset($_SESSION["recentIconError"]);
                                             ?>
 
 
@@ -401,7 +415,7 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
 
                                             <?php
                                             }
-
+                                            unset($_SESSION["recentNumberError"]);
                                             ?>
 
 
@@ -418,8 +432,32 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
 
                                             <?php
                                             }
+                                            unset($_SESSION["recentDescriptionError"]);
 
                                             ?>
+
+                                            <select class="form-control" name="RecentWorkStatus">
+
+                                                <option value="Active">Active</option>
+                                                <option value="Deactive">Deactive</option>
+                                            </select>
+
+                                            <?php
+                                            if (isset($_SESSION["recentStatusError"])) {
+                                            ?>
+
+                                                <div class="alert alert-danger mt-3 p-3">
+                                                    <?php echo $_SESSION["recentStatusError"]; ?>
+                                                </div>
+
+                                            <?php
+                                            }
+                                            unset($_SESSION["recentStatusError"]);
+
+                                            ?>
+
+
+
 
 
 
@@ -443,9 +481,33 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
 
                                             <?php
                                             }
-
+                                            unset($_SESSION["insert_Recent_success"]);
                                             ?>
                                         </form>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-xl-3">
+                                <div class="card widget widget-stats">
+                                    <div class="card-body">
+                                        <!-- <div class="card-header">
+                                            View Recent Work
+                                        </div> -->
+                                        
+                                            <div class="buttonDiv">
+                                                <a href="recentWorkViewPage.php" class="btn btn-primary myServicesBtn">View <span class="iconView"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                                        </svg></span></a>
+                                            </div>
+                                       
 
 
 

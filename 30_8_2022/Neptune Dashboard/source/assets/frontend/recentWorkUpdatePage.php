@@ -8,42 +8,16 @@ $localhost = "localhost";
 $username = "root";
 $passwordDb = "";
 $db = "home";
-$con = mysqli_connect($localhost, $username, $passwordDb, $db);
+
 $userId = $_SESSION['idDataFromDbSession'];
 
 
-
-
-
-// }
-
-
-
-
-
-
-
-
-
-
-
+$con = mysqli_connect($localhost, $username, $passwordDb, $db);
 
 $defaultPicQueary = "SELECT default_profile_pic FROM users WHERE id='$userId'";
 $defaultPicQuearyRes = mysqli_query($con, $defaultPicQueary);
 
 $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_pic"];
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -92,17 +66,19 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
             overflow: scroll;
         }
 
-
         .buttonDiv {
-            padding: 75px;
+            padding: 40px;
         }
 
         .myServicesBtn {
             width: 150px;
-            height: 100px;
-            font-size: 20px;
+            height: 60px;
+            font-size: 30px;
         }
-    
+
+        .iconView {
+            margin-top: 90px;
+        }
     </style>
 
 
@@ -399,133 +375,78 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                         <div class="row">
                             <div class="col">
                                 <div class="page-description">
-                                    <h1>Home Section</h1>
+                                    <h1> Recent Work Edit</h1>
 
                                 </div>
                             </div>
                         </div>
                         <div class="row">
 
-
                             <div class="col-xl-4">
                                 <div class="card widget widget-stats">
                                     <div class="card-body">
 
 
 
-                                        <form action="homeSectionBackend.php" method="POST" enctype="multipart/form-data">
+                                        <?php
+                                        $idForUpdateSessionData = $_SESSION["idForUpdateSession"];
+                                        $seleceRecentData = "SELECT * FROM recentworks WHERE Id ='$idForUpdateSessionData'";
+                                        $seleceRecentDataRes = mysqli_query($con, $seleceRecentData);
+                                        $seleceRecentDataFetch = mysqli_fetch_assoc($seleceRecentDataRes);
 
-                                            <input type="text" class="form-control m-b-md" name="homeUserTitle" placeholder="Enter the Name">
+                                        ?>
+
+                                        <form action="recentWorkUpdatePageBackend.php" method="POST">
+                                            <input type="text" class="form-control m-b-md" name="recentIconUpdate" value="<?= $seleceRecentDataFetch["recentIcon"] ?>">
 
                                             <?php
-                                            if (isset($_SESSION["homeUserTitleError"])) {
-
+                                            if (isset($_SESSION["recentIconErrorUpdate"])) {
                                             ?>
+
                                                 <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["homeUserTitleError"]; ?>
+                                                    <?php echo $_SESSION["recentIconErrorUpdate"]; ?>
                                                 </div>
 
                                             <?php
-
                                             }
-
+                                            unset($_SESSION["recentIconErrorUpdate"]);
                                             ?>
 
 
-
-
-                                            <textarea class="form-control" rows="3" placeholder="UserDescription" name="homeUserDescription"></textarea>
+                                            <input type="text" class="form-control m-b-md" name="recentNumberUpdate" value="<?= $seleceRecentDataFetch["recentNumber"] ?>">
 
                                             <?php
-                                            if (isset($_SESSION["homeUserDescriptionError"])) {
-
+                                            if (isset($_SESSION["recentNumberErrorUpdate"])) {
                                             ?>
-                                                <div class="alert alert-danger mt-3 p-3">
-                                                    <?php echo $_SESSION["homeUserDescriptionError"]; ?>
+
+                                                <div class=" alert alert-danger mt-3 p-3">
+                                                    <?php echo $_SESSION["recentNumberErrorUpdate"]; ?>
                                                 </div>
 
                                             <?php
-
                                             }
-
+                                            unset($_SESSION["recentNumberErrorUpdate"]);
                                             ?>
 
 
-                                            <button type="submit" class="btn btn-success" name="homeUploadBtn">Submit</button>
 
+                                            <input type="text" class="form-control m-b-md mt-4" name="recentDescriptionUpdate" value="<?= $seleceRecentDataFetch["recentDescription"] ?>">
 
+                                            <?php
+                                            if (isset($_SESSION["recentDescriptionErrorUpdate"])) {
+                                            ?>
 
+                                                <div class="alert alert-danger mt-3 p-3">
+                                                    <?php echo $_SESSION["recentDescriptionErrorUpdate"]; ?>
+                                                </div>
 
+                                            <?php
+                                            }
+                                            unset($_SESSION["recentDescriptionErrorUpdate"]);
 
+                                            ?>
 
-
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            <div class="col-xl-4">
-                                <div class="card widget widget-stats">
-                                    <div class="card-body">
-
-
-
-                                        <div class="card-header">
-                                            Picture
-                                        </div>
-
-
-
-                                        <div class="profileImg mt-3 mb-3">
-                                            <img src="imgHome/<?php if (isset($_SESSION["fullNameSession"])) {
-                                                                    echo $_SESSION["fullNameSession"];
-                                                                } ?>" alt="" width="100px" height="100px">
-                                        </div>
-
-                                        <input type="file" class="form-control m-b-md" name="photoUpload">
-
-
-                                        <?php
-                                        if (isset($_SESSION["photoError"])) {
-
-                                        ?>
-                                            <div class="alert alert-danger mt-3 p-3">
-                                                <?php echo $_SESSION["photoError"]; ?>
-                                            </div>
-
-                                        <?php
-
-                                        }
-
-                                        ?>
-
-
-                                        <?php
-                                        if (isset($_SESSION["Photo_Insert_error"])) {
-
-                                        ?>
-                                            <div class="alert alert-danger mt-3 p-3">
-                                                <?php echo $_SESSION["Photo_Insert_error"]; ?>
-                                            </div>
-
-                                        <?php
-
-                                        }
-
-                                        ?>
+                                            
 
 
 
@@ -536,54 +457,24 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
 
 
 
-                                        <button type="submit" class="btn btn-success" name="homeUploadPictureBtn">Submit</button>
-                                        </form>
-                                    </div>
-
-                                    <?php
-                                    if (isset($_SESSION["Photo_update_success"])) {
-
-                                    ?>
-                                        <div class="alert alert-success mt-3 p-3">
-                                            <?php echo $_SESSION["Photo_update_success"]; ?>
-                                        </div>
-
-                                    <?php
-
-                                    }
-
-                                    ?>
-                                    <?php
-                                    if (isset($_SESSION["insert_HomeSec_success"])) {
-
-                                    ?>
-                                        <div class="alert alert-success mt-3 p-3">
-                                            <?php echo $_SESSION["insert_HomeSec_success"]; ?>
-                                        </div>
-
-                                    <?php
-
-                                    }
-
-                                    ?>
-                                </div>
-                            </div>
 
 
 
-                            <div class="col-xl-4">
-                                <div class="card widget widget-stats">
-                                    <div class="card-body">
-                                        <div class="card-header">
-                                            View List
-                                        </div>
-                                        <form action="homeSectionBackend.php" method="POST">
-                                            <div class="buttonDiv">
-                                                <button class="myServicesBtn btn btn-info" name="viewBtn" type="submit">View <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-                                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-                                                        </svg></span></button>
-                                            </div>
+
+                                            <button type="submit" class="btn btn-success mt-4" name="recentUpdateBtn">Update</button>
+
+                                            <?php
+                                            if (isset($_SESSION["insert_Recent_success"])) {
+                                            ?>
+
+                                                <div class=" alert alert-success mt-3 p-3">
+                                                    <?php echo $_SESSION["insert_Recent_success"]; ?>
+                                                </div>
+
+                                            <?php
+                                            }
+                                            unset($_SESSION["insert_Recent_success"]);
+                                            ?>
                                         </form>
 
 
@@ -591,27 +482,6 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                         </div>

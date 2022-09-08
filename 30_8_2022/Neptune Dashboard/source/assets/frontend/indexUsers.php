@@ -55,7 +55,7 @@ $customerQuotesDataRes = mysqli_query($con, $customerQuotesData);
 $aboutMeData = "SELECT * FROM aboutme";
 $aboutMeDataRes = mysqli_query($con, $aboutMeData);
 
-$aboutMeDescription = "SELECT aboutMeDescription FROM aboutme WHERE id='10'";
+$aboutMeDescription = "SELECT aboutMeDescription FROM aboutme";
 $aboutMeDescriptionRes = mysqli_query($con, $aboutMeDescription);
 $desAboutRes = mysqli_fetch_assoc($aboutMeDescriptionRes)["aboutMeDescription"];
 
@@ -65,7 +65,7 @@ $desAboutRes = mysqli_fetch_assoc($aboutMeDescriptionRes)["aboutMeDescription"];
 $contactAddressData = "SELECT * FROM contactmeaddress";
 $contactAddressDataRes = mysqli_query($con, $contactAddressData);
 
-$ContsctAddressDescription = "SELECT Contact_Description FROM contactmeaddress WHERE id='3'";
+$ContsctAddressDescription = "SELECT Contact_Description FROM contactmeaddress";
 $ContsctAddressDescriptionRes = mysqli_query($con, $ContsctAddressDescription);
 $desContsctAddressRes = mysqli_fetch_assoc($ContsctAddressDescriptionRes)["Contact_Description"];
 
@@ -716,6 +716,6 @@ $desContsctAddressRes = mysqli_fetch_assoc($ContsctAddressDescriptionRes)["Conta
 </body>
 
 <!-- Mirrored from themebeyond.com/html/kufa/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Feb 2020 06:28:17 GMT -->
+<script src="https://kit.fontawesome.com/a5ba7b62ab.js" crossorigin="anonymous"></script>
 
 </html>
-
