@@ -5,76 +5,78 @@ session_start();
 
 
 
-$name = $_POST["name"];
-$phoneNum = $_POST["phoneNum"];
-$email = $_POST["email"];
-$password = $_POST["password"];
-$confirm_pass = $_POST["confirm_pass"];
-$fatheName = $_POST["fatheName"];
-$motherName = $_POST["motherName"];
-$gurdianPhone = $_POST["gurdianPhone"];
-$nationalid = $_POST["nationalid"];
-$birthRegNum = $_POST["birthRegNum"];
-$dob = $_POST["dob"];
-$ocupation = $_POST["ocupation"];
-$bloodGrp = $_POST["bloodGrp"];
-$religion = $_POST["religion"];
-$Gender = $_POST["Gender"];
-$Howtoknowaboutus = $_POST["Howtoknowaboutus"];
-$presentAddress = $_POST["presentAddress"];
-$parmanentAddress = $_POST["parmanentAddress"];
-$courses = $_POST["courses"];
+
+
+$nameEmployee = $_POST["nameEmployee"];
+$phoneNumEmployee = $_POST["phoneNumEmployee"];
+$emailEmployee = $_POST["emailEmployee"];
+$passwordEmployee = $_POST["passwordEmployee"];
+$confirm_passEmployee = $_POST["confirm_passEmployee"];
+$fatherNameEmployee = $_POST["fatherNameEmployee"];
+$motherNameEmployee = $_POST["motherNameEmployee"];
+$gurdianPhoneEmployee = $_POST["gurdianPhoneEmployee"];
+$nationalidEmployee = $_POST["nationalidEmployee"];
+$birthRegNumEmployee = $_POST["birthRegNumEmployee"];
+$dobEmployee = $_POST["dobEmployee"];
+$ocupationEmployee = $_POST["ocupationEmployee"];
+$bloodGrpEmployee = $_POST["bloodGrpEmployee"];
+$religionEmployee = $_POST["religionEmployee"];
+$GenderEmployee = $_POST["GenderEmployee"];
+$HowtoknowaboutusEmployee = $_POST["HowtoknowaboutusEmployee"];
+$presentAddressEmployee = $_POST["presentAddressEmployee"];
+$parmanentAddressEmployee = $_POST["parmanentAddressEmployee"];
+$postion = $_POST["postion"];
 $flag = false;
 
 
-if ($name) {
-    if (preg_match("/^[a-zA-Z-' ]*$/", $name)) {
-        $_SESSION["old_name"] = $name;
+if ($nameEmployee ) {
+    if (preg_match("/^[a-zA-Z-' ]*$/", $nameEmployee )) {
+        $_SESSION["old_nameEmployee "] = $nameEmployee ;
     } else {
-        $_SESSION["name_error"] = "Name is invalid";
+        $_SESSION["name_errorEmployee "] = "Name is invalid";
         $flag = true;
     }
 } else {
-    $_SESSION["name_error"] = "Name is Required";
+    $_SESSION["name_errorEmployee "] = "Name is Required";
     $flag = true;
 }
 
 
-$phoneNumLength = strlen($phoneNum);
+$phoneNumLength = strlen($phoneNumEmployee);
 
-if ($phoneNum) {
+if ($phoneNumEmployee) {
 
     if ($phoneNumLength == 11) {
-        $_SESSION["old_number"] = $phoneNum;
+        $_SESSION["old_number"] = $phoneNumEmployee;
     } else {
-        $_SESSION["number_error"] = "Number must be 11 digit";
+        $_SESSION["number_errorEmployee"] = "Number must be 11 digit";
         $flag = true;
     }
 } else {
-    $_SESSION["number_error"] = "Number is required";
+    $_SESSION["number_errorEmployee"] = "Number is required";
     $flag = true;
 }
 
-if ($email) {
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION["old_email"] = $email;
+if ($emailEmployee) {
+    if (filter_var($emailEmployee, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION["old_emailEmployee"] = $emailEmployee;
     } else {
-        $_SESSION["email_error"] = "Invalid Email";
+        $_SESSION["email_errorEmployee"] = "Invalid Email";
         $flag = true;
     }
 } else {
-    $_SESSION["email_error"] = "Email is required";
+    $_SESSION["email_errorEmployee"] = "Email is required";
     $flag = true;
 }
 
 
 
 
-if ($password) {
-    if (preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $password)) {
-        $_SESSION["password_old"] = $password;
+if ($passwordEmployee) {
+    if (preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $passwordEmployee)) {
+        $_SESSION["password_oldEmployee"] = $passwordEmployee;
     } else {
-        $_SESSION["password_error"] = "
+        $_SESSION["password_errorEmployee"] = "
         Password Should be...
         <br>
         1.at least one lowercase char
@@ -92,61 +94,61 @@ if ($password) {
         $flag = true;
     }
 } else {
-    $_SESSION["password_error"] = "Password is requied.Please, Enter the Password";
+    $_SESSION["password_errorEmployee"] = "Password is requied.Please, Enter the Password";
     $flag = true;
 }
 
-if ($confirm_pass) {
-    if ($confirm_pass == $password) {
-        $_SESSION["confirmPass_old"] = $confirm_pass;
+if ($confirm_passEmployee) {
+    if ($confirm_passEmployee == $passwordEmployee) {
+        $_SESSION["confirmPass_oldEmployee"] = $confirm_passEmployee;
     } else {
-        $_SESSION["confirmPass_error"] = "Password do not matched.Please reenter the password.";
+        $_SESSION["confirmPass_errorEmployee"] = "Password do not matched.Please reenter the password.";
         $flag = true;
     }
 } else {
-    $_SESSION["confirmPass_error"] = "Please Enter the password again.";
+    $_SESSION["confirmPass_errorEmployee"] = "Please Enter the password again.";
     $flag = true;
 }
 
 
 
 
-if ($fatheName) {
-    if (preg_match("/^[a-zA-Z-' ]*$/", $fatheName)) {
-        $_SESSION["old_fatheName"] = $fatheName;
+if ($fatherNameEmployee) {
+    if (preg_match("/^[a-zA-Z-' ]*$/", $fatherNameEmployee)) {
+        $_SESSION["old_fatheNameEmployee"] = $fatherNameEmployee;
     } else {
-        $_SESSION["fatheName_error"] = "Father Name is invalid";
+        $_SESSION["fatheName_errorEmployee"] = "Father Name is invalid";
         $flag = true;
     }
 } else {
-    $_SESSION["fatheName_error"] = "Father Name is Required";
+    $_SESSION["fatheName_errorEmployee"] = "Father Name is Required";
     $flag = true;
 }
 
-if ($motherName) {
-    if (preg_match("/^[a-zA-Z-' ]*$/", $motherName)) {
-        $_SESSION["old_motherName"] = $motherName;
+if ($motherNameEmployee) {
+    if (preg_match("/^[a-zA-Z-' ]*$/", $motherNameEmployee)) {
+        $_SESSION["old_motherNameEmployee"] = $motherNameEmployee;
     } else {
-        $_SESSION["motherName_error"] = "Mother Name is invalid";
+        $_SESSION["motherName_errorEmployee"] = "Mother Name is invalid";
         $flag = true;
     }
 } else {
-    $_SESSION["motherName_error"] = "Mother Name is Required";
+    $_SESSION["motherName_errorEmployee"] = "Mother Name is Required";
     $flag = true;
 }
 
 
-$phoneNumLengthgur = strlen($gurdianPhone);
+$phoneNumLengthgur = strlen($gurdianPhoneEmployee);
 
-if ($gurdianPhone) {
+if ($gurdianPhoneEmployee) {
     if ($phoneNumLengthgur == 11) {
-        $_SESSION["old_number_gur"] = $gurdianPhone;
+        $_SESSION["old_number_gurEmployee"] = $gurdianPhoneEmployee;
     } else {
-        $_SESSION["number_error_gur"] = "Number must be 11 digit";
+        $_SESSION["number_error_gurEmployee"] = "Number must be 11 digit";
         $flag = true;
     }
 } else {
-    $_SESSION["number_error_gur"] = "Number is required";
+    $_SESSION["number_error_gurEmployee"] = "Number is required";
     $flag = true;
 }
 
@@ -187,36 +189,29 @@ if ($gurdianPhone) {
 // }
 
 
-if ($ocupation) {
-
-    $_SESSION["old_number_ocupation"] = $ocupation;
-} else {
-    $_SESSION["ocupation_error"] = "Ocupation is Required";
-    $flag = true;
-}
 
 
 if (
-    $religion  == "Hindu" || $religion == "Muslim" || $religion == "Christian" ||
-    $religion == "Budhist"
+    $religionEmployee  == "Hindu" || $religionEmployee == "Muslim" || $religionEmployee == "Christian" ||
+    $religionEmployee == "Budhist"
 ) {
 
-    $_SESSION["old_number_religion"] = $religion;
+    $_SESSION["old_number_religionEmployee"] = $religionEmployee;
 } else {
-    $_SESSION["religion_error"] = "Religion is Required";
+    $_SESSION["religion_errorEmployee"] = "Religion is Required";
     $flag = true;
 }
 
 
 
 if (
-    $bloodGrp  == "A+" || $bloodGrp == "A-" || $bloodGrp == "B+" ||
-    $bloodGrp == "B-" || $bloodGrp == "O+"
+    $bloodGrpEmployee  == "A+" || $bloodGrpEmployee == "A-" || $bloodGrpEmployee == "B+" ||
+    $bloodGrpEmployee == "B-" || $bloodGrpEmployee == "O+"
 ) {
 
-    $_SESSION["old_number_bloodGrp"] = $bloodGrp;
+    $_SESSION["old_number_bloodGrpEmployee"] = $bloodGrpEmployee;
 } else {
-    $_SESSION["bloodGrp_error"] = "Blood Group is Required";
+    $_SESSION["bloodGrp_errorEmployee"] = "Blood Group is Required";
     $flag = true;
 }
 
@@ -225,62 +220,62 @@ if (
 
 
 
-if ($Gender == "Male" || $Gender == "Female") {
+if ($GenderEmployee == "Male" || $GenderEmployee == "Female") {
 
-    $_SESSION["old_number_Gender"] = $Gender;
+    $_SESSION["old_number_GenderEmployee"] = $GenderEmployee;
 } else {
-    $_SESSION["Gender_error"] = "Gender is Required";
+    $_SESSION["Gender_errorEmployee"] = "Gender is Required";
     $flag = true;
 }
 
 
 if (
-    $Howtoknowaboutus == "Social media" || $Howtoknowaboutus == "Friends" || $Howtoknowaboutus == "Employees" ||
-    $Howtoknowaboutus == "others"
+    $HowtoknowaboutusEmployee == "Social media" || $HowtoknowaboutusEmployee == "Friends" || $HowtoknowaboutusEmployee == "Employees" ||
+    $HowtoknowaboutusEmployee == "others"
 ) {
 
-    $_SESSION["old_number_Howtoknowaboutus"] = $Howtoknowaboutus;
+    $_SESSION["old_number_HowtoknowaboutusEmployee"] = $HowtoknowaboutusEmployee;
 } else {
-    $_SESSION["Howtoknowaboutus_error"] = "How to know about us is Required";
+    $_SESSION["Howtoknowaboutus_errorEmployee"] = "How to know about us is Required";
     $flag = true;
 }
 
 
 if (
-    $courses == "class5" || $courses == "class6" || $courses == "class7" ||
-    $courses == "class8" || $courses == "class9"
+    $postion == "Teacher" || $postion == "Admission_Officier" || $postion == "Maintenance_Technician" ||
+    $postion == "Security_Gourd" || $postion == "Cleaner_Person"
 ) {
 
-    $_SESSION["old_class"] = $courses;
+    $_SESSION["old_postion"] = $courses;
 } else {
-    $_SESSION["class_error"] = "Class is Required";
+    $_SESSION["postion_error"] = "postion is Required";
     $flag = true;
 }
 
 
 
 
-if ($presentAddress) {
+if ($presentAddressEmployee) {
 
-    $_SESSION["old_number_presentAddress"] = $presentAddress;
+    $_SESSION["old_number_presentAddressEmployee"] = $presentAddressEmployee;
 } else {
-    $_SESSION["presentAddress_error"] = "Present Address is Required";
+    $_SESSION["presentAddress_errorEmployee"] = "Present Address is Required";
     $flag = true;
 }
 
-if ($parmanentAddress) {
+if ($parmanentAddressEmployee) {
 
-    $_SESSION["old_number_parmanentAddress"] = $parmanentAddress;
+    $_SESSION["old_number_parmanentAddressEmployee"] = $parmanentAddress;
 } else {
-    $_SESSION["parmanentAddress_error"] = "Parmanent Address is Required";
+    $_SESSION["parmanentAddress_errorEmployee"] = "Parmanent Address is Required";
     $flag = true;
 }
 
-if ($dob) {
+if ($dobEmployee) {
 
-    $_SESSION["old_number_dob"] = $dob;
+    $_SESSION["old_number_dobEmployee"] = $dob;
 } else {
-    $_SESSION["dob_error"] = "Date of birth is Required";
+    $_SESSION["dob_errorEmployee"] = "Date of birth is Required";
     $flag = true;
 }
 
@@ -297,20 +292,20 @@ if ($flag) {
 
     $con  = mysqli_connect($localhost, $username, $passwordDb, $db);
 
-    $emailCheckQueary = "SELECT COUNT(*) AS 'emailCheck' FROM users WHERE email = '$email'";
-    $emailCheckQuearyRes = mysqli_query($con, $emailCheckQueary);
+    $emailCheckQuearyemp = "SELECT COUNT(*) AS 'emailCheck' FROM employees WHERE email = '$email'";
+    $emailCheckQuearyempRes = mysqli_query($con, $emailCheckQuearyemp);
 
-    if (mysqli_fetch_assoc($emailCheckQuearyRes)['emailCheck'] == 1) {
-        $_SESSION["email_duplicate"] = "This email is already taken.Try another one";
+    if (mysqli_fetch_assoc($emailCheckQuearyempRes)['emailCheck'] == 1) {
+        $_SESSION["email_duplicateEmployee"] = "This email is already taken.Try another one";
         header("location:../employeeReg.php");
     } else {
-        $insertData = "INSERT INTO users(name,courses,email,password,fatheName,motherName,gurdianPhone,nationalid,birthRegNum,dob,phoneNum,bloodGrp,religion,Gender,Howtoknowaboutus,presentAddress,parmanentAddress,ocupation) VALUES('$name','$courses','$email','$password','$fatheName','$motherName','$gurdianPhone','$nationalid','$birthRegNum','$dob','$phoneNum','$bloodGrp','$religion','$Gender','$Howtoknowaboutus','$presentAddress','$parmanentAddress','$ocupation')";
+        $insertDataemp = "INSERT INTO employees(name,postion,email,password,fatherName,motherName,gurdianPhone,nationalid,birthRegNum,dob,phoneNum,bloodGrp,religion,Gender,Howtoknowaboutus,presentAddress,parmanentAddress) VALUES('$nameEmployee','$postion','$emailEmployee','$passwordEmployee','$fatherNameEmployee','$motherNameEmployee','$gurdianPhoneEmployee','$nationalidEmployee','$birthRegNumEmployee','$dobEmployee','$phoneNumEmployee','$bloodGrpEmployee','$religionEmployee','$GenderEmployee','$HowtoknowaboutusEmployee','$presentAddressEmployee','$parmanentAddressEmployee')";
 
-        $insertDataRes = mysqli_query($con, $insertData);
+        $insertDataempRes = mysqli_query($con, $insertDataemp);
 
-        if ($insertDataRes) {
-            $_SESSION["insertSuccess"] = "Employees Add Successfully";
-            header("location:../employeeManagement.php");
+        if ($insertDataempRes) {
+            $_SESSION["EmployeeinsertSuccess"] = "Employees Add Successfully";
+            header("location:./admin/Employee/employeeManagement.php");
         }
     }
 }

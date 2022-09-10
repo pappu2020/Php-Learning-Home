@@ -1,20 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,700;1,400;1,700;1,900&display=swap');
-body{
+
+body {
     background-color: #F8F8F8;
 }
-.navBarContainer{
+
+.navBarContainer {
     background-color: white;
-box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; 
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
-.mymenuBtn{
+
+.mymenuBtn {
     margin-top: 16px;
 }
-.myMenuBody{
-    width:130px;
+
+.myMenuBody {
+    width: 130px;
     background-color: #F1F1F1;
 }
 
-.menuListItemDiv{
+.menuListItemDiv {
     background-color: aliceblue;
     padding: 5px;
     box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
@@ -23,27 +27,28 @@ box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     box-sizing: border-box;
 }
 
-.icon{
-   font-size: 30px;
-   margin-left: 26px;
-   margin-top: 10px;
+.icon {
+    font-size: 30px;
+    margin-left: 26px;
+    margin-top: 10px;
 }
 
-.menuListItem{
-  text-decoration: none;
-  list-style: none;
-  color: black;
- 
-}
-
-.menuListItemPara{
+.menuListItem {
     text-decoration: none;
-        list-style: none;
-        color: black;
-        font-size: 15px;
-        margin-left: 7px;
-     
+    list-style: none;
+    color: black;
+
 }
+
+.menuListItemPara {
+    text-decoration: none;
+    list-style: none;
+    color: black;
+    font-size: 15px;
+    margin-left: 7px;
+
+}
+
 .menuListItemParaStudent {
     text-decoration: none;
     list-style: none;
@@ -51,12 +56,13 @@ box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     font-size: 15px;
     margin-left: 10px;
 }
-.menuListItemParaTuition{
+
+.menuListItemParaTuition {
     text-decoration: none;
-        list-style: none;
-        color: black;
-        font-size: 15px;
-       text-align: center;
+    list-style: none;
+    color: black;
+    font-size: 15px;
+    text-align: center;
 }
 
 .menuListItemParaRevenue {
@@ -68,44 +74,46 @@ box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 
 
-.SearchDiv{
+.SearchDiv {
     margin-left: 70px;
-  
+
     width: 260px;
-   padding: 18px;
+    padding: 18px;
 }
-.searchItem{
+
+.searchItem {
     padding: 5px;
-    
-   
+
+
 }
-.searchIconDiv{
+
+.searchIconDiv {
     margin-left: 15px;
     margin-top: 5px;
 }
 
-.logo{
-   margin-left: 220px;
+.logo {
+    margin-left: 220px;
 }
 
 
-.userTitleDiv{
+.userTitleDiv {
     margin-left: 410px;
     margin-top: 28px;
 }
 
-.userTitle{
+.userTitle {
     font-size: 20px;
     font-style: italic;
     font-weight: bold;
 }
 
-.userImage{
+.userImage {
     margin-top: 20px;
     margin-left: 15px;
 }
 
-.mysignOutBtn{
+.mysignOutBtn {
     margin-top: 25px;
     margin-left: 35px;
 }
@@ -117,35 +125,64 @@ box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
 /* Employees Management */
 
-.mainSectionContainer{
+.mainSectionContainer {
     padding: 100px;
 }
-.employeeManagementDiv{
+
+.employeeManagementDiv {
     padding: 50px;
-}
-.employeeManagement{
-    width: 300px;
-    height: 200px;
-   
-    padding: 50px;
-  
-    
 }
 
-.employeesDiv{
+.employeeManagement {
+    width: 250px;
+    height: 100px;
+
+
+
+
+}
+
+/* .employeesDiv{
     margin-right: 40px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    background-color: rgb(232, 213, 213);
+} */
+
+
+.employeesDiv {
+    background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
+    /* margin: 10px;
+                padding: 15px 45px; */
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    /* display: block; */
+    margin-right: 40px;
 }
 
-.employeesDiv:hover{
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    
+.employeesDiv:hover {
+    background-position: right center;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    color: #fff;
+    text-decoration: none;
 }
 
-.employeePara{
-    color: black;
-    padding: 15px;
-    font-size: 30px;
-    font-family: 'Lato', sans-serif;
+
+
+.employeePara {
+    color: white;
+    font-size: 15px;
+    position: absolute;
+    margin-top: 38px;
 }
 
+.employeePara2 {
+    color: white;
+    font-size: 15px;
+    position: absolute;
+    margin-top: 58px;
+}
