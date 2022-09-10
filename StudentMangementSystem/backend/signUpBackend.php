@@ -250,12 +250,12 @@ $Howtoknowaboutus == "others") {
 }
 
 
-if ($courses == "Professional web design" || $courses == "Professional Web Development" || $courses == "Graphics Design" ||
-$courses == "Programming language with python") {
+if ($courses == "class5" || $courses == "class6" || $courses == "class7" ||
+$courses == "class8" || $courses == "class9")  {
 
-    $_SESSION["old_courses"] = $courses;
+    $_SESSION["old_class"] = $courses;
 } else {
-    $_SESSION["courses_error"] = "Courses is Required";
+    $_SESSION["class_error"] = "Class is Required";
     $flag = true;
 }
 

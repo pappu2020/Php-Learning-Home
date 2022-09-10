@@ -25,7 +25,7 @@
                 <div class="leftPartRegStart">
 
 
-                    <legend> Registration </legend>
+                    <legend>Student Registration </legend>
                     <form action="backend/signUpBackend.php" method="POST">
 
                         <div class="mb-3">
@@ -36,8 +36,8 @@
 
 
                                                                                                                 ?> style="border:1px solid red;" <?php
-                                                                                                                }
-                                                                ?> value="<?php if (isset($_SESSION["old_name"])) { ?><?php echo $_SESSION["old_name"]; ?><?php } ?>">
+                                                                                                                                                }
+                                                                                                                                                    ?> value="<?php if (isset($_SESSION["old_name"])) { ?><?php echo $_SESSION["old_name"]; ?><?php } ?>">
 
 
                         </div>
@@ -69,8 +69,8 @@
 
 
                                                                                                                             ?> style="border:1px solid red;" <?php
-                                                                                                                            }
-                                                                ?> value="<?php if (isset($_SESSION["old_number"])) { ?><?php echo $_SESSION["old_number"]; ?><?php } ?>">
+                                                                                                                                                            }
+                                                                                                                                                                ?> value="<?php if (isset($_SESSION["old_number"])) { ?><?php echo $_SESSION["old_number"]; ?><?php } ?>">
                         </div>
 
 
@@ -94,8 +94,8 @@
 
 
                                                                                                                 ?> style="border:1px solid red;" <?php
-                                                                                                                }
-                                                                ?> value="<?php if (isset($_SESSION["old_email"])) { ?><?php echo $_SESSION["old_email"]; ?><?php } ?>">
+                                                                                                                                                }
+                                                                                                                                                    ?> value="<?php if (isset($_SESSION["old_email"])) { ?><?php echo $_SESSION["old_email"]; ?><?php } ?>">
                         </div>
 
 
@@ -138,8 +138,8 @@
 
 
                                                                                                                             ?> style="border:1px solid red;" <?php
-                                                                                                                            }
-                                                                ?>>
+                                                                                                                                                            }
+                                                                                                                                                                ?>>
                         </div>
 
 
@@ -163,8 +163,8 @@
 
 
                                                                                                                                     ?> style="border:1px solid red;" <?php
-                                                                                                                                    }
-                                                                ?>>
+                                                                                                                                                                    }
+                                                                                                                                                                        ?>>
                         </div>
 
 
@@ -196,24 +196,25 @@
                     <div class="col-lg-3 mb-3">
                         <select class="form-select" name="courses" <?php
 
-                                                                    if (isset($_SESSION["courses_error"])) {
+                                                                    if (isset($_SESSION["class_error"])) {
 
 
                                                                     ?> style="border:1px solid red;" <?php
-                                                                    }
-                                                                ?> value="<?php if (isset($_SESSION["old_courses"])) { ?><?php echo $_SESSION["old_courses"]; ?><?php } ?>">
-                            <option>Select Course</option>
-                            <option value="Professional web design">Professional web design</option>
-                            <option value="Professional Web Development">Professional Web Development</option>
-                            <option value="Graphics Design">Graphics Design</option>
-                            <option value="Programming language with python">Programming language with python</option>
+                                                                                                    }
+                                                                                                        ?> value="<?php if (isset($_SESSION["old_class"])) { ?><?php echo $_SESSION["old_courses"]; ?><?php } ?>">
+                            <option>Select Class</option>
+                            <option value="class5">class 5</option>
+                            <option value="class6">class 6</option>
+                            <option value="class6">class 7</option>
+                            <option value="class6">class 8</option>
+                            <option value="class6">class 9</option>
 
                         </select>
                         <?php
-                        if (isset($_SESSION["courses_error"])) {
+                        if (isset($_SESSION["class_error"])) {
                         ?>
 
-                            <h1 class="sessionError"><?php echo $_SESSION["courses_error"]; ?>.</h1>
+                            <h1 class="sessionError"><?php echo $_SESSION["class_error"]; ?>.</h1>
 
 
                         <?php
@@ -234,8 +235,8 @@
 
 
                                                                                                                     ?> style="border:1px solid red;" <?php
-                                                                                                                    }
-                                                                ?>value="<?php if (isset($_SESSION["old_fatheName"])) { ?><?php echo $_SESSION["old_fatheName"]; ?><?php } ?>">
+                                                                                                                                                    }
+                                                                                                                                                        ?>value="<?php if (isset($_SESSION["old_fatheName"])) { ?><?php echo $_SESSION["old_fatheName"]; ?><?php } ?>">
                             <?php
                             if (isset($_SESSION["fatheName_error"])) {
                             ?>
@@ -261,8 +262,8 @@
 
 
                                                                                                                     ?> style="border:1px solid red;" <?php
-                                                                                                                    }
-                                                                ?>value="<?php if (isset($_SESSION["old_motherName"])) { ?><?php echo $_SESSION["old_motherName"]; ?><?php } ?>">
+                                                                                                                                                    }
+                                                                                                                                                        ?>value="<?php if (isset($_SESSION["old_motherName"])) { ?><?php echo $_SESSION["old_motherName"]; ?><?php } ?>">
                             <?php
                             if (isset($_SESSION["motherName_error"])) {
                             ?>
@@ -287,8 +288,8 @@
 
 
                                                                                                                                 ?> style="border:1px solid red;" <?php
-                                                                                                                                }
-                                                                ?>value="<?php if (isset($_SESSION["old_number_gur"])) { ?><?php echo $_SESSION["old_number_gur"]; ?><?php } ?>">
+                                                                                                                                                                }
+                                                                                                                                                                    ?>value="<?php if (isset($_SESSION["old_number_gur"])) { ?><?php echo $_SESSION["old_number_gur"]; ?><?php } ?>">
                             <?php
                             if (isset($_SESSION["number_error_gur"])) {
                             ?>
@@ -340,8 +341,8 @@
 
 
                                                                                                     ?> style="border:1px solid red;" <?php
-                                                                                                    }
-                                                                ?>value="<?php if (isset($_SESSION["old_number_dob"])) { ?><?php echo $_SESSION["old_number_dob"]; ?><?php } ?>">
+                                                                                                                                    }
+                                                                                                                                        ?>value="<?php if (isset($_SESSION["old_number_dob"])) { ?><?php echo $_SESSION["old_number_dob"]; ?><?php } ?>">
 
                             <?php
                             if (isset($_SESSION["dob_error"])) {
@@ -363,15 +364,15 @@
 
 
                     <div class="row g-3">
-                        <div class="col-lg-2 mt-5">
+                        <!-- <div class="col-lg-2 mt-5">
                             <input type="text" class="form-control" placeholder="Ocupation" name="ocupation" <?php
 
                                                                                                                 if (isset($_SESSION["ocupation_error"])) {
 
 
                                                                                                                 ?> style="border:1px solid red;" <?php
-                                                                                                                }
-                                                                ?>value="<?php if (isset($_SESSION["old_number_ocupation"])) { ?><?php echo $_SESSION["old_number_ocupation"]; ?><?php } ?>">
+                                                                                                                                                }
+                                                                                                                                                    ?>value="<?php if (isset($_SESSION["old_number_ocupation"])) { ?><?php echo $_SESSION["old_number_ocupation"]; ?><?php } ?>">
 
                             <?php
                             if (isset($_SESSION["ocupation_error"])) {
@@ -384,7 +385,7 @@
                             }
 
                             ?>
-                        </div>
+                        </div> -->
 
 
 
@@ -396,8 +397,8 @@
 
 
                                                                         ?> style="border:1px solid red;" <?php
-                                                                        }
-                                                                ?>value="<?php if (isset($_SESSION["old_number_bloodGrp"])) { ?><?php echo $_SESSION["old_number_bloodGrp"]; ?><?php } ?>">
+                                                                                                        }
+                                                                                                            ?>value="<?php if (isset($_SESSION["old_number_bloodGrp"])) { ?><?php echo $_SESSION["old_number_bloodGrp"]; ?><?php } ?>">
                                 <option selected>Blood Group</option>
                                 <option value="A+">A+</option>
                                 <option value="A-">A-</option>
@@ -429,8 +430,8 @@
 
 
                                                                         ?> style="border:1px solid red;" <?php
-                                                                        }
-                                                                ?>value="<?php if (isset($_SESSION["old_number_religion"])) { ?><?php echo $_SESSION["old_number_religion"]; ?><?php } ?>">
+                                                                                                        }
+                                                                                                            ?>value="<?php if (isset($_SESSION["old_number_religion"])) { ?><?php echo $_SESSION["old_number_religion"]; ?><?php } ?>">
                                 <option selected>Religion</option>
                                 <option value="Hindu">Hindu</option>
                                 <option value="Muslim">Muslim</option>
@@ -462,8 +463,8 @@
 
 
                                                                         ?> style="border:1px solid red;" <?php
-                                                                        }
-                                                                ?>value="<?php if (isset($_SESSION["old_number_Gender"])) { ?><?php echo $_SESSION["old_number_Gender"]; ?><?php } ?>">
+                                                                                                        }
+                                                                                                            ?>value="<?php if (isset($_SESSION["old_number_Gender"])) { ?><?php echo $_SESSION["old_number_Gender"]; ?><?php } ?>">
                                 <option selected>Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -493,8 +494,8 @@
 
 
                                                                                 ?> style="border:1px solid red;" <?php
-                                                                                }
-                                                                ?>value="<?php if (isset($_SESSION["old_number_Howtoknowaboutus"])) { ?><?php echo $_SESSION["old_number_Howtoknowaboutus"]; ?><?php } ?>">
+                                                                                                                }
+                                                                                                                    ?>value="<?php if (isset($_SESSION["old_number_Howtoknowaboutus"])) { ?><?php echo $_SESSION["old_number_Howtoknowaboutus"]; ?><?php } ?>">
                                 <option selected>How to know about us</option>
                                 <option value="Social media">Social media</option>
                                 <option value="Friends">Friends</option>
@@ -534,8 +535,8 @@
 
 
                                                                                         ?> style="border:1px solid red;" <?php
-                                                                                        }
-                                                                ?>value="<?php if (isset($_SESSION["old_number_presentAddress"])) { ?><?php echo $_SESSION["old_number_presentAddress"]; ?><?php } ?>"></textarea>
+                                                                                                                        }
+                                                                                                                            ?>value="<?php if (isset($_SESSION["old_number_presentAddress"])) { ?><?php echo $_SESSION["old_number_presentAddress"]; ?><?php } ?>"></textarea>
 
                             </div>
                             <?php
@@ -561,8 +562,8 @@
 
 
                                                                                         ?> style="border:1px solid red;" <?php
-                                                                                        }
-                                                                ?>value="<?php if (isset($_SESSION["old_number_parmanentAddress"])) { ?><?php echo $_SESSION["old_number_parmanentAddress"]; ?><?php } ?>"></textarea>
+                                                                                                                        }
+                                                                                                                            ?>value="<?php if (isset($_SESSION["old_number_parmanentAddress"])) { ?><?php echo $_SESSION["old_number_parmanentAddress"]; ?><?php } ?>"></textarea>
 
                             </div>
                             <?php

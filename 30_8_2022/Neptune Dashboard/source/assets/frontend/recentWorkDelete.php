@@ -9,7 +9,7 @@ $deleteRecentWork = "DELETE FROM recentworks WHERE Id='$id'";
 $deleteRecentWorkRes = mysqli_query($con,$deleteRecentWork);
 
 if($deleteRecentWorkRes){
-    $_SESSION["recentWorkDelete"] = "Delete Success For ID: ";
+    $_SESSION["recentWorkDelete"] = "Delete Success!!!";
     header("location:recentWorkViewPage.php");
 }
 

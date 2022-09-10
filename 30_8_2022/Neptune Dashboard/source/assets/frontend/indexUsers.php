@@ -35,9 +35,9 @@ $dataCollect = "SELECT * FROM services WHERE ServiceStatus='Active'";
 $dataCollectRes = mysqli_query($con, $dataCollect);
 
 
+//Recent Work Section
 
-
-$getRecentWorkData = "SELECT * FROM recentworks";
+$getRecentWorkData = "SELECT * FROM recentworks WHERE status='Active'";
 $getRecentWorkDataRes = mysqli_query($con, $getRecentWorkData);
 
 
