@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,700;1,400;1,700;1,900&display=swap');
 body{
     background-color: #F8F8F8;
 }
@@ -109,3 +109,43 @@ box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     margin-top: 25px;
     margin-left: 35px;
 }
+
+
+
+
+
+
+/* Employees Management */
+
+.mainSectionContainer{
+    padding: 100px;
+}
+.employeeManagementDiv{
+    padding: 50px;
+}
+.employeeManagement{
+    width: 300px;
+    height: 200px;
+   
+    padding: 50px;
+  
+    
+}
+
+.employeesDiv{
+    margin-right: 40px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+}
+
+.employeesDiv:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    
+}
+
+.employeePara{
+    color: black;
+    padding: 15px;
+    font-size: 30px;
+    font-family: 'Lato', sans-serif;
+}
+

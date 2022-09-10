@@ -26,7 +26,7 @@
 
 
                     <legend>Student Registration </legend>
-                    <form action="backend/signUpBackend.php" method="POST">
+                    <form action="backend/employeeRegBackend.php" method="POST">
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
@@ -202,12 +202,12 @@
                                                                     ?> style="border:1px solid red;" <?php
                                                                                                     }
                                                                                                         ?> value="<?php if (isset($_SESSION["old_class"])) { ?><?php echo $_SESSION["old_courses"]; ?><?php } ?>">
-                            <option>Select Class</option>
-                            <option value="class5">class 5</option>
-                            <option value="class6">class 6</option>
-                            <option value="class6">class 7</option>
-                            <option value="class6">class 8</option>
-                            <option value="class6">class 9</option>
+                            <option>Select Position</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
 
                         </select>
                         <?php
