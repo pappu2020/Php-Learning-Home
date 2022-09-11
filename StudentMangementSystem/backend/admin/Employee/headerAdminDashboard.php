@@ -39,7 +39,7 @@
 
                                     </div>
                                 </a>
-                                <a href="#" class="menuListItem">
+                                <a href="./employeeManagement.php" class="menuListItem">
                                     <div class=" bd-highlight menuListItemDiv">
 
                                         <i class="fa-solid fa-users-gear icon"></i>

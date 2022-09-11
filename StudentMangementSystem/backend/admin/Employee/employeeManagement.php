@@ -21,7 +21,7 @@ require_once('./headerAdminDashboard.php');
             </div>
         </a>
 
-        <a href="#" class="col-lg-2 text-decoration-none employeesDiv">
+        <a href="./allEmployeeList.php" class="col-lg-2 text-decoration-none employeesDiv">
             <div class="employeeManagement">
 
                 <p class="employeePara ms-4">All Employees List</p>
@@ -82,6 +82,10 @@ if (isset($_SESSION["EmployeeinsertSuccess"])) {
 
 <?php }
 unset($_SESSION["EmployeeinsertSuccess"]) ?>
+
+
+
+
 
 
 
