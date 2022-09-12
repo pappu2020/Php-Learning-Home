@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -25,28 +26,62 @@
 
 
                     <div class="mySignInForm">
-                        <form action="">
+                        <form action="./backend/Admission_Officer/AdOfficerSignInBackend.php" method="POST">
 
 
-                            <div class="mb-3">
+                            <div class="mb-">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" name="employeeEmail">
                                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                             </div>
-                            <div class="mb-3">
+
+                            <?php
+                            if (isset($_SESSION["email_error_employee"])) {
+
+                            ?>
+
+                                <div class="alert alert-danger">
+                                    <?php echo $_SESSION["email_error_employee"]; ?>
+                                </div>
+
+                            <?php }
+                            unset($_SESSION["email_error_employee"]) ?>
+                            <div class="mb-1">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                <input type="password" class="form-control" name="employeePassword">
                             </div>
 
+
+                            <?php
+                            if (isset($_SESSION["password_error_employee"])) {
+
+                            ?>
+
+                                <div class="alert alert-danger">
+                                    <?php echo $_SESSION["password_error_employee"]; ?>
+                                </div>
+
+                            <?php }
+                            unset($_SESSION["password_error_employee"]) ?>
+
+
                             <div class="d-flex bd-highlight ">
-                                <div class=" flex-grow-1 bd-highlight"><a href="./sign-up.php" class="text-decoration-none">I have no account</a></div>
+
                                 <div class="bd-highlight me-3 "><button type="submit" class="btn btn-primary">Sign In</button></div>
 
                             </div>
+
+                            <?php
+                            if (isset($_SESSION["emp_logIn_fail"])) {
+
+                            ?>
+
+                                <div class="alert alert-danger">
+                                    <?php echo $_SESSION["emp_logIn_fail"]; ?>
+                                </div>
+
+                            <?php }
+                            unset($_SESSION["emp_logIn_fail"]) ?>
 
                         </form>
                     </div>

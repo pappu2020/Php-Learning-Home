@@ -1,5 +1,8 @@
-<?php session_start(); ?>
+<?php session_start();
+require_once('./backend/db.php');
 
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,19 +17,38 @@
 <body>
     <div class="container-fluid">
 
+        <form action="backend/employeeRegBackend.php" method="POST" enctype="multipart/form-data">
+            <div class="headingDiv">
+                <img src="img/logo2.JPG" alt="" width="160px" height="90px" class="headingImg">
+            </div>
 
-        <div class="headingDiv">
-            <img src="img/logo2.JPG" alt="" width="160px" height="90px" class="headingImg">
-        </div>
+            <div class="profileImageDiv">
+                <img src="./backend/admin/Employee/empImage/default_photo.jpg" alt="" width="150px" height="150px" class="profileImage">
+                <input type="file" name="emp_profile_photo" class="d-block profileImageFile">
+            </div>
+            <?php
+            if (isset($_SESSION["emp_photo_error"])) {
+            ?>
 
-        <div class="row mainContainer">
-            <div class="col-lg-4 regLeftPart">
-
-                <div class="leftPartRegStart">
+                <h1 class="sessionErrorPhotoEmployee"><?php echo $_SESSION["emp_photo_error"]; ?>.</h1>
 
 
-                    <legend>Employees Registration </legend>
-                    <form action="backend/employeeRegBackend.php" method="POST">
+            <?php
+            }
+
+            ?>
+
+
+
+
+            <div class="row mainContainer">
+                <div class="col-lg-4 regLeftPart">
+
+                    <div class="leftPartRegStart">
+
+
+                        <legend>Employees Registration </legend>
+
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
@@ -46,8 +68,8 @@
                         if (isset($_SESSION["name_errorEmployee"])) {
                         ?>
 
-                            <h1 class="sessionErrorEmployee"><?php echo $_SESSION["name_errorEmployee"]; ?>.</h1>
 
+                            <h1 class="sessionError"><?php echo $_SESSION["name_errorEmployee"]; ?>.</h1>
 
                         <?php
                         }
@@ -184,64 +206,37 @@
 
 
 
+                    </div>
+
                 </div>
 
-            </div>
+
+                <div class="col-lg-8 regRightPart">
+
+                    <div class="rightPartRegStart">
+
+                        <div class="col-lg-3 mb-3">
+                            <select class="form-select" name="postion" <?php
+
+                                                                        if (isset($_SESSION["postion_error"])) {
 
 
-            <div class="col-lg-8 regRightPart">
+                                                                        ?> style="border:1px solid red;" <?php
+                                                                                                        }
+                                                                                                            ?> value="<?php if (isset($_SESSION["old_postion"])) { ?><?php echo $_SESSION["old_postion"]; ?><?php } ?>">
+                                <option>Select Position</option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Admission_Officier">Admission Officier</option>
+                                <option value="Maintenance_Technician">Maintenance Technician</option>
+                                <option value="Security_Gourd">Security Gourd</option>
+                                <option value="Cleaner_Person">Cleaner Person</option>
 
-                <div class="rightPartRegStart">
-
-                    <div class="col-lg-3 mb-3">
-                        <select class="form-select" name="postion" <?php
-
-                                                                    if (isset($_SESSION["postion_error"])) {
-
-
-                                                                    ?> style="border:1px solid red;" <?php
-                                                                                                    }
-                                                                                                        ?> value="<?php if (isset($_SESSION["old_postion"])) { ?><?php echo $_SESSION["old_postion"]; ?><?php } ?>">
-                            <option>Select Position</option>
-                            <option value="Teacher">Teacher</option>
-                            <option value="Admission_Officier">Admission Officier</option>
-                            <option value="Maintenance_Technician">Maintenance Technician</option>
-                            <option value="Security_Gourd">Security Gourd</option>
-                            <option value="Cleaner_Person">Cleaner Person</option>
-
-                        </select>
-                        <?php
-                        if (isset($_SESSION["postion_error"])) {
-                        ?>
-
-                            <h1 class="sessionError"><?php echo $_SESSION["postion_error"]; ?>.</h1>
-
-
-                        <?php
-                        }
-
-                        ?>
-                    </div>
-
-
-
-
-
-                    <div class="row g-3">
-                        <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="Father's name" name="fatherNameEmployee" <?php
-
-                                                                                                                            if (isset($_SESSION["fatheName_errorEmployee"])) {
-
-
-                                                                                                                            ?> style="border:1px solid red;" <?php
-                                                                                                                                                            }
-                                                                                                                                                                ?>value="<?php if (isset($_SESSION["old_fatheNameEmployee"])) { ?><?php echo $_SESSION["old_fatheNameEmployee"]; ?><?php } ?>">
+                            </select>
                             <?php
-                            if (isset($_SESSION["fatheName_errorEmployee"])) {
+                            if (isset($_SESSION["postion_error"])) {
                             ?>
 
-                                <h1 class="sessionError"><?php echo $_SESSION["fatheName_errorEmployee"]; ?>.</h1>
+                                <h1 class="sessionError"><?php echo $_SESSION["postion_error"]; ?>.</h1>
 
 
                             <?php
@@ -253,334 +248,360 @@
 
 
 
+                        <div class="row g-3">
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" placeholder="Father's name" name="fatherNameEmployee" <?php
 
+                                                                                                                                if (isset($_SESSION["fatheName_errorEmployee"])) {
 
-                        <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="Mother's name" name="motherNameEmployee" <?php
 
-                                                                                                                            if (isset($_SESSION["motherName_errorEmployee"])) {
+                                                                                                                                ?> style="border:1px solid red;" <?php
+                                                                                                                                                                }
+                                                                                                                                                                    ?>value="<?php if (isset($_SESSION["old_fatheNameEmployee"])) { ?><?php echo $_SESSION["old_fatheNameEmployee"]; ?><?php } ?>">
+                                <?php
+                                if (isset($_SESSION["fatheName_errorEmployee"])) {
+                                ?>
 
+                                    <h1 class="sessionError"><?php echo $_SESSION["fatheName_errorEmployee"]; ?>.</h1>
 
-                                                                                                                            ?> style="border:1px solid red;" <?php
-                                                                                                                                                            }
-                                                                                                                                                                ?>value="<?php if (isset($_SESSION["old_motherNameEmployee"])) { ?><?php echo $_SESSION["old_motherNameEmployee"]; ?><?php } ?>">
-                            <?php
-                            if (isset($_SESSION["motherName_errorEmployee"])) {
-                            ?>
 
-                                <h1 class="sessionError"><?php echo $_SESSION["motherName_errorEmployee"]; ?>.</h1>
+                                <?php
+                                }
 
+                                ?>
+                            </div>
 
-                            <?php
-                            }
 
-                            ?>
-                        </div>
 
 
 
 
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" placeholder="Mother's name" name="motherNameEmployee" <?php
 
-                        <div class="col-lg-4">
-                            <input type="number" class="form-control" placeholder="Gurdian Phone Number" name="gurdianPhoneEmployee" <?php
+                                                                                                                                if (isset($_SESSION["motherName_errorEmployee"])) {
 
-                                                                                                                                        if (isset($_SESSION["number_error_gurEmployee"])) {
 
+                                                                                                                                ?> style="border:1px solid red;" <?php
+                                                                                                                                                                }
+                                                                                                                                                                    ?>value="<?php if (isset($_SESSION["old_motherNameEmployee"])) { ?><?php echo $_SESSION["old_motherNameEmployee"]; ?><?php } ?>">
+                                <?php
+                                if (isset($_SESSION["motherName_errorEmployee"])) {
+                                ?>
 
-                                                                                                                                        ?> style="border:1px solid red;" <?php
-                                                                                                                                                                        }
-                                                                                                                                                                            ?>value="<?php if (isset($_SESSION["old_number_gurEmployee"])) { ?><?php echo $_SESSION["old_number_gurEmployee"]; ?><?php } ?>">
-                            <?php
-                            if (isset($_SESSION["number_error_gurEmployee"])) {
-                            ?>
+                                    <h1 class="sessionError"><?php echo $_SESSION["motherName_errorEmployee"]; ?>.</h1>
 
-                                <h1 class="sessionError"><?php echo $_SESSION["number_error_gurEmployee"]; ?>.</h1>
 
+                                <?php
+                                }
 
-                            <?php
-                            }
+                                ?>
+                            </div>
 
-                            ?>
-                        </div>
 
 
 
 
+                            <div class="col-lg-4">
+                                <input type="number" class="form-control" placeholder="Gurdian Phone Number" name="gurdianPhoneEmployee" <?php
 
+                                                                                                                                            if (isset($_SESSION["number_error_gurEmployee"])) {
 
 
-                        <div class="col-lg-4 mt-4">
-                            <input type="number" class="form-control" placeholder="National Id Number" name="nationalidEmployee">
-                        </div>
+                                                                                                                                            ?> style="border:1px solid red;" <?php
+                                                                                                                                                                            }
+                                                                                                                                                                                ?>value="<?php if (isset($_SESSION["old_number_gurEmployee"])) { ?><?php echo $_SESSION["old_number_gurEmployee"]; ?><?php } ?>">
+                                <?php
+                                if (isset($_SESSION["number_error_gurEmployee"])) {
+                                ?>
 
+                                    <h1 class="sessionError"><?php echo $_SESSION["number_error_gurEmployee"]; ?>.</h1>
 
 
+                                <?php
+                                }
 
+                                ?>
+                            </div>
 
 
-                        <div class="col-lg-4 mt-4">
-                            <input type="number" class="form-control" placeholder="Birth Registration Number" name="birthRegNumEmployee">
-                        </div>
 
 
 
 
 
+                            <div class="col-lg-4 mt-4">
+                                <input type="number" class="form-control" placeholder="National Id Number" name="nationalidEmployee">
+                            </div>
 
-                        <div class="col-lg-1">
-                            <label for="dob" class="form-label dobHeading">DOB</label>
-                        </div>
 
 
 
 
-                        <div class="col-lg-3 mt-4">
-                            <input type="date" class="form-control" placeholder="DOB" name="dobEmployee" <?php
 
-                                                                                                            if (isset($_SESSION["dob_errorEmployee"])) {
+                            <div class="col-lg-4 mt-4">
+                                <input type="number" class="form-control" placeholder="Birth Registration Number" name="birthRegNumEmployee">
+                            </div>
 
 
-                                                                                                            ?> style="border:1px solid red;" <?php
-                                                                                                                                            }
-                                                                                                                                                ?>value="<?php if (isset($_SESSION["old_number_dobEmployee"])) { ?><?php echo $_SESSION["old_number_dobEmployee"]; ?><?php } ?>">
 
-                            <?php
-                            if (isset($_SESSION["dob_errorEmployee"])) {
-                            ?>
 
-                                <h1 class="sessionError"><?php echo $_SESSION["dob_errorEmployee"]; ?>.</h1>
 
 
-                            <?php
-                            }
+                            <div class="col-lg-1">
+                                <label for="dob" class="form-label dobHeading">DOB</label>
+                            </div>
 
-                            ?>
-                        </div>
 
 
 
+                            <div class="col-lg-3 mt-4">
+                                <input type="date" class="form-control" placeholder="DOB" name="dobEmployee" <?php
 
-                   
+                                                                                                                if (isset($_SESSION["dob_errorEmployee"])) {
 
 
+                                                                                                                ?> style="border:1px solid red;" <?php
+                                                                                                                                                }
+                                                                                                                                                    ?>value="<?php if (isset($_SESSION["old_number_dobEmployee"])) { ?><?php echo $_SESSION["old_number_dobEmployee"]; ?><?php } ?>">
 
+                                <?php
+                                if (isset($_SESSION["dob_errorEmployee"])) {
+                                ?>
 
+                                    <h1 class="sessionError"><?php echo $_SESSION["dob_errorEmployee"]; ?>.</h1>
 
 
+                                <?php
+                                }
 
+                                ?>
+                            </div>
 
-                    <div class="col-lg-2 mt-5">
-                        <select class="form-select" name="bloodGrpEmployee" <?php
 
-                                                                            if (isset($_SESSION["bloodGrp_errorEmployee"])) {
 
 
-                                                                            ?> style="border:1px solid red;" <?php
-                                                                                                            }
-                                                                                                                ?>value="<?php if (isset($_SESSION["old_number_bloodGrpEmployee"])) { ?><?php echo $_SESSION["old_number_bloodGrpEmployee"]; ?><?php } ?>">
-                            <option selected>Blood Group</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="O+">O+</option>
-                        </select>
-                        <?php
-                        if (isset($_SESSION["bloodGrp_errorEmployee"])) {
-                        ?>
 
-                            <h1 class="sessionError"><?php echo $_SESSION["bloodGrp_errorEmployee"]; ?>.</h1>
 
 
-                        <?php
-                        }
 
-                        ?>
-                    </div>
 
 
 
 
 
-                    <div class="col-lg-2 mt-5">
-                        <select class="form-select" name="religionEmployee" <?php
+                            <div class="col-lg-2 mt-5">
+                                <select class="form-select" name="bloodGrpEmployee" <?php
 
-                                                                            if (isset($_SESSION["religion_errorEmployee"])) {
-
-
-                                                                            ?> style="border:1px solid red;" <?php
-                                                                                                            }
-                                                                                                                ?>value="<?php if (isset($_SESSION["old_number_religionEmployee"])) { ?><?php echo $_SESSION["old_number_religionEmployee"]; ?><?php } ?>">
-                            <option selected>Religion</option>
-                            <option value="Hindu">Hindu</option>
-                            <option value="Muslim">Muslim</option>
-                            <option value="Christian">Christian</option>
-                            <option value="Budhist">Budhist</option>
-
-                        </select>
-                        <?php
-                        if (isset($_SESSION["religion_errorEmployee"])) {
-                        ?>
-
-                            <h1 class="sessionError"><?php echo $_SESSION["religion_errorEmployee"]; ?>.</h1>
-
-
-                        <?php
-                        }
-
-                        ?>
-                    </div>
-
-
-
-
-
-                    <div class="col-lg-3 mt-5 mt-4">
-                        <select class="form-select" name="GenderEmployee" <?php
-
-                                                                            if (isset($_SESSION["Gender_errorEmployee"])) {
-
-
-                                                                            ?> style="border:1px solid red;" <?php
-                                                                                                            }
-                                                                                                                ?>value="<?php if (isset($_SESSION["old_number_GenderEmployee"])) { ?><?php echo $_SESSION["old_number_GenderEmployee"]; ?><?php } ?>">
-                            <option selected>Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            Gender
-
-                        </select>
-                        <?php
-                        if (isset($_SESSION["Gender_errorEmployee"])) {
-                        ?>
-
-                            <h1 class="sessionError"><?php echo $_SESSION["Gender_errorEmployee"]; ?>.</h1>
-
-
-                        <?php
-                        }
-
-                        ?>
-                    </div>
-
-
-
-
-                    <div class="col-lg-3 mt-5 mt-4">
-                        <select class="form-select" name="HowtoknowaboutusEmployee" <?php
-
-                                                                                    if (isset($_SESSION["Howtoknowaboutus_errorEmployee"])) {
+                                                                                    if (isset($_SESSION["bloodGrp_errorEmployee"])) {
 
 
                                                                                     ?> style="border:1px solid red;" <?php
                                                                                                                     }
-                                                                                                                        ?>value="<?php if (isset($_SESSION["old_number_HowtoknowaboutusEmployee"])) { ?><?php echo $_SESSION["old_number_HowtoknowaboutusEmployee"]; ?><?php } ?>">
-                            <option selected>How to know about us</option>
-                            <option value="Social media">Social media</option>
-                            <option value="Friends">Friends</option>
-                            <option value="Employees">Employees</option>
-                            <option value="others">others</option>
+                                                                                                                        ?>value="<?php if (isset($_SESSION["old_number_bloodGrpEmployee"])) { ?><?php echo $_SESSION["old_number_bloodGrpEmployee"]; ?><?php } ?>">
+                                    <option selected>Blood Group</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O+">O+</option>
+                                </select>
+                                <?php
+                                if (isset($_SESSION["bloodGrp_errorEmployee"])) {
+                                ?>
 
-                        </select>
-                        <?php
-                        if (isset($_SESSION["Howtoknowaboutus_errorEmployee"])) {
-                        ?>
-
-                            <h1 class="sessionError"><?php echo $_SESSION["Howtoknowaboutus_errorEmployee"]; ?>.</h1>
-
-
-                        <?php
-                        }
-
-                        ?>
-                    </div>
+                                    <h1 class="sessionError"><?php echo $_SESSION["bloodGrp_errorEmployee"]; ?>.</h1>
 
 
+                                <?php
+                                }
 
-
-                </div>
+                                ?>
+                            </div>
 
 
 
 
-                <div class="row g-3">
 
-                    <div class="col-lg-6 mt-5">
-                        <div class="input-group">
-                            <span class="input-group-text">present Address</span>
-                            <textarea class="form-control" name="presentAddressEmployee" <?php
+                            <div class="col-lg-2 mt-5">
+                                <select class="form-select" name="religionEmployee" <?php
 
-                                                                                            if (isset($_SESSION["presentAddress_errorEmployee"])) {
+                                                                                    if (isset($_SESSION["religion_errorEmployee"])) {
+
+
+                                                                                    ?> style="border:1px solid red;" <?php
+                                                                                                                    }
+                                                                                                                        ?>value="<?php if (isset($_SESSION["old_number_religionEmployee"])) { ?><?php echo $_SESSION["old_number_religionEmployee"]; ?><?php } ?>">
+                                    <option selected>Religion</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Muslim">Muslim</option>
+                                    <option value="Christian">Christian</option>
+                                    <option value="Budhist">Budhist</option>
+
+                                </select>
+                                <?php
+                                if (isset($_SESSION["religion_errorEmployee"])) {
+                                ?>
+
+                                    <h1 class="sessionError"><?php echo $_SESSION["religion_errorEmployee"]; ?>.</h1>
+
+
+                                <?php
+                                }
+
+                                ?>
+                            </div>
+
+
+
+
+
+                            <div class="col-lg-3 mt-5 mt-4">
+                                <select class="form-select" name="GenderEmployee" <?php
+
+                                                                                    if (isset($_SESSION["Gender_errorEmployee"])) {
+
+
+                                                                                    ?> style="border:1px solid red;" <?php
+                                                                                                                    }
+                                                                                                                        ?>value="<?php if (isset($_SESSION["old_number_GenderEmployee"])) { ?><?php echo $_SESSION["old_number_GenderEmployee"]; ?><?php } ?>">
+                                    <option selected>Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    Gender
+
+                                </select>
+                                <?php
+                                if (isset($_SESSION["Gender_errorEmployee"])) {
+                                ?>
+
+                                    <h1 class="sessionError"><?php echo $_SESSION["Gender_errorEmployee"]; ?>.</h1>
+
+
+                                <?php
+                                }
+
+                                ?>
+                            </div>
+
+
+
+
+                            <div class="col-lg-3 mt-5 mt-4">
+                                <select class="form-select" name="HowtoknowaboutusEmployee" <?php
+
+                                                                                            if (isset($_SESSION["Howtoknowaboutus_errorEmployee"])) {
 
 
                                                                                             ?> style="border:1px solid red;" <?php
                                                                                                                             }
-                                                                                                                                ?>value="<?php if (isset($_SESSION["old_number_presentAddressEmployee"])) { ?><?php echo $_SESSION["old_number_presentAddressEmployee"]; ?><?php } ?>"></textarea>
+                                                                                                                                ?>value="<?php if (isset($_SESSION["old_number_HowtoknowaboutusEmployee"])) { ?><?php echo $_SESSION["old_number_HowtoknowaboutusEmployee"]; ?><?php } ?>">
+                                    <option selected>How to know about us</option>
+                                    <option value="Social media">Social media</option>
+                                    <option value="Friends">Friends</option>
+                                    <option value="Employees">Employees</option>
+                                    <option value="others">others</option>
+
+                                </select>
+                                <?php
+                                if (isset($_SESSION["Howtoknowaboutus_errorEmployee"])) {
+                                ?>
+
+                                    <h1 class="sessionError"><?php echo $_SESSION["Howtoknowaboutus_errorEmployee"]; ?>.</h1>
+
+
+                                <?php
+                                }
+
+                                ?>
+                            </div>
+
+
+
 
                         </div>
-                        <?php
-                        if (isset($_SESSION["presentAddress_errorEmployee"])) {
-                        ?>
-
-                            <h1 class="sessionError"><?php echo $_SESSION["presentAddress_errorEmployee"]; ?>.</h1>
 
 
-                        <?php
-                        }
-
-                        ?>
-                    </div>
 
 
-                    <div class="col-lg-6 mt-5">
-                        <div class="input-group">
-                            <span class="input-group-text">parmanent Address</span>
-                            <textarea class="form-control" name="parmanentAddressEmployee" <?php
+                        <div class="row g-3">
 
-                                                                                            if (isset($_SESSION["parmanentAddress_errorEmployee"])) {
+                            <div class="col-lg-6 mt-5">
+                                <div class="input-group">
+                                    <span class="input-group-text">present Address</span>
+                                    <textarea class="form-control" name="presentAddressEmployee" <?php
+
+                                                                                                    if (isset($_SESSION["presentAddress_errorEmployee"])) {
 
 
-                                                                                            ?> style="border:1px solid red;" <?php
-                                                                                                                            }
-                                                                                                                                ?>value="<?php if (isset($_SESSION["old_number_parmanentAddressEmployee"])) { ?><?php echo $_SESSION["old_number_parmanentAddressEmployee"]; ?><?php } ?>"></textarea>
+                                                                                                    ?> style="border:1px solid red;" <?php
+                                                                                                                                    }
+                                                                                                                                        ?>value="<?php if (isset($_SESSION["old_number_presentAddressEmployee"])) { ?><?php echo $_SESSION["old_number_presentAddressEmployee"]; ?><?php } ?>"></textarea>
+
+                                </div>
+                                <?php
+                                if (isset($_SESSION["presentAddress_errorEmployee"])) {
+                                ?>
+
+                                    <h1 class="sessionError"><?php echo $_SESSION["presentAddress_errorEmployee"]; ?>.</h1>
+
+
+                                <?php
+                                }
+
+                                ?>
+                            </div>
+
+
+                            <div class="col-lg-6 mt-5">
+                                <div class="input-group">
+                                    <span class="input-group-text">parmanent Address</span>
+                                    <textarea class="form-control" name="parmanentAddressEmployee" <?php
+
+                                                                                                    if (isset($_SESSION["parmanentAddress_errorEmployee"])) {
+
+
+                                                                                                    ?> style="border:1px solid red;" <?php
+                                                                                                                                    }
+                                                                                                                                        ?>value="<?php if (isset($_SESSION["old_number_parmanentAddressEmployee"])) { ?><?php echo $_SESSION["old_number_parmanentAddressEmployee"]; ?><?php } ?>"></textarea>
+
+                                </div>
+                                <?php
+                                if (isset($_SESSION["parmanentAddress_errorEmployee"])) {
+                                ?>
+
+                                    <h1 class="sessionError"><?php echo $_SESSION["parmanentAddress_errorEmployee"]; ?>.</h1>
+
+
+                                <?php
+                                }
+
+                                ?>
+                            </div>
+
+
+
+
 
                         </div>
-                        <?php
-                        if (isset($_SESSION["parmanentAddress_errorEmployee"])) {
-                        ?>
-
-                            <h1 class="sessionError"><?php echo $_SESSION["parmanentAddress_errorEmployee"]; ?>.</h1>
 
 
-                        <?php
-                        }
+                        <div class="d-flex bd-highlight submitSec mt-5">
+                            <div class=" flex-grow-1 bd-highlight"><a href="backend/admin/Employee/employeeManagement.php" class="text-decoration-none">Back to the dashboard</a></div>
+                            <div class="bd-highlight me-5"><button type="submit" class="btn btn-primary btn-lg rounded-pill">Registration</button></div>
 
-                        ?>
+                        </div>
+
+
+
+
+
+
+
+
                     </div>
 
-
-
-
-
                 </div>
-
-
-                <div class="d-flex bd-highlight submitSec mt-5">
-                    <div class=" flex-grow-1 bd-highlight"><a href="backend/admin/Employee/employeeManagement.php" class="text-decoration-none">Back to the dashboard</a></div>
-                    <div class="bd-highlight me-5"><button type="submit" class="btn btn-primary btn-lg rounded-pill">Registration</button></div>
-
-                </div>
-
-
-
-
-
-
-
-
-            </div>
-
-        </div>
 
 
         </form>

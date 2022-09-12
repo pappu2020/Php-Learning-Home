@@ -102,19 +102,28 @@ body {
 
 
 .userTitleDiv {
-    margin-left: 410px;
+    margin-left: 250px;
     margin-top: 28px;
+    margin-right: 20px;
 }
 
 .userTitle {
-    font-size: 20px;
+    font-size: 15px;
     font-style: italic;
     font-weight: bold;
 }
 
+.userSubTitle {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    line-height: 0.1;
+}
+
 .userImage {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 15px;
+    border: 2px solid blue;
 }
 
 .mysignOutBtn {
@@ -200,18 +209,18 @@ body {
 /* 
 All employees List */
 
-.allEmployeesListContainer{
+.allEmployeesListContainer {
     padding: 25px;
 }
 
-.employeeListHeading{
+.employeeListHeading {
     font-size: 25px;
     font-style: italic;
     font-weight: bold;
     font-family: 'Noto Serif Georgian', serif;
 }
 
-.employeesListTableDiv{
+.employeesListTableDiv {
     width: 1500px;
     height: auto;
     display: block;

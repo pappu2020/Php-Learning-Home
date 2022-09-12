@@ -30,7 +30,7 @@ require_once('./headerAdminDashboard.php');
         </a>
 
 
-        <a href="#" class="col-lg-2 text-decoration-none employeesDiv">
+        <a href="./teacherListView.php" class="col-lg-2 text-decoration-none employeesDiv">
             <div class="employeeManagement">
 
                 <p class="employeePara ms-4">Teachers List</p>

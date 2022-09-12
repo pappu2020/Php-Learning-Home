@@ -571,28 +571,6 @@ $defaultPicDbValue = mysqli_fetch_assoc($defaultPicQuearyRes)["default_profile_p
 
 
 
-                            <div class="col-xl-4">
-                                <div class="card widget widget-stats">
-                                    <div class="card-body">
-                                        <div class="card-header">
-                                            View List
-                                        </div>
-                                        <form action="homeSectionBackend.php" method="POST">
-                                            <div class="buttonDiv">
-                                                <button class="myServicesBtn btn btn-info" name="viewBtn" type="submit">View <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-                                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-                                                        </svg></span></button>
-                                            </div>
-                                        </form>
-
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-
 
 
 

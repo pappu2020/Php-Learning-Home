@@ -4,12 +4,37 @@ body {
 
 }
 
+.profileImage {
+    position: absolute;
+    margin-top: -140px;
+    margin-left: 1300px;
+}
+
+.profileImageFile{
+    margin-left: 1300px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
 .sessionError {
     font-size: 15px;
 
     color: red;
     margin-top: 10px;
 
+}
+.sessionErrorEmployee{
+    font-size: 15px;
+    
+        color: red;
+        margin-top: 10px;
+}
+.sessionErrorPhotoEmployee{
+    font-size: 10px;
+    
+        color: red;
+       margin-left: 1300px;
+       padding: 5px;
 }
 
 .headingDiv {

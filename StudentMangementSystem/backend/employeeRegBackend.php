@@ -1,10 +1,10 @@
 <?php
 
+
 session_start();
+require_once('./db.php');
 
-
-
-
+print_r($_FILES);
 
 
 $nameEmployee = $_POST["nameEmployee"];
@@ -17,7 +17,10 @@ $motherNameEmployee = $_POST["motherNameEmployee"];
 $gurdianPhoneEmployee = $_POST["gurdianPhoneEmployee"];
 $nationalidEmployee = $_POST["nationalidEmployee"];
 $birthRegNumEmployee = $_POST["birthRegNumEmployee"];
-$dobEmployee = $_POST["dobEmployee"];
+$dobEmployee = ($_POST["dobEmployee"]);
+$dateFormatRes = date('Y-m-d', strtotime($_POST['dobEmployee']));
+
+
 $ocupationEmployee = $_POST["ocupationEmployee"];
 $bloodGrpEmployee = $_POST["bloodGrpEmployee"];
 $religionEmployee = $_POST["religionEmployee"];
@@ -29,18 +32,17 @@ $postion = $_POST["postion"];
 $flag = false;
 
 
-if ($nameEmployee ) {
-    if (preg_match("/^[a-zA-Z-' ]*$/", $nameEmployee )) {
-        $_SESSION["old_nameEmployee "] = $nameEmployee ;
+if ($nameEmployee) {
+    if (preg_match("/^[a-zA-Z-' ]*$/", $nameEmployee)) {
+        $_SESSION["old_nameEmployee"] = $nameEmployee;
     } else {
-        $_SESSION["name_errorEmployee "] = "Name is invalid";
+        $_SESSION["name_errorEmployee"] = "Name is invalid";
         $flag = true;
     }
 } else {
-    $_SESSION["name_errorEmployee "] = "Name is Required";
+    $_SESSION["name_errorEmployee"] = "Name is Required";
     $flag = true;
 }
-
 
 $phoneNumLength = strlen($phoneNumEmployee);
 
@@ -86,10 +88,10 @@ if ($passwordEmployee) {
         3.at least one digit
         <br>
         4.at least one special sign of @#-_$%^&+=§!?
-        
-        
-        
-        
+
+
+
+
         ";
         $flag = true;
     }
@@ -292,6 +294,26 @@ if ($flag) {
 
     $con  = mysqli_connect($localhost, $username, $passwordDb, $db);
 
+
+    $photoName = $_FILES["emp_profile_photo"]["name"];
+    $explodeSec = explode(".", $photoName);
+    $extensionPart = end($explodeSec);
+
+    $modifyEmpName = trim(htmlentities($nameEmployee));
+
+
+
+
+    $fullname = $modifyEmpName."-".time().".".$extensionPart;
+
+
+    $tempPath = $_FILES["emp_profile_photo"]["tmp_name"];
+    $newPath = "./admin/Employee/empImage/" . $fullname;
+    
+
+    move_uploaded_file($tempPath, $newPath);
+
+
     $emailCheckQuearyemp = "SELECT COUNT(*) AS 'emailCheck' FROM employees WHERE email = '$email'";
     $emailCheckQuearyempRes = mysqli_query($con, $emailCheckQuearyemp);
 
@@ -299,7 +321,7 @@ if ($flag) {
         $_SESSION["email_duplicateEmployee"] = "This email is already taken.Try another one";
         header("location:../employeeReg.php");
     } else {
-        $insertDataemp = "INSERT INTO employees(name,postion,email,password,fatherName,motherName,gurdianPhone,nationalid,birthRegNum,dob,phoneNum,bloodGrp,religion,Gender,Howtoknowaboutus,presentAddress,parmanentAddress) VALUES('$nameEmployee','$postion','$emailEmployee','$passwordEmployee','$fatherNameEmployee','$motherNameEmployee','$gurdianPhoneEmployee','$nationalidEmployee','$birthRegNumEmployee','$dobEmployee','$phoneNumEmployee','$bloodGrpEmployee','$religionEmployee','$GenderEmployee','$HowtoknowaboutusEmployee','$presentAddressEmployee','$parmanentAddressEmployee')";
+        $insertDataemp = "INSERT INTO employees(name,postion,email,password,fatherName,motherName,gurdianPhone,nationalid,birthRegNum,dob,phoneNum,bloodGrp,religion,Gender,Howtoknowaboutus,presentAddress,parmanentAddress,photo) VALUES('$nameEmployee','$postion','$emailEmployee','$passwordEmployee','$fatherNameEmployee','$motherNameEmployee','$gurdianPhoneEmployee','$nationalidEmployee','$birthRegNumEmployee','$dateFormatRes','$phoneNumEmployee','$bloodGrpEmployee','$religionEmployee','$GenderEmployee','$HowtoknowaboutusEmployee','$presentAddressEmployee','$parmanentAddressEmployee','$fullname')";
 
         $insertDataempRes = mysqli_query($con, $insertDataemp);
 
@@ -309,3 +331,10 @@ if ($flag) {
         }
     }
 }
+
+
+
+
+
+
+

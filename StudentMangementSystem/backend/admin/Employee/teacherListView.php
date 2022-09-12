@@ -1,11 +1,10 @@
 <?php
 require_once('./headerAdminDashboard.php');
-
 require_once('../../db.php');
 
 
-$allEmployeeList = "SELECT * FROM employees";
-$allEmployeeListRes = mysqli_query($con, $allEmployeeList);
+$allTeacherList = "SELECT * FROM employees WHERE postion='Teacher'";
+$allTeacherListRes = mysqli_query($con, $allTeacherList);
 
 
 
@@ -16,7 +15,7 @@ $allEmployeeListRes = mysqli_query($con, $allEmployeeList);
 
 
 <div class="allEmployeesListContainer">
-    <h4 class="employeeListHeading">All Employees List</h4>
+    <h4 class="employeeListHeading">Teacher List</h4>
 </div>
 
 
@@ -53,29 +52,29 @@ $allEmployeeListRes = mysqli_query($con, $allEmployeeList);
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($allEmployeeListRes as $key => $employess) {
+                    foreach ($allTeacherListRes as $key => $teachers) {
 
 
                     ?>
                         <tr>
                             <th><?= $key + 1; ?></th>
-                            <td><?= $employess["name"];  ?></td>
-                            <td><?= $employess["postion"];  ?></td>
-                            <td><?= $employess["email"];  ?></td>
+                            <td><?= $teachers["name"];  ?></td>
+                            <td><?= $teachers["postion"];  ?></td>
+                            <td><?= $teachers["email"];  ?></td>
 
-                            <td><?= $employess["fatherName"];  ?></td>
-                            <td><?= $employess["motherName"];  ?></td>
-                            <td><?= $employess["gurdianPhone"];  ?></td>
-                            <td><?= $employess["nationalid"];  ?></td>
-                            <td><?= $employess["birthRegNum"];  ?></td>
-                            <td><?= $employess["dob"];  ?></td>
-                            <td><?= $employess["phoneNum"];  ?></td>
-                            <td><?= $employess["bloodGrp"];  ?></td>
-                            <td><?= $employess["religion"];  ?></td>
-                            <td><?= $employess["Gender"];  ?></td>
-                            <td><?= $employess["Howtoknowaboutus"];  ?></td>
-                            <td><?= $employess["presentAddress"];  ?></td>
-                            <td><?= $employess["parmanentAddress"];  ?></td>
+                            <td><?= $teachers["fatherName"];  ?></td>
+                            <td><?= $teachers["motherName"];  ?></td>
+                            <td><?= $teachers["gurdianPhone"];  ?></td>
+                            <td><?= $teachers["nationalid"];  ?></td>
+                            <td><?= $teachers["birthRegNum"];  ?></td>
+                            <td><?= $teachers["dob"];  ?></td>
+                            <td><?= $teachers["phoneNum"];  ?></td>
+                            <td><?= $teachers["bloodGrp"];  ?></td>
+                            <td><?= $teachers["religion"];  ?></td>
+                            <td><?= $teachers["Gender"];  ?></td>
+                            <td><?= $teachers["Howtoknowaboutus"];  ?></td>
+                            <td><?= $teachers["presentAddress"];  ?></td>
+                            <td><?= $teachers["parmanentAddress"];  ?></td>
 
                             <!-- edit -->
                             <td><a href="#" class="btn btn-primary"><span class="text-light"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
@@ -92,7 +91,7 @@ $allEmployeeListRes = mysqli_query($con, $allEmployeeList);
 
 
                             <!-- Delete -->
-                            <td><a href="allEmployeesDelete.php?id=<?= $employess["id"];  ?>" class="btn btn-danger"><span><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                            <td><a href="teacherDelete.php?id=<?= $teachers["id"];  ?>" class="btn btn-danger"><span><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                             <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
                                         </svg></span></a></td>
                         </tr>
@@ -108,15 +107,15 @@ $allEmployeeListRes = mysqli_query($con, $allEmployeeList);
 
 <?php
 
-if (isset($_SESSION["Delete_success_allEmployee_list"])) {
+if (isset($_SESSION["Delete_success_teacher_list"])) {
 ?>
 
     <div class="alert alert-success mt-4">
-        <?php echo $_SESSION["Delete_success_allEmployee_list"]  ?>
+        <?php echo $_SESSION["Delete_success_teacher_list"]  ?>
     </div>
 
 <?php }
-unset($_SESSION["Delete_success_allEmployee_list"]) ?>
+unset($_SESSION["Delete_success_teacher_list"]) ?>
 
 
 
