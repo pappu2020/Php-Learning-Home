@@ -45,7 +45,7 @@ else{
 
     if(mysqli_fetch_assoc($emailCheckEmpRes)["emailcheckEmp"]==1){
 
-
+         $_SESSION["getEmpEmailSession"] = $employeeEmail;
 
         $getEmpAdId = "SELECT id FROM employees WHERE email='$employeeEmail' AND postion='Admission_Officier'";
         $getEmpAdIdRes = mysqli_query($con, $getEmpAdId);
@@ -69,6 +69,14 @@ else{
         $getEmpPhotoFetch = mysqli_fetch_assoc($getEmpAdPhotoRes)["photo"];
 
         $_SESSION["getEmpPhotoSession"] = $getEmpPhotoFetch;
+
+
+        $getEmpAdmobile= "SELECT phoneNum FROM employees WHERE email='$employeeEmail' AND postion='Admission_Officier'";
+        $getEmpAdmobileRes = mysqli_query($con, $getEmpAdmobile);
+
+        $getEmpmobileFetch = mysqli_fetch_assoc($getEmpAdmobileRes)["phoneNum"];
+
+        $_SESSION["getEmpmobileSession"] = $getEmpmobileFetch;
 
 
 

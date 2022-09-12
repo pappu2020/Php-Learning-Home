@@ -35,7 +35,7 @@
 
                                         <i class="fa-solid fa-house-user icon"></i>
 
-                                        <p class="menuListItemPara">Dashboard</p>
+                                        <p class="menuListItemPara ms-4">Profile</p>
 
                                     </div>
                                 </a>
@@ -44,16 +44,7 @@
 
                                         <i class="fa-solid fa-users-gear icon"></i>
 
-                                        <p class="menuListItemPara">Employees</p>
-
-                                    </div>
-                                </a>
-                                <a href="#" class="menuListItem">
-                                    <div class=" bd-highlight menuListItemDiv">
-
-                                        <i class="fa-solid fa-user-tie icon"></i>
-
-                                        <p class="menuListItemParaStudent">Students</p>
+                                        <p class="menuListItemPara ms-3">Students</p>
 
                                     </div>
                                 </a>
@@ -62,12 +53,24 @@
 
                                         <i class="fa-sharp fa-solid fa-sack-dollar icon"></i>
 
-                                        <p class="menuListItemParaTuition">Salary</p>
+                                        <p class="menuListItemParaStudent ms-4">Salary</p>
+
+                                    </div>
+                                </a>
+                                <a href="#" class="menuListItem">
+                                    <div class=" bd-highlight menuListItemDiv">
+
+                                        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-envelope-plus-fill" viewBox="0 0 16 16">
+                                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 4.697v4.974A4.491 4.491 0 0 0 12.5 8a4.49 4.49 0 0 0-1.965.45l-.338-.207L16 4.697Z" />
+                                                <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z" />
+                                            </svg></span>
+
+                                        <p class="menuListItemParaTuition">Contact</p>
 
                                     </div>
                                 </a>
 
-                                <a href="#" class="menuListItem">
+                                <!-- <a href="#" class="menuListItem">
                                     <div class=" bd-highlight menuListItemDiv">
 
                                         <i class="fa-sharp fa-solid fa-sack-dollar icon"></i>
@@ -85,7 +88,7 @@
                                         <p class="menuListItemParaRevenue">Revenue</p>
 
                                     </div>
-                                </a>
+                                </a> -->
 
 
 
@@ -145,11 +148,72 @@
 
 
 
+        <div class="MainSectionContainer">
+            <h1 class="mainSectionHeading">Profile</h1>
+            <div class="row mainSectionStart">
+                <div class="col-lg-3 mainSectionLeft">
+
+                    <img src="../../backend/admin/Employee/empImage/<?php echo $_SESSION["getEmpPhotoSession"]; ?>" alt="" class="mainSectionLeftImage" width="300px" height="400px">
+
+
+
+                    <div class="d-flex bd-highlight mobileDiv">
+
+
+                        <p class="mobileNumber flex-grow-1 bd-highlight"><span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                                </svg></span> <?php if (isset($_SESSION["getEmpmobileSession"])) {
+                                                    echo $_SESSION["getEmpmobileSession"];
+                                                } ?></p>
+
+
+                        <span class="bd-highlight editIconDiv rounded rounded-circle"><svg xmlns="http://www.w3.org/2000/svg" class="editIcon" width="24" height="24" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                            </svg></span>
+
+                    </div>
+
+
+
+                    <div class="d-flex bd-highlight emailDiv">
+
+
+                        <p class="email flex-grow-1 bd-highlight"><span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                                </svg></span> <?php if (isset($_SESSION["getEmpEmailSession"])) {
+                                                    echo $_SESSION["getEmpEmailSession"];
+                                                } ?></p>
+
+
+                        <span class="bd-highlight editIconDiv rounded rounded-circle"><svg xmlns="http://www.w3.org/2000/svg" class="editIcon" width="24" height="24" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                            </svg></span>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <div class="col-lg-3 mainSectionRight">
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/a5ba7b62ab.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ecd7a02304.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

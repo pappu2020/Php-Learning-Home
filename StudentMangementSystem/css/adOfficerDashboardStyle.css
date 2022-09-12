@@ -209,7 +209,7 @@ body {
 /* 
 All employees List */
 
-.allEmployeesListContainer {
+/* .allEmployeesListContainer {
     padding: 25px;
 }
 
@@ -225,4 +225,65 @@ All employees List */
     height: auto;
     display: block;
     overflow-x: scroll;
+} */
+
+
+
+
+
+
+
+/* Admission officer profile */
+
+
+.MainSectionContainer {
+    padding: 30px;
+}
+
+.mobileDiv {
+
+    background-color: #185286;
+    width: 300px;
+    height: 60px;
+
+}
+
+.mobileNumber {
+    color: white;
+    font-size: 20px;
+    padding: 14px;
+}
+
+.editIconDiv {
+    background-color: #185286;
+    border: 2px solid white;
+    color: white;
+    width: 44px;
+    height: 44px;
+    margin-top: 7px;
+    margin-right: 5px;
+}
+
+.editIcon {
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 7px;
+}
+
+.editIconEmail {
+    position: absolute;
+    margin-left: 8px;
+    margin-top: 7px;
+}
+
+.emailDiv {
+    background-color: #21A6BB;
+    width: 300px;
+    height: 60px;
+}
+
+.email {
+    color: white;
+    font-size: 15px;
+    padding: 14px;
 }
