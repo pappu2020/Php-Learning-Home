@@ -134,38 +134,25 @@ body {
 
 
 
-
-
-/* Employees Management */
-
-.mainSectionContainer {
-    padding: 100px;
+.mainSectionHeading {
+    border-bottom: 3px solid #ddd;
+    padding: 2px;
 }
 
-.employeeManagementDiv {
-    padding: 50px;
-}
-
-.employeeManagement {
-    width: 250px;
-    height: 100px;
-
-
-
+.addOfficerEditParaLink {
+    text-decoration: none;
 
 }
 
-/* .employeesDiv{
-    margin-right: 40px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
-    background-color: rgb(232, 213, 213);
-} */
+.addOfficerEditPara {
+    color: white;
 
+}
 
-.employeesDiv {
+.addOfficerEditDiv {
     background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
     /* margin: 10px;
-                padding: 15px 45px; */
+                    padding: 15px 45px; */
     text-align: center;
     text-transform: uppercase;
     transition: 0.5s;
@@ -175,9 +162,13 @@ body {
     border-radius: 10px;
     /* display: block; */
     margin-right: 40px;
+    width: 150px;
+    height: 40px;
+    margin-left: auto;
+    margin-top: 25px;
 }
 
-.employeesDiv:hover {
+.addOfficerEditDiv:hover {
     background-position: right center;
     box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     color: #fff;
@@ -186,19 +177,6 @@ body {
 
 
 
-.employeePara {
-    color: white;
-    font-size: 15px;
-    position: absolute;
-    margin-top: 38px;
-}
-
-.employeePara2 {
-    color: white;
-    font-size: 15px;
-    position: absolute;
-    margin-top: 58px;
-}
 
 
 
@@ -206,26 +184,6 @@ body {
 
 
 
-/* 
-All employees List */
-
-/* .allEmployeesListContainer {
-    padding: 25px;
-}
-
-.employeeListHeading {
-    font-size: 25px;
-    font-style: italic;
-    font-weight: bold;
-    font-family: 'Noto Serif Georgian', serif;
-}
-
-.employeesListTableDiv {
-    width: 1500px;
-    height: auto;
-    display: block;
-    overflow-x: scroll;
-} */
 
 
 
@@ -270,6 +228,22 @@ All employees List */
     margin-top: 7px;
 }
 
+.editIconPicDiv {
+    background-color: #185286;
+    border: 2px solid white;
+    color: white;
+    width: 44px;
+    height: 44px;
+    margin-top: 7px;
+    margin-right: 5px;
+}
+
+.editIconPic {
+    position: absolute;
+    margin-left: -58px;
+    margin-top: -177px;
+}
+
 .editIconEmail {
     position: absolute;
     margin-left: 8px;
@@ -286,4 +260,11 @@ All employees List */
     color: white;
     font-size: 15px;
     padding: 14px;
+}
+
+.mainSectionRight {
+    padding: 40px;
+    background-color: white;
+    height: 400px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
