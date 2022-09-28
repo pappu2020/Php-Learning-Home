@@ -46,6 +46,10 @@ if($updateAdOfficerRes){
 
 }
 
+
+//Profile Picture Update
+
+
 if(isset($_POST["addoffProfileupBtn"])){
 
 
@@ -78,4 +82,19 @@ if(isset($_POST["addoffProfileupBtn"])){
 
     
     
+}
+
+
+//Mobile Number Update
+
+if(isset($_POST["adOfficerUpdateBtn"])){
+    $mobileNumberAddOfficerInput = $_POST["adOfficerNumberForChange"];
+    $updateAddOfficerMobile ="UPDATE employees SET phoneNum='$mobileNumberAddOfficerInput' WHERE email='$addOfficerLoginEmailForUpdate' AND postion='Admission_Officier'";
+
+
+    $updateAddOfficerMobileRes = mysqli_query($con, $updateAddOfficerMobile);
+    $_SESSION["updateAddOfficerMobileSuccess"] = "Update Success!!!";
+    header("location:./AdofficerDashboard.php");
+
+
 }
