@@ -88,7 +88,7 @@
                         @csrf
 
 
-                        <select class="form-select mt-2" name="subCateOption">
+                        <select class="form-select mt-2 form-control" name="subCateOption">
 
                             <option selected class="form-control">--Select the Category--</option>
                             @foreach ($categoryData as $categoryAllData)

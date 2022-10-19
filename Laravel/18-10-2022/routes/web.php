@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\catagory;
+use App\Http\Controllers\productController;
 use App\Http\Controllers\SubcatagoryController;
 use App\Http\Controllers\usersController;
 use Illuminate\Support\Facades\Route;
@@ -55,3 +56,12 @@ Route::get("/catagory_trash_bin/category_Parmanant_delete/{category_trash_id}", 
 
 Route::get("/SubcatagoryPage", [SubcatagoryController::class, "SubcatagoryPage"])->name("SubcatagoryPage");
 Route::post("/Subcatagory/SubcatagotyStore", [SubcatagoryController::class, "SubcatagoryInsert"])->name("SubcatagoryInsert");
+
+
+
+//Product Section
+
+
+Route::get("/productPage",[productController::class, "productPage"])->name("productPage");
+Route::post("/ProductPageCatESubInfo",[productController::class, "ProductPageCatESubInfo"]);
+Route::post("/ProductPage/productInsert",[productController::class, "productInsert"])->name("productInsert");

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Gymove - Fitness Bootstrap Admin Dashboard</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
@@ -45,9 +46,9 @@
         ***********************************-->
         <div class="nav-header">
             <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="{{asset("userDashboardAsset/images/logo.png")}}" alt="">
-                <img class="logo-compact" src="{{asset("userDashboardAsset/images/logo-text.png")}}" alt="">
-                <img class="brand-title" src="{{asset("userDashboardAsset/images/logo-text.png")}}" alt="">
+                <img class="logo-abbr" src="{{ asset('userDashboardAsset/images/logo.png') }}" alt="">
+                <img class="logo-compact" src="{{ asset('userDashboardAsset/images/logo-text.png') }}" alt="">
+                <img class="brand-title" src="{{ asset('userDashboardAsset/images/logo-text.png') }}" alt="">
             </a>
 
             <div class="nav-control">
@@ -843,7 +844,8 @@
                                                 <a class="timeline-panel text-muted" href="#">
                                                     <span>10 minutes ago</span>
                                                     <h6 class="mb-0">Youtube, a video-sharing website, goes live
-                                                        <strong class="text-primary">$500</strong>.</h6>
+                                                        <strong class="text-primary">$500</strong>.
+                                                    </h6>
                                                 </a>
                                             </li>
                                             <li>
@@ -898,24 +900,25 @@
                             </li>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
-                                    
+
                                     @if (Auth::user()->image == null)
                                         <img width="150px" height="150px" class="mx-auto d-block"
                                             src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" />
                                     @else
-                                        <img src="{{asset("uploads/user")."/".Auth::user()->image}}" width="20px"  alt="" />
+                                        <img src="{{ asset('uploads/user') . '/' . Auth::user()->image }}" width="20px"
+                                            alt="" />
                                     @endif
-                                    
-                                    
-                                    
-                                    
+
+
+
+
                                     <div class="header-info">
-                                        <span class="text-black"><strong>{{Auth::user()->name}}</strong></span>
+                                        <span class="text-black"><strong>{{ Auth::user()->name }}</strong></span>
                                         <p class="fs-12 mb-0">Super Admin</p>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="{{route("profilePage")}}" class="dropdown-item ai-icon">
+                                    <a href="{{ route('profilePage') }}" class="dropdown-item ai-icon">
                                         <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
                                             width="18" height="18" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -937,8 +940,10 @@
                                         </svg>
                                         <span class="ml-2">Inbox </span>
                                     </a>
-                                    <a href="{{ route('logout') }}"  onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" class="dropdown-item ai-icon">
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"
+                                        class="dropdown-item ai-icon">
                                         <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
                                             width="18" height="18" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -951,7 +956,8 @@
                                         <span class="ml-2">Logout </span>
                                     </a>
 
-                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -971,50 +977,64 @@
         <div class="deznav">
             <div class="deznav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li><a class="has-arrow ai-icon" href="{{route("home")}}" aria-expanded="false">
+                    <li><a class="has-arrow ai-icon" href="{{ route('home') }}" aria-expanded="false">
                             <i class="flaticon-381-networking"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
-                    
+
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                             <i class="flaticon-381-television"></i>
                             <span class="nav-text">Users</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{route("userViewPage")}}">Users List</a></li>
-                          
+                            <li><a href="{{ route('userViewPage') }}">Users List</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                            <i class="flaticon-381-television"></i>
+                            <span class="nav-text">Category</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('catagoryPage') }}">Categories List</a></li>
+                            {{-- <li><a href="{{route("catagoryPage")}}">View Catagories</a></li> --}}
+                            <li><a href="{{ route('catagory_trash_bin') }}">Trash bin</a></li>
+
+
+                        </ul>
+                    </li>
+
+
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                            <i class="flaticon-381-television"></i>
+                            <span class="nav-text">Sub-Category</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('SubcatagoryPage') }}">Sub-Category List</a></li>
+                            {{-- <li><a href="{{route("catagoryPage")}}">View Catagories</a></li> --}}
+                            {{-- <li><a href="{{route("catagory_trash_bin")}}">Trash bin</a></li> --}}
+
+
                         </ul>
                     </li>
 
 
                      <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                             <i class="flaticon-381-television"></i>
-                            <span class="nav-text">Category</span>
+                            <span class="nav-text">Product</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{route("catagoryPage")}}">Categories List</a></li>
-                            {{-- <li><a href="{{route("catagoryPage")}}">View Catagories</a></li> --}}
-                            <li><a href="{{route("catagory_trash_bin")}}">Trash bin</a></li>
-                           
-                          
-                        </ul>
-                    </li>
-
-
-                      <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                            <i class="flaticon-381-television"></i>
-                            <span class="nav-text">Sub-Category</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{route("SubcatagoryPage")}}">Sub-Category List</a></li>
+                            <li><a href="{{ route('productPage') }}">Add Product</a></li>
                             {{-- <li><a href="{{route("catagoryPage")}}">View Catagories</a></li> --}}
                             {{-- <li><a href="{{route("catagory_trash_bin")}}">Trash bin</a></li> --}}
-                           
-                          
+
+
                         </ul>
                     </li>
-                    
+
                 </ul>
                 <div class="add-menu-sidebar">
                     <img src="images/calendar.png" alt="" class="mr-3">
@@ -1037,7 +1057,7 @@
             <!-- row -->
             <div class="container-fluid">
                 @yield('content')
-               
+
             </div>
         </div>
         <!--**********************************
@@ -1136,7 +1156,7 @@
     </script>
 
 
-   @yield('javascriptSection')
+    @yield('javascriptSection')
 </body>
 
 </html>
